@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState, useRef } from 'react';
+import CarClient from './components/CarClient/CarClient';
+
+
 
 function App() {
+
+  const [vehiculosArray, setVehiculosArray] = useState([
+    {
+      marca: "Opel",
+      modelo: "Corsa",
+      precio: "12.900 €",
+      km: "5000 km",
+      img: "opelAstra.jpg",
+      portada: true,
+      venta: true
+  },
+  {
+      marca: "Ford",
+      modelo: "Mondeo",
+      precio: "15.900 €",
+      km: "8500 km",
+      img: "fordMondeo.jpg",
+      portada: false,
+      venta: true
+  },
+  {
+      marca: "Ford",
+      modelo: "Mondeo",
+      precio: "15.900 €",
+      km: "8500 km",
+      img: "fordMondeo.jpg",
+      portada: false,
+      venta: true
+  }
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <CarClient vehiculos={vehiculosArray}/>
   );
 }
 
