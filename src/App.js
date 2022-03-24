@@ -36,7 +36,10 @@ function App() {
   ]);
 
   return (
-   <CarClient vehiculos={vehiculosArray}/>
+    <>
+    <CarClient vehiculos={vehiculosArray}/>
+    </>
+   
   );
 }
 

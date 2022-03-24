@@ -6,7 +6,10 @@ function CarClient({vehiculos}) {
         element => <h5>{element.marca}+{element.modelo}</h5>
     )
     return (
-        {liArray}
+        <p>
+            {liArray}
+        </p>
+        
     );
 }
 
