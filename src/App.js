@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import CarClient from './components/CarClient/CarClient';
+import CarClient from './components/CarCarrousel/CarCarrousel';
 
 
 
