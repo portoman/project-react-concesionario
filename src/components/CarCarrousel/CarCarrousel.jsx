@@ -7,36 +7,27 @@ import Button from 'react-bootstrap/Button';
 
 function CarCarrousel({ vehiculos }) {
 
-/*
-Constante que almacena un nuevo array con la lista de vehiculos a partir de un map
-*/
+    /*
+    Constante que almacena un nuevo array con la lista de vehiculos a partir de un map
+    */
     const listCar = vehiculos.map(
-        element => 
+        element =>
             <CarComponent vehiculo={element} />
-        
+
     );
+
+    const prueba = vehiculos.map(
+        element =>
+            <CarComponent vehiculo={element} />
+    );
+
 
     return (
         <>
-        <Button variant="primary">Primary</Button>{' '}
-            <div id="carouselVentas" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-indicators">
-                    <div id="botonesVenta"></div>
-                </div>
-                <div className="carousel-inner">                    
-                    {listCar}
-                </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselVentas"
-                    data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselVentas"
-                    data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                </button>
-            </div>
+            <Button variant="primary">Primary</Button>{' '}
+            <Carousel>
+                {prueba}
+            </Carousel>
 
             <Carousel>
                 <Carousel.Item>
@@ -54,7 +45,7 @@ Constante que almacena un nuevo array con la lista de vehiculos a partir de un m
                     <img
                         className="d-block w-100"
                         src="holder.js/800x400?text=Second slide&bg=282c34"
-                        alt="Second slide"
+                        alt="dddd slide"
                     />
 
                     <Carousel.Caption>

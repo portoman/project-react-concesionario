@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import CarClient from './components/CarCarrousel/CarCarrousel';
+import CarCarrousel from './components/CarCarrousel/CarCarrousel';
 
 
 
@@ -37,7 +37,7 @@ function App() {
 
   return (
     <>
-    <CarClient vehiculos={vehiculosArray}/>
+    <CarCarrousel vehiculos={vehiculosArray}/>
     </>
    
   );
