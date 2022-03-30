@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import CarCarrousel from './components/CarCarrousel/CarCarrousel';
-
+import './App.css';
 
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
 
   return (
     <>
-    <CarCarrousel vehiculos={vehiculosArray}/>
+    <CarCarrousel   vehiculos={vehiculosArray}/>
     </>
    
   );

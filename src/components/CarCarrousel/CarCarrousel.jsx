@@ -29,7 +29,7 @@ function CarCarrousel({ vehiculos }) {
 
     return (
         <>
-            <Carousel>
+            <Carousel className="carusel">
                 {listCar}
             </Carousel>
 
