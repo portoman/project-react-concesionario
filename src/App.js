@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import CarCarrousel from './components/CarCarrousel/CarCarrousel';
+import Navbar from 'react-bootstrap/Navbar';
 import './App.css';
+import NavBar from './components/NavBar/NavBar';
 
 
 function App() {
@@ -38,6 +40,7 @@ function App() {
   return (
     <>
     <h1>Concesionario Vioño</h1>
+    <NavBar  vehiculos={vehiculosArray}/>
     <h3>Ofertas alquiler</h3>
     <CarCarrousel   vehiculos={vehiculosArray}/>
     </>
