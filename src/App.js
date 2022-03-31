@@ -35,6 +35,15 @@ function App() {
       venta: true
     },
     {
+      marca: "Peugeot",
+      modelo: "Partner",
+      precio: "8.900 €",
+      km: "2500 km",
+      img: ruta + "peugeotPartner.jpg",
+      venta: false
+    }
+    ,
+    {
       marca: "Nissan",
       modelo: "Qashqai",
       precio: "10.900 €",
@@ -71,7 +80,7 @@ function App() {
   //Mediante el método filter, segrego los coches que son de alquiler o venta
   let vehiculosArrayAlquiler=vehiculosArray.filter(coche => coche.venta ==false);
   let vehiculosArrayVenta=vehiculosArray.filter(coche => coche.venta ==true);
-  
+
   return (
     <>
       <h1>Concesionario Vioño</h1>
