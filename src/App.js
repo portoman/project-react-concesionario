@@ -3,6 +3,7 @@ import CarCarrousel from './components/CarCarrousel/CarCarrousel';
 import Navbar from 'react-bootstrap/Navbar';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
+import IndividualPage from './components/IndividualPage/IndividualPage';
 
 
 function App() {
