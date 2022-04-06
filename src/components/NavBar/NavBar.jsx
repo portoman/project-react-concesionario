@@ -16,9 +16,9 @@ function NavBar({ vehiculos }) {
     const vehiculosAlquiler = vehiculosArrayAlquiler.map(
         (element, index) =>
             <Nav className="me-auto">
-                    <NavDropdown title={element.marca} id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">{element.modelo}</NavDropdown.Item>
-                    </NavDropdown>
+                <NavDropdown title={element.marca} id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">{element.modelo}</NavDropdown.Item>
+                </NavDropdown>
             </Nav>
     );
 
