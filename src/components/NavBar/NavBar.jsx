@@ -13,7 +13,85 @@ function NavBar({ vehiculos }) {
     let vehiculosArrayAlquiler = vehiculos.filter(coche => coche.venta == false);
     let vehiculosArrayVenta = vehiculos.filter(coche => coche.venta == true);
 
-    const vehiculosAlquiler = vehiculosArrayAlquiler.map(
+
+    /**
+ * Función que permite agrupar un array por el atributo que queramos
+ * devolviendonos un Map-Diccionario, donde el elemento por el que se agrupa 
+ * es el index
+ * @param {Parámetro por el que queremos agrupar} key 
+ * @param {Array que queremos agrupar} arr 
+ * @returns Map
+ */
+    let groupBy = (key, arr) =>
+        arr.reduce((cache, product) => {
+            const property = product[key];
+            if (property in cache) {
+                return { ...cache, [property]: cache[property].concat(product) };
+            }
+            return { ...cache, [property]: [product] };
+        }, {});
+
+
+    let arrayAgrupadoMarcas = groupBy("marca", vehiculosArrayAlquiler);
+
+    let arrayMarcas = []
+    let arrayMarcasIndividuales = [];
+    let arrayMarcasMultiples = [];
+
+    //Bucle que segrega el Map en 2 nuevos, según haya varios elementos o no
+    for (const property in arrayAgrupadoMarcas) {
+        console.log({ property });
+        arrayMarcas = property;
+        console.log(arrayAgrupadoMarcas[property].length);
+        for (let i = 0; i < arrayAgrupadoMarcas[property].length; i++) {
+            if (arrayAgrupadoMarcas[property].length == 1) {
+                arrayMarcasIndividuales.push(arrayAgrupadoMarcas[property][i].marca);
+            } else {
+                arrayMarcasMultiples.push(arrayAgrupadoMarcas[property][i].marca);
+            }
+        }
+    }
+    let arrayMarcasMultiplesSinDuplicados = [];
+
+    console.log(arrayMarcasMultiples);
+
+    for (let i = 0; i < arrayMarcasMultiples.length; i++) {
+
+        const elemento = arrayMarcasMultiples[i];
+
+        if (!arrayMarcasMultiplesSinDuplicados.includes(arrayMarcasMultiples[i])) {
+            arrayMarcasMultiplesSinDuplicados.push(elemento);
+        }
+    }
+
+    console.log(arrayMarcasMultiplesSinDuplicados);
+    console.log(arrayMarcasIndividuales);
+
+    let arrayMarcasIndividualesCompleto = [];
+
+    for (let i = 0; i < arrayMarcasIndividuales.length; i++) {
+        for (let j = 0; j < vehiculos.length; j++) {
+            if (arrayMarcasIndividuales[i] == vehiculos[j].marca) {
+                arrayMarcasIndividualesCompleto.push(vehiculos[j])
+            }
+        }
+    }
+
+    console.log(arrayMarcasIndividualesCompleto);
+
+    let arrayMarcasMultiplesCompleto = [];
+
+    for (let i = 0; i < arrayMarcasMultiplesSinDuplicados.length; i++) {
+        for (let j = 0; j < vehiculos.length; j++) {
+            if (arrayMarcasMultiplesSinDuplicados[i] == vehiculos[j].marca) {
+                arrayMarcasMultiplesCompleto.push(vehiculos[j])
+            }
+        }
+    }
+
+    console.log(arrayMarcasMultiplesCompleto);
+
+    const vehiculosAlquilerMarcasIndividuales = arrayMarcasIndividualesCompleto.map(
         (element, index) =>
             <Nav className="me-auto">
                 <NavDropdown title={element.marca} id="basic-nav-dropdown">
@@ -22,6 +100,32 @@ function NavBar({ vehiculos }) {
             </Nav>
     );
 
+
+    function segregar(elemento) {
+        const arrayModelosSeleccionados = []
+        for (let i = 0; i < arrayMarcasMultiplesCompleto.length; i++) {
+            if (arrayMarcasMultiplesCompleto[i].marca === elemento) {
+                arrayModelosSeleccionados.push(arrayMarcasMultiplesCompleto[i].modelo)
+            }
+        }
+        const devolucion = arrayModelosSeleccionados.map(
+            (element, index) =>
+                <NavDropdown.Item href="#action/3.1">{element}</NavDropdown.Item>
+        )
+        return devolucion
+
+    }
+    const vehiculosAlquilerMarcasMultiples = arrayMarcasMultiplesSinDuplicados.map(
+        (element, index) =>
+            <Nav className="me-auto">
+                <NavDropdown title={element} id="basic-nav-dropdown">
+                    {segregar(element)}
+                </NavDropdown>
+            </Nav>
+    );
+
+
+
     return (
         <>
             <Navbar bg="light" expand="lg">
@@ -29,7 +133,8 @@ function NavBar({ vehiculos }) {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <NavDropdown title="Alquiler" id="basic-nav-dropdown">
-                                {vehiculosAlquiler}
+                                {vehiculosAlquilerMarcasIndividuales}
+                                {vehiculosAlquilerMarcasMultiples}
                             </NavDropdown>
                         </Nav>
                         <Nav className="me-auto">
