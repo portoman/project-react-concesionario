@@ -22,11 +22,13 @@ function CarCarrousel({ vehiculos }) {
                             <Route path="../IndividualPage" element={<IndividualPage vehiculo={element} />} />
                     </Routes>
                 </BrowserRouter>
-                <img
+               <a href={<IndividualPage vehiculo={element}/>}>
+               <img
                     className="d-block w-100"
                     src={element.img}
                     alt="First slide"
                 />
+                   </a> 
                 <Carousel.Caption>
                     <h3>{element.marca}</h3>
                     <p>{element.precio}</p>
@@ -40,7 +42,6 @@ function CarCarrousel({ vehiculos }) {
             <Carousel className="carusel">
                 {listCar}
             </Carousel>
-
         </>
 
     );

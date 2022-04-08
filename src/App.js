@@ -70,15 +70,6 @@ function App() {
     },
     {
       marca: "Seat",
-      modelo: "Ibiza",
-      precio: "5.900 €",
-      km: "2500 km",
-      img: ruta + "seatIbiza.jpg",
-      venta: false
-    },
-    
-    {
-      marca: "Seat",
       modelo: "Arona",
       precio: "5.900 €",
       km: "2500 km",
@@ -107,6 +98,7 @@ function App() {
       <CarCarrousel vehiculos={vehiculosArrayAlquiler} />
       <h3>Ofertas venta</h3>
       <CarCarrousel vehiculos={vehiculosArrayVenta} />
+      <IndividualPage vehiculo={vehiculosArray[0]}/>
     </>
 
   );
