@@ -55,6 +55,7 @@ function NavBar({ vehiculos }) {
 
     console.log(arrayMarcasMultiples);
 
+    //Bucle que genera un nuevo array con las marcas (sin duplicar) que tienen más de un modelo
     for (let i = 0; i < arrayMarcasMultiples.length; i++) {
 
         const elemento = arrayMarcasMultiples[i];
@@ -64,11 +65,12 @@ function NavBar({ vehiculos }) {
         }
     }
 
-    console.log(arrayMarcasMultiplesSinDuplicados);
-    console.log(arrayMarcasIndividuales);
+    
 
     let arrayMarcasIndividualesCompleto = [];
 
+    /*Blucle que genera un nuevo array con los coches de las marcas que solo tienen un modelo
+    con todos sus datos*/
     for (let i = 0; i < arrayMarcasIndividuales.length; i++) {
         for (let j = 0; j < vehiculos.length; j++) {
             if (arrayMarcasIndividuales[i] == vehiculos[j].marca) {
@@ -81,6 +83,8 @@ function NavBar({ vehiculos }) {
 
     let arrayMarcasMultiplesCompleto = [];
 
+    /*Blucle que genera un nuevo array con los coches de las marcas que tienen más de un modelo
+    con todos sus datos*/
     for (let i = 0; i < arrayMarcasMultiplesSinDuplicados.length; i++) {
         for (let j = 0; j < vehiculos.length; j++) {
             if (arrayMarcasMultiplesSinDuplicados[i] == vehiculos[j].marca) {
@@ -89,8 +93,7 @@ function NavBar({ vehiculos }) {
         }
     }
 
-    console.log(arrayMarcasMultiplesCompleto);
-
+    //Constante que genera los menús para las marcas que tienen solo un modelo
     const vehiculosAlquilerMarcasIndividuales = arrayMarcasIndividualesCompleto.map(
         (element, index) =>
             <Nav className="me-auto">
@@ -100,7 +103,12 @@ function NavBar({ vehiculos }) {
             </Nav>
     );
 
-
+    /**
+     * Función que devuelve un submenu con los modelos correspondientes con la marca 
+     * introducida
+     * @param {Marca de coche que nos interesa} elemento 
+     * @returns Submenú con todos los modelos dependiendo de la marca introducida
+     */
     function segregar(elemento) {
         const arrayModelosSeleccionados = []
         for (let i = 0; i < arrayMarcasMultiplesCompleto.length; i++) {
@@ -115,6 +123,7 @@ function NavBar({ vehiculos }) {
         return devolucion
 
     }
+    //Constante que genera los menús para las marcas que tienen múltiples modelos
     const vehiculosAlquilerMarcasMultiples = arrayMarcasMultiplesSinDuplicados.map(
         (element, index) =>
             <Nav className="me-auto">
