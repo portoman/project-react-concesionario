@@ -4,7 +4,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import IndividualPage from './components/IndividualPage/IndividualPage';
-import viewCarCarrousel from './views/viewCarCarrousel';
 import CarCarrousels from './components/CarCarrousels/CarCarrousels';
 
 
@@ -88,13 +87,6 @@ function App() {
       venta: false
     }
   ]);
-
-  const vistaInicial = viewCarCarrousel(vehiculosArray);
-
-  /* useState para gestionar las vistas, que la inicio con el Carrousel que es lo que inicialmente
-  quiero mostrar*/
-  const [currentView, setCurrentView] = useState(vistaInicial);
-
 
 
   return (
