@@ -1,10 +1,19 @@
 import { useEffect, useState, useRef } from 'react';
 
+import './NavBar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import '../../bootstrap-5.1.3-dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import {
+    MDBDropdown,
+    MDBDropdownMenu,
+    MDBDropdownToggle,
+    MDBDropdownItem,
+    MDBDropdownLink,
+    MDBBtn
+} from 'mdb-react-ui-kit';
 
 function NavBar({ vehiculos }) {
 
@@ -65,7 +74,6 @@ function NavBar({ vehiculos }) {
         }
     }
 
-    
 
     let arrayMarcasIndividualesCompleto = [];
 
@@ -98,7 +106,7 @@ function NavBar({ vehiculos }) {
         (element, index) =>
             <Nav className="me-auto">
                 <NavDropdown title={element.marca} id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">{element.modelo}</NavDropdown.Item>
+                    <NavDropdown.Item className="submenu" href="#action/3.1">{element.modelo}</NavDropdown.Item>
                 </NavDropdown>
             </Nav>
     );
@@ -118,7 +126,7 @@ function NavBar({ vehiculos }) {
         }
         const devolucion = arrayModelosSeleccionados.map(
             (element, index) =>
-                <NavDropdown.Item href="#action/3.1">{element}</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.1" className="submenu">{element}</NavDropdown.Item>
         )
         return devolucion
 
@@ -127,7 +135,7 @@ function NavBar({ vehiculos }) {
     const vehiculosAlquilerMarcasMultiples = arrayMarcasMultiplesSinDuplicados.map(
         (element, index) =>
             <Nav className="me-auto">
-                <NavDropdown title={element} id="basic-nav-dropdown">
+                <NavDropdown title={element} id="basic-nav-dropdown" >
                     {segregar(element)}
                 </NavDropdown>
             </Nav>

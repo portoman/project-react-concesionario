@@ -4,6 +4,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import IndividualPage from './components/IndividualPage/IndividualPage';
+import viewCarCarrousel from './views/viewCarCarrousel';
+import CarCarrousels from './components/CarCarrousels/CarCarrousels';
+
 
 
 function App() {
@@ -29,7 +32,7 @@ function App() {
     },
     {
       marca: "Peugeot",
-      modelo: "Partner",
+      modelo: "408",
       precio: "8.900 €",
       km: "2500 km",
       img: ruta + "peugeotPartner.jpg",
@@ -86,19 +89,20 @@ function App() {
     }
   ]);
 
-  //Mediante el método filter, segrego los coches que son de alquiler o venta
-  let vehiculosArrayAlquiler=vehiculosArray.filter(coche => coche.venta ==false);
-  let vehiculosArrayVenta=vehiculosArray.filter(coche => coche.venta ==true);
+  const vistaInicial = viewCarCarrousel(vehiculosArray);
+
+  /* useState para gestionar las vistas, que la inicio con el Carrousel que es lo que inicialmente
+  quiero mostrar*/
+  const [currentView, setCurrentView] = useState(vistaInicial);
+
+
 
   return (
     <>
       <h1>Concesionario Vioño</h1>
       <NavBar vehiculos={vehiculosArray} />
-      <h3>Ofertas alquiler</h3>
-      <CarCarrousel vehiculos={vehiculosArrayAlquiler} />
-      <h3>Ofertas venta</h3>
-      <CarCarrousel vehiculos={vehiculosArrayVenta} />
-      <IndividualPage vehiculo={vehiculosArray[0]}/>
+      <CarCarrousels vehiculos={vehiculosArray} />
+      <IndividualPage vehiculo={vehiculosArray[1]} />
     </>
 
   );

@@ -3,9 +3,13 @@ import { useEffect, useState, useRef } from 'react';
 import './CarCarrousel.css';
 import Carousel from 'react-bootstrap/Carousel';
 import '../../bootstrap-5.1.3-dist/css/bootstrap.min.css';
-import IndividualPage from '../IndividualPage/IndividualPage';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 function CarCarrousel({ vehiculos }) {
 
@@ -15,20 +19,14 @@ function CarCarrousel({ vehiculos }) {
     let contador = 0;
     const listCar = vehiculos.map(
         (element, index) =>
-
             <Carousel.Item key={contador++}>
-                <BrowserRouter>
-                    <Routes>
-                            <Route path="../IndividualPage" element={<IndividualPage vehiculo={element} />} />
-                    </Routes>
-                </BrowserRouter>
-               <a href={<IndividualPage vehiculo={element}/>}>
-               <img
-                    className="d-block w-100"
-                    src={element.img}
-                    alt="First slide"
-                />
-                   </a> 
+                <Link to="IndividualPage">
+                    <img
+                        className="d-block w-100"
+                        src={element.img}
+                        alt="First slide"
+                    />
+                </Link>
                 <Carousel.Caption>
                     <h3>{element.marca}</h3>
                     <p>{element.precio}</p>
@@ -39,12 +37,14 @@ function CarCarrousel({ vehiculos }) {
 
     return (
         <>
-            <Carousel className="carusel">
-                {listCar}
-            </Carousel>
+            <Router>
+                <Carousel className="carusel">
+                    {listCar}
+                </Carousel>
+            </Router>
         </>
-
     );
 }
+
 
 export default CarCarrousel;

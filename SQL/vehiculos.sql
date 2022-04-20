@@ -1,7 +1,7 @@
 /*
 Abrir cmd y poner: 
 
-cd C:\Users\afdm\Desktop\PortableGit\Develop\mysql-8.0.27-winx64\bin>
+cd C:\Users\afdm\Desktop\PortableGit\Develop\mysql-8.0.27-winx64\bin
 
 mysqld --console
 
