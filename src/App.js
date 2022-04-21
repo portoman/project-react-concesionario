@@ -5,7 +5,7 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import IndividualPage from './components/IndividualPage/IndividualPage';
 import CarCarrousels from './components/CarCarrousels/CarCarrousels';
-
+import { Route,Routes } from 'react-router-dom';
 
 
 function App() {
@@ -93,8 +93,14 @@ function App() {
     <>
       <h1>Concesionario Vioño</h1>
       <NavBar vehiculos={vehiculosArray} />
-      <CarCarrousels vehiculos={vehiculosArray} />
-      <IndividualPage vehiculo={vehiculosArray[1]} />
+      
+
+      <Routes>
+        <Route path="/" element={<CarCarrousels vehiculos={vehiculosArray} />}/>
+        <Route path="/vehiculo/" element={<IndividualPage vehiculo={vehiculosArray[1]} />}>
+          <Route path=":id" element={<IndividualPage vehiculo={vehiculosArray[1]} />}/>
+        </Route>
+      </Routes>
     </>
 
   );
