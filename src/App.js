@@ -98,9 +98,7 @@ function App() {
       <NavBar vehiculos={vehiculosArray} />
       <Routes>
         <Route path="/" element={<CarCarrousels vehiculos={vehiculosArray} />} />
-        <Route path="/vehiculo/" element={<IndividualPage vehiculo={vehiculosArray} />}>
-          <Route path=":id" element={<IndividualPage vehiculo={vehiculosArray[1]} />} />
-        </Route>
+        <Route path="/vehiculo/:id" element={<IndividualPage vehiculos={vehiculosArray} />} />
       </Routes>
     </>
 

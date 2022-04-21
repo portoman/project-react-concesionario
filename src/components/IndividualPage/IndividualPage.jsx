@@ -1,7 +1,15 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { Context } from "../../SharedState"
+
+function IndividualPage({vehiculo}) {
 
 
-function IndividualPage({ vehiculo }) {
+    //Variable para coger datos de la URL
+    const parms = useParams();
+    console.log(parms.id);
+    
+
 
 
     return (
