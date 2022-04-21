@@ -6,11 +6,14 @@ import NavBar from './components/NavBar/NavBar';
 import IndividualPage from './components/IndividualPage/IndividualPage';
 import CarCarrousels from './components/CarCarrousels/CarCarrousels';
 import { Route, Routes } from 'react-router-dom';
-
+import { useContext } from "react"
+import { Context } from "./SharedState"
 
 function App() {
 
   const ruta = "http://127.0.0.1:5500/project-react/src/img/";
+
+  const { state } = useContext(Context);
 
   const [vehiculosArray, setVehiculosArray] = useState([
     {
@@ -93,11 +96,9 @@ function App() {
     <>
       <h1>Concesionario Vioño</h1>
       <NavBar vehiculos={vehiculosArray} />
-
-
       <Routes>
         <Route path="/" element={<CarCarrousels vehiculos={vehiculosArray} />} />
-        <Route path="/vehiculo/" element={<IndividualPage vehiculo={vehiculosArray[1]} />}>
+        <Route path="/vehiculo/" element={<IndividualPage vehiculo={vehiculosArray} />}>
           <Route path=":id" element={<IndividualPage vehiculo={vehiculosArray[1]} />} />
         </Route>
       </Routes>
