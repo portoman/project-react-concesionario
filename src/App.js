@@ -15,7 +15,7 @@ function App() {
 
   const { state } = useContext(Context);
 
-  const [vehiculosArray, setVehiculosArray] = useState([
+  const vehiculosArray = [
     {
       marca: "Opel",
       modelo: "Corsa",
@@ -89,7 +89,7 @@ function App() {
       img: ruta + "vwPolo.jpg",
       venta: false
     }
-  ]);
+  ];
 
 
   return (

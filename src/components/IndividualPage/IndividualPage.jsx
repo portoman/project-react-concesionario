@@ -2,22 +2,23 @@ import { useEffect, useState, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Context } from "../../SharedState"
 
-function IndividualPage({vehiculo}) {
+function IndividualPage({ vehiculos }) {
 
 
     //Variable para coger datos de la URL
     const parms = useParams();
-    console.log(parms.id);
-    
 
+    let numeroString = parms.id;
+    let numero = parseInt(numeroString);
 
+    const vehiculoElegido=vehiculos[numero];
 
     return (
         <>
-            <h2>Marca: {vehiculo.marca}</h2>
-            <h2>Modelo: {vehiculo.modelo}</h2>
-            <h2>Precio: {vehiculo.precio}</h2>
-            <img src={vehiculo.img}/>
+            <h2>Marca: {vehiculoElegido.marca}</h2>
+            <h2>Modelo: {vehiculoElegido.modelo}</h2>
+            <h2>Precio: {vehiculoElegido.precio}</h2>
+            <img src={vehiculoElegido.img} />
         </>
 
     );
