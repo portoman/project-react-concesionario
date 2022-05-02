@@ -9,6 +9,8 @@ function IndividualPage({ vehiculos }) {
     const parms = useParams();
 
     let numeroString = parms.id;
+    let venta = parms.venta;
+    console.log(venta);
     let numero = parseInt(numeroString);
 
     const vehiculoElegido=vehiculos[numero];
