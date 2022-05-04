@@ -1,70 +1,55 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Presentación
 
-In the project directory, you can run:
 
-### `npm start`
+## 1. Titulo 
+```markdown
+    Concesionario para venta y alquiler de vehículos
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 2.	Descripción
+```markdown
+    Aplicación que muestre a los clientes listado de vehículos disponibles para compra o alquiler y los que estén de oferta. 
+    Además estará conectado a una base de datos  para que el personal del concesionario tenga un registro de los datos de los coches, datos de persona que tiene alquilado el coche, etc.
+```
+## 3.	Necesidad que soluciona
+```markdown
+    Personas que quieran alquilar/comprar sin visitar el concesionario y gestión de vehículos por parte del concesionario.
+```
+## 4.	Destinatarios
+```markdown
+    Posibles clientes y concesionarios.
+```
+## 5.	Mockups
+```markdown
+    Vista de móvil (mobile first):
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Vista movil Cliente:                                                                            
 
-### `npm test`
+![Alt text](ClienteMovil1.PNG)
+![Alt text](ClienteMovil2.PNG)
+![Alt text](ClienteMovil3.PNG)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Vista escritorio Cliente: 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Alt text](ClienteEscritorio1.PNG)
+![Alt text](ClienteEscritorio2.PNG)
+![Alt text](ClienteEscritorio3.PNG)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Vista escritorio Concesionario:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Alt text](ConcesionarioEscritorio1.PNG)
+![Alt text](ConcesionarioEscritorio2.PNG)
+![Alt text](ConcesionarioEscritorio3.PNG)
 
-### `npm run eject`
+## 6.	MVP - Producto mínimo viable.
+```markdown
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+El cliente es capaz de ver todos los vehículos disponibles para alquilar y comprar desplegando las listas y en el menú principal habrá 2 sliders con fotos de los vehículos en ofertas.
+El concesionario es capaz de gestionar la base de datos dar de alta y baja a vehículos, listarlos, buscarlos, etc.
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
