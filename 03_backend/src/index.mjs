@@ -2,7 +2,7 @@ import express from "express";
 
 
 import { postUserController } from "./controllers/usersControllers.mjs";
-import { deleteTaskController, getOneTaskController, getAllTasksController, postTaskController, putTaskController } from "./controllers/tasksControllers.mjs";
+import { getAllCars, getOneTaskController, getAllTasksController, postTaskController, putTaskController } from "./controllers/tasksControllers.mjs";
 
 const PATH_PREFIX = "/api/"
 const app = express();
@@ -12,8 +12,11 @@ try {
 
     //app.post(PATH_PREFIX+"/users/", jsonParser, postUserController);
 
+    app.get(PATH_PREFIX+"/allCoches/", getAllCars);
+
     app.get(PATH_PREFIX+"/tasks/:id", getOneTaskController);
-    app.get(PATH_PREFIX+"/tasks/", getAllTasksController);
+
+    
     app.post(PATH_PREFIX+"/task/", jsonParser, postTaskController);
     app.put(PATH_PREFIX+"/task/", jsonParser, putTaskController);
     app.delete(PATH_PREFIX+"/task/", jsonParser, deleteTaskController);

@@ -1,10 +1,10 @@
 import { tasks } from "../models/tasksModels.mjs"
 import { db } from "../models/db.mjs"
 
-//Controlador para devolver todas las tareas
-export function getAllTasksController(request, response) {
+//Controlador para devolver todos los coches
+export function getAllCars(request, response) {
     db.all(
-        `SELECT id, description, done FROM tasks`,
+        `SELECT * FROM coches`,
         (err, data) => {
             if (err) {
                 console.error(err);

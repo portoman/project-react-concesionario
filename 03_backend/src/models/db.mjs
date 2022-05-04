@@ -10,7 +10,7 @@ export const db = new sqlite3.Database('./vehicleDealer.db', (err) => {
 db.run(`
     CREATE TABLE
         IF NOT EXISTS
-        formulario(
+        formularios(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nombre VARCHAR(20) NOT NULL,
             apellidos VARCHAR(20) NOT NULL,
@@ -22,7 +22,7 @@ db.run(`
 db.run(`
     CREATE TABLE
         IF NOT EXISTS
-        usuarioConcesionario(
+        usuariosConcesionarios(
             usuario DECIMAL(5) PRIMARY KEY,
             contraseña VARCHAR(20) NOT NULL
         )
@@ -31,7 +31,7 @@ db.run(`
 db.run(`
     CREATE TABLE
         IF NOT EXISTS
-        cliente(
+        clientes(
             id_cliente INTEGER PRIMARY KEY AUTOINCREMENT,
             DNI VARCHAR(8) NOT NULL UNIQUE,
             nombre VARCHAR(20) NOT NULL,
@@ -45,7 +45,7 @@ db.run(`
 db.run(`
     CREATE TABLE
         IF NOT EXISTS
-        coche(
+        coches(
             id_coche INTEGER PRIMARY KEY AUTOINCREMENT,
             matricula VARCHAR(50) UNIQUE NOT NULL,
             modelo VARCHAR(30),
@@ -62,15 +62,22 @@ db.run(`
         )
 `);
 
-db.run(`INSERT INTO coche( matricula, modelo, marca, km, precio, 
+db.run(`INSERT INTO coches( matricula, modelo, marca, km, precio, 
     foto, cilindrada, combustible, id_cliente, alquiler, oferta) VALUES 
-            ("1111AA","Astra", "Opel", 5000,4.999,"opelAstra.jpg",100,"diesel", 1,"true","true")`
+            ("1111AA","Astra", "Opel", 5000,4.999,"opelAstra.jpg",100,"diesel", 1,"true","true")  
+            `
+);
+
+db.run(`INSERT INTO coches( matricula, modelo, marca, km, precio, 
+    foto, cilindrada, combustible, id_cliente, alquiler, oferta) VALUES 
+            ("2222AA","Astra", "Opel", 5000,4.999,"opelAstra.jpg",100,"diesel", 1,"true","true");   
+            `
 );
 
 db.run(`
     CREATE TABLE
         IF NOT EXISTS
-        alquiler(
+        alquileres(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             fecha_entrega VARCHAR(30),
             fecha_devolucion VARCHAR(30),
@@ -85,7 +92,7 @@ db.run(`
 db.run(`
     CREATE TABLE
         IF NOT EXISTS
-        venta(
+        ventas(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             fecha VARCHAR(30),
             id_coche DECIMAL(5),
