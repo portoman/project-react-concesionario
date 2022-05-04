@@ -28,22 +28,22 @@
 
 Vista movil Cliente:                                                                            
 
-![Alt text](ClienteMovil1.PNG)
-![Alt text](ClienteMovil2.PNG)
-![Alt text](ClienteMovil3.PNG)
+![Alt text](04_documentation/fotos_readme/ClienteMovil1.PNG)
+![Alt text](04_documentation/fotos_readme/ClienteMovil2.PNG)
+![Alt text](04_documentation/fotos_readme/ClienteMovil3.PNG)
 
 
 Vista escritorio Cliente: 
 
-![Alt text](ClienteEscritorio1.PNG)
-![Alt text](ClienteEscritorio2.PNG)
-![Alt text](ClienteEscritorio3.PNG)
+![Alt text](04_documentation/fotos_readme/ClienteEscritorio1.PNG)
+![Alt text](04_documentation/fotos_readme/ClienteEscritorio2.PNG)
+![Alt text](04_documentation/fotos_readme/ClienteEscritorio3.PNG)
 
 Vista escritorio Concesionario:
 
-![Alt text](ConcesionarioEscritorio1.PNG)
-![Alt text](ConcesionarioEscritorio2.PNG)
-![Alt text](ConcesionarioEscritorio3.PNG)
+![Alt text](04_documentation/fotos_readme/ConcesionarioEscritorio1.PNG)
+![Alt text](04_documentation/fotos_readme/ConcesionarioEscritorio2.PNG)
+![Alt text](04_documentation/fotos_readme/ConcesionarioEscritorio3.PNG)
 
 ## 6.	MVP - Producto mínimo viable.
 ```markdown
