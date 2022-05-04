@@ -17,4 +17,5 @@ Inicializarlo: F5
 
 SQLite3:
 
-install sqlite3
+Istalarlo: install sqlite3
+Inicializarla: F5
