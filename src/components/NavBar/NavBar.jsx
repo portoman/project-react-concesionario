@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 
 import './NavBar.css';
 import Navbar from 'react-bootstrap/Navbar';
-import '../../bootstrap-5.1.3-dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';

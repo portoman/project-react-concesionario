@@ -1,6 +1,3 @@
-import { useEffect, useState, useRef } from 'react';
-import CarCarrousel from './components/CarCarrousel/CarCarrousel';
-import Navbar from 'react-bootstrap/Navbar';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import IndividualPage from './components/IndividualPage/IndividualPage';
@@ -11,7 +8,7 @@ import { Context } from "./SharedState"
 
 function App() {
 
-  const ruta = "http://127.0.0.1:5500/project-react/src/img/";
+  const ruta = "http://127.0.0.1:5500/src/img/";
 
   const { state } = useContext(Context);
 

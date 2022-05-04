@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import './CarCarrousel.css';
 import Carousel from 'react-bootstrap/Carousel';
-import '../../bootstrap-5.1.3-dist/css/bootstrap.min.css';
+
 import { Link } from 'react-router-dom';
 import { useContext } from "react"
 import { Context } from "../../SharedState"
