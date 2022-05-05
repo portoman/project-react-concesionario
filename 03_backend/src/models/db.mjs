@@ -41,7 +41,12 @@ db.run(`
             ciudad VARCHAR(20) NOT NULL
         )
 `);
-
+/*
+Valores booleanos=> 0 (false), 1(true)
+Los coches si están vendidos o alquilados están no disponibles=0.
+Si son coches en alquiler. Alquiler=1, si son para ventas: Alquiler=0
+Sin son coches en oferta. Oferta=1, si no están en Oferta=0.
+*/ 
 db.run(`
     CREATE TABLE
         IF NOT EXISTS
@@ -55,10 +60,9 @@ db.run(`
             foto VARCHAR(30),
             cilindrada VARCHAR(30),
             combustible VARCHAR(30),
-            id_cliente INTEGER,
+            disponible INTEGER DEFAULT 1 CHECK (disponible=0 OR disponible=1),
             alquiler VARCHAR(10) CHECK (alquiler='true' OR alquiler='false'),
-            oferta VARCHAR(10) CHECK (oferta='true' OR oferta='false'),
-            CONSTRAINT fk_persona FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente) 
+            oferta VARCHAR(10) CHECK (oferta='true' OR oferta='false')
         )
 `);
 

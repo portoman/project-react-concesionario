@@ -9,7 +9,6 @@ const app = express();
 try {
     const jsonParser = express.json();
     //app.use(requestLog);
-
     //app.post(PATH_PREFIX+"/users/", jsonParser, postUserController);
 
     app.get(PATH_PREFIX + "/allCoches/", getAllCars);
