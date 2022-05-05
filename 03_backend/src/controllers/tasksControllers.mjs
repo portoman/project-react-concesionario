@@ -124,3 +124,19 @@ export function postClientController(request, response) {
         }
     )
 }
+
+//Controlador para devolver un cliente
+export function getOneClientController(request, response) {
+    const client = parseInt(request.params.id)
+    db.all(
+        `SELECT * FROM clientes WHERE id_cliente="${client}"`,
+        (err, data) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.json(data)
+            }
+        }
+    )
+}
