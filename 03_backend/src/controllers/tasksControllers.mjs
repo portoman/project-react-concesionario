@@ -1,4 +1,4 @@
-import { tasks } from "../models/tasksModels.mjs"
+
 import { db } from "../models/db.mjs"
 
 //Controlador para devolver todos los coches
@@ -18,7 +18,7 @@ export function getAllCars(request, response) {
 
 //Controlador para devolver una tarea
 export function getOneTaskController(request, response) {
-    const task =  parseInt(request.params.id)
+    const task = parseInt(request.params.id)
     db.all(
         `SELECT id, description, done FROM tasks WHERE id="${task}"`,
         (err, data) => {
@@ -33,12 +33,15 @@ export function getOneTaskController(request, response) {
 }
 
 
-//Controlador para insertar una tarea
-export function postTaskController(request, response) {
-    const { id, description, done } = request.body;
+//Controlador para insertar un coche
+export function postCarController(request, response) {
+    const { matricula, modelo, marca, km, precio
+        , foto, cilindrada, combustible, alquiler, oferta } = request.body;
     db.run(
-        `INSERT INTO tasks(id, description, done) VALUES 
-            ("${id}","${description}", ${done})`,
+        `INSERT INTO coches(matricula, modelo, marca, km, precio
+            , foto, cilindrada, combustible, alquiler, oferta) VALUES 
+            ("${matricula}","${modelo}","${marca}",${km},${precio},
+            "${foto}","${cilindrada}","${combustible}","${alquiler}","${oferta}")`,
         (err) => {
             if (err) {
                 console.error(err);

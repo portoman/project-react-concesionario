@@ -9,7 +9,8 @@ function CarCarrousel({ vehiculos }) {
 
     const { state } = useContext(Context);
     /*
-    Constante que almacena un nuevo array con la lista de vehiculos a partir de un map
+    TODO: ligaremos el Link con la imagen correcta a traves del id del
+    coche de la base de datos. Ejemplo: coche.id
     */
     let contador = 0;
     const listCar = vehiculos.map(

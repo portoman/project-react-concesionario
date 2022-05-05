@@ -62,17 +62,6 @@ db.run(`
         )
 `);
 
-db.run(`INSERT INTO coches( matricula, modelo, marca, km, precio, 
-    foto, cilindrada, combustible, id_cliente, alquiler, oferta) VALUES 
-            ("1111AA","Astra", "Opel", 5000,4.999,"opelAstra.jpg",100,"diesel", 1,"true","true")  
-            `
-);
-
-db.run(`INSERT INTO coches( matricula, modelo, marca, km, precio, 
-    foto, cilindrada, combustible, id_cliente, alquiler, oferta) VALUES 
-            ("2222AA","Astra", "Opel", 5000,4.999,"opelAstra.jpg",100,"diesel", 1,"true","true");   
-            `
-);
 
 db.run(`
     CREATE TABLE
