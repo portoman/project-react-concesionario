@@ -87,3 +87,40 @@ export function deleteCarController(request, response) {
         }
     )
 }
+
+//Controlador para devolver todos los clientes
+export function getAllClients(request, response) {
+    db.all(
+        `SELECT * FROM clientes`,
+        (err, data) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.json(data)
+            }
+        }
+    )
+}
+
+
+
+//Controlador para insertar un cliente
+export function postClientController(request, response) {
+    const { DNI, nombre, apellidos, telefono, cpostal
+        , ciudad } = request.body;
+    db.run(
+        `INSERT INTO clientes(DNI, nombre, apellidos, telefono, cpostal
+            , ciudad) VALUES 
+            ("${DNI}","${nombre}","${apellidos}",${telefono},${cpostal},
+            "${ciudad}")`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(201)
+            }
+        }
+    )
+}
