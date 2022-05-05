@@ -54,12 +54,14 @@ export function postCarController(request, response) {
     )
 }
 
-//Controlador para modificar una tarea
-export function putTaskController(request, response) {
-    const { id, description, done } = request.body;
+//Controlador para modificar un coche
+export function putCarController(request, response) {
+    const { id_coche, matricula, modelo, marca, km, precio
+        , foto, cilindrada, combustible, alquiler, oferta } = request.body;
     db.run(
-        `UPDATE tasks SET description="${description}",
-        done= ${done} WHERE id="${id} "`,
+        `UPDATE coches SET matricula="${matricula}",modelo="${modelo}",marca="${marca}",
+        km= ${km},precio= ${precio},foto="${foto}",cilindrada="${cilindrada}",
+        combustible="${combustible}",alquiler="${alquiler}",oferta="${oferta}" WHERE id_coche="${id_coche} "`,
         (err) => {
             if (err) {
                 console.error(err);

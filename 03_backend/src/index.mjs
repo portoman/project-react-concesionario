@@ -1,7 +1,7 @@
 import express from "express";
 
 
-import { getAllCars, postCarController, getOneCarController } from "./controllers/tasksControllers.mjs";
+import { getAllCars, postCarController, getOneCarController ,putCarController} from "./controllers/tasksControllers.mjs";
 
 const PATH_PREFIX = "/api"
 const app = express();
@@ -14,10 +14,7 @@ try {
     app.get(PATH_PREFIX + "/allCoches/", getAllCars);
     app.post(PATH_PREFIX + "/car/", jsonParser, postCarController);
     app.get(PATH_PREFIX+"/car/:id", getOneCarController);
-
-
-    //app.post(PATH_PREFIX+"/task/", jsonParser, postTaskController);
-    //app.put(PATH_PREFIX+"/task/", jsonParser, putTaskController);
+    app.put(PATH_PREFIX+"/car/", jsonParser, putCarController);
     //app.delete(PATH_PREFIX+"/task/", jsonParser, deleteTaskController);
 
     app.listen(process.env.PORT || 3000, () => {
