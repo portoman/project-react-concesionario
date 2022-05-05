@@ -16,11 +16,12 @@ export function getAllCars(request, response) {
     )
 }
 
-//Controlador para devolver una tarea
-export function getOneTaskController(request, response) {
-    const task = parseInt(request.params.id)
+//Controlador para devolver un coche
+export function getOneCarController(request, response) {
+    const car = parseInt(request.params.id)
     db.all(
-        `SELECT id, description, done FROM tasks WHERE id="${task}"`,
+        `SELECT id_coche, matricula, modelo, marca, km, precio
+        , foto, cilindrada, combustible, alquiler, oferta FROM coches WHERE id_coche="${car}"`,
         (err, data) => {
             if (err) {
                 console.error(err);
