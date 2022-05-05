@@ -72,11 +72,11 @@ export function putCarController(request, response) {
         }
     )
 }
-//Controlador para eliminar una tarea
-export function deleteTaskController(request, response) {
-    const { id } = request.body;
+//Controlador para eliminar un coche
+export function deleteCarController(request, response) {
+    const { id_coche } = request.body;
     db.run(
-        `DELETE FROM tasks WHERE id="${id}"`,
+        `DELETE FROM coches WHERE id_coche="${id_coche}"`,
         (err) => {
             if (err) {
                 console.error(err);
