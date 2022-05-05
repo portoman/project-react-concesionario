@@ -61,8 +61,8 @@ db.run(`
             cilindrada VARCHAR(30),
             combustible VARCHAR(30),
             disponible INTEGER DEFAULT 1 CHECK (disponible=0 OR disponible=1),
-            alquiler VARCHAR(10) CHECK (alquiler='true' OR alquiler='false'),
-            oferta VARCHAR(10) CHECK (oferta='true' OR oferta='false')
+            alquiler INTEGER DEFAULT 1 CHECK (alquiler=0 OR alquiler=1),
+            oferta INTEGER DEFAULT 1 CHECK (oferta=0 OR oferta=1)
         )
 `);
 

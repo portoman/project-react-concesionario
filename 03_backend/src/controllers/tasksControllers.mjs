@@ -42,7 +42,7 @@ export function postCarController(request, response) {
         `INSERT INTO coches(matricula, modelo, marca, km, precio
             , foto, cilindrada, combustible, alquiler, oferta) VALUES 
             ("${matricula}","${modelo}","${marca}",${km},${precio},
-            "${foto}","${cilindrada}","${combustible}","${alquiler}","${oferta}")`,
+            "${foto}","${cilindrada}","${combustible}",${alquiler},${oferta})`,
         (err) => {
             if (err) {
                 console.error(err);
@@ -61,7 +61,7 @@ export function putCarController(request, response) {
     db.run(
         `UPDATE coches SET matricula="${matricula}",modelo="${modelo}",marca="${marca}",
         km= ${km},precio= ${precio},foto="${foto}",cilindrada="${cilindrada}",
-        combustible="${combustible}",alquiler="${alquiler}",oferta="${oferta}" WHERE id_coche="${id_coche} "`,
+        combustible="${combustible}",alquiler=${alquiler},oferta=${oferta} WHERE id_coche="${id_coche} "`,
         (err) => {
             if (err) {
                 console.error(err);
