@@ -140,3 +140,21 @@ export function getOneClientController(request, response) {
         }
     )
 }
+
+//Controlador para modificar un cliente
+export function putClientController(request, response) {
+    const { id_cliente, DNI, nombre, apellidos, telefono, cpostal
+        , ciudad } = request.body;
+    db.run(
+        `UPDATE clientes SET DNI="${DNI}",nombre="${nombre}",apellidos="${apellidos}",
+        telefono= ${telefono},cpostal= ${cpostal},ciudad="${ciudad}" WHERE id_cliente="${id_cliente} "`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(201)
+            }
+        }
+    )
+}
