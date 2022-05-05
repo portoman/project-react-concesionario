@@ -74,11 +74,11 @@ db.run(`
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             fecha_entrega VARCHAR(30),
             fecha_devolucion VARCHAR(30),
-            id_coche DECIMAL(5),
-            id_cliente INT(10),
+            id_coche INTEGER,
+            id_cliente INTEGER,
             precio DECIMAL(10),
-            CONSTRAINT fk_cliente_alquiler FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente), 
-            CONSTRAINT fk_coche_alquiler FOREIGN KEY (id_coche) REFERENCES coche(id_coche)
+            CONSTRAINT fk_cliente_alquiler FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente), 
+            CONSTRAINT fk_coche_alquiler FOREIGN KEY (id_coche) REFERENCES coches(id_coche)
         )
 `);
 
@@ -88,11 +88,11 @@ db.run(`
         ventas(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             fecha VARCHAR(30),
-            id_coche DECIMAL(5),
-            id_cliente INT(10),
+            id_coche INTEGER,
+            id_cliente INTEGER,
             precio DECIMAL(10),
-            CONSTRAINT fk_cliente_venta FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente), 
-            CONSTRAINT fk_coche_venta FOREIGN KEY (id_coche) REFERENCES coche(id_coche)
+            CONSTRAINT fk_cliente_venta FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente), 
+            CONSTRAINT fk_coche_venta FOREIGN KEY (id_coche) REFERENCES coches(id_coche)
         )
 `);
 
