@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Context } from "../../SharedState"
 
-function IndividualPage({ vehiculos }) {
+function IndividualPage() {
 
     const { state } = useContext(Context);
 

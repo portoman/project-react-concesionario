@@ -10,10 +10,6 @@ export function ContextProvider({ children }) {
         []
     );
 
-    /* async function getCoches() {
-         const users = await get("http://localhost:3000/api" + "/allCoches/");
-         setSharedContext(users)
-     }*/
 
     const actions = {
         setState: setSharedState,
