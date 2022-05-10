@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 
 import './NavBar.css';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,17 +13,18 @@ import {
     MDBDropdownLink,
     MDBBtn
 } from 'mdb-react-ui-kit';
+import { Context } from "../../SharedState"
 
-function NavBar({ vehiculos }) {
+function NavBar() {
 
+    const { state } = useContext(Context);
 
     //Mediante el método filter, segrego los coches que son de alquiler o venta
-    let vehiculosArrayAlquiler = vehiculos.filter(coche => coche.venta == false);
-    let vehiculosArrayVenta = vehiculos.filter(coche => coche.venta == true);
-
+    let vehiculosArrayAlquiler = state.filter(coche => coche.alquiler === 1);
+    let vehiculosArrayVenta = state.filter(coche => coche.alquiler === 0);
 
     /**
- * Función que permite agrupar un array por el atributo que queramos
+ * Función flecha que permite agrupar un array por el atributo que queramos
  * devolviendonos un Map-Diccionario, donde el elemento por el que se agrupa 
  * es el index
  * @param {Parámetro por el que queremos agrupar} key 
@@ -41,6 +42,7 @@ function NavBar({ vehiculos }) {
 
 
     let arrayAgrupadoMarcas = groupBy("marca", vehiculosArrayAlquiler);
+
 
     let arrayMarcas = []
     let arrayMarcasIndividuales = [];
@@ -61,7 +63,6 @@ function NavBar({ vehiculos }) {
     }
     let arrayMarcasMultiplesSinDuplicados = [];
 
-    console.log(arrayMarcasMultiples);
 
     //Bucle que genera un nuevo array con las marcas (sin duplicar) que tienen más de un modelo
     for (let i = 0; i < arrayMarcasMultiples.length; i++) {
@@ -79,23 +80,22 @@ function NavBar({ vehiculos }) {
     /*Blucle que genera un nuevo array con los coches de las marcas que solo tienen un modelo
     con todos sus datos*/
     for (let i = 0; i < arrayMarcasIndividuales.length; i++) {
-        for (let j = 0; j < vehiculos.length; j++) {
-            if (arrayMarcasIndividuales[i] == vehiculos[j].marca) {
-                arrayMarcasIndividualesCompleto.push(vehiculos[j])
+        for (let j = 0; j < state.length; j++) {
+            if (arrayMarcasIndividuales[i] == state[j].marca) {
+                arrayMarcasIndividualesCompleto.push(state[j])
             }
         }
     }
 
-    console.log(arrayMarcasIndividualesCompleto);
 
     let arrayMarcasMultiplesCompleto = [];
 
     /*Blucle que genera un nuevo array con los coches de las marcas que tienen más de un modelo
     con todos sus datos*/
     for (let i = 0; i < arrayMarcasMultiplesSinDuplicados.length; i++) {
-        for (let j = 0; j < vehiculos.length; j++) {
-            if (arrayMarcasMultiplesSinDuplicados[i] == vehiculos[j].marca) {
-                arrayMarcasMultiplesCompleto.push(vehiculos[j])
+        for (let j = 0; j < state.length; j++) {
+            if (arrayMarcasMultiplesSinDuplicados[i] == state[j].marca) {
+                arrayMarcasMultiplesCompleto.push(state[j])
             }
         }
     }

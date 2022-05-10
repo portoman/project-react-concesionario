@@ -108,7 +108,7 @@ function App() {
   return (
     <>
       <h1>Concesionario Vioño</h1>
-      <NavBar vehiculos={vehiculosArray} />
+      <NavBar />
       <Routes>
         <Route path="/" element={<CarCarrousels vehiculos={vehiculosArray} />} />
         /*Añadir un nuevo parametro conforme si es venta o no*/
