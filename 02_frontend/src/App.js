@@ -110,7 +110,7 @@ function getCars() {
       <Routes>
         <Route path="/" element={<CarCarrousels vehiculos={vehiculosArray} />} />
         /*Añadir un nuevo parametro conforme si es venta o no*/
-        <Route path="/vehiculo/:id" element={<IndividualPage vehiculos={vehiculosArray} />} />
+        <Route path="/vehiculo/:id" element={<IndividualPage />} />
       </Routes>
     </>
 

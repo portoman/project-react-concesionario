@@ -24,13 +24,12 @@ function CarCarrousel() {
         [state]
     )
     let contador = 0
+
     function getCars() {
-        //get("http://localhost:3000/api" + "/allCoches/").then(
-        
         setCoches(state.map(
                 (element) =>
             <Carousel.Item key={contador++}>
-                <Link to={"/vehiculo/" }>
+                <Link to={"/vehiculo/"+element.id_coche }>
                     <img
                         className="d-block w-100"
                         src={"http://127.0.0.1:5500/02_frontend/src/img/"+element.foto}

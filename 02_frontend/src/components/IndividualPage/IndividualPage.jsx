@@ -4,23 +4,21 @@ import { Context } from "../../SharedState"
 
 function IndividualPage({ vehiculos }) {
 
+    const { state } = useContext(Context);
 
     //Variable para coger datos de la URL
     const parms = useParams();
+    let numero = parseInt(parms.id);
 
-    let numeroString = parms.id;
-    let venta = parms.venta;
-    console.log(venta);
-    let numero = parseInt(numeroString);
-
-    const vehiculoElegido=vehiculos[numero];
+    //Buscamos el coche en el state que coincida con el parametro de la url, para poder mostrarlo
+    const coche = state.find(element => element.id_coche === numero);
 
     return (
         <>
-            <h2>Marca: {vehiculoElegido.marca}</h2>
-            <h2>Modelo: {vehiculoElegido.modelo}</h2>
-            <h2>Precio: {vehiculoElegido.precio}</h2>
-            <img src={vehiculoElegido.img} />
+            <h2>Marca: {coche.marca}</h2>
+            <h2>Modelo: {coche.modelo}</h2>
+            <h2>Precio: {coche.precio}</h2>
+            <img src={"http://127.0.0.1:5500/02_frontend/src/img/" + coche.foto} />
         </>
 
     );
