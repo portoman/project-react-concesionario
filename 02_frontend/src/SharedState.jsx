@@ -1,27 +1,31 @@
 import { useState, createContext, useEffect } from "react";
-
 export const Context = createContext();
 
-//Componente que se comparte en toda la aplicación
-export function ContextProvider ( {children} ) {
+/*Componente que se comparte en toda la aplicación. 
+Hacemos un get de todos los coches para compartir en todos los componentes
+*/
+export function ContextProvider({ children }) {
 
-    const [ sharedState, setSharedState ] = useState({
-        saludo: "Hola",
-        cifra: 23,
-        indice:0,
-    });
+    const [sharedState, setSharedState] = useState(
+        []
+    );
+
+    /* async function getCoches() {
+         const users = await get("http://localhost:3000/api" + "/allCoches/");
+         setSharedContext(users)
+     }*/
 
     const actions = {
         setState: setSharedState,
     }
 
-    const [ sharedContext, setSharedContext ] = useState({
+    const [sharedContext, setSharedContext] = useState({
         state: sharedState,
         actions
     })
 
     useEffect(
-        ()=>{
+        () => {
             setSharedContext({
                 state: sharedState,
                 actions

@@ -3,14 +3,28 @@ import NavBar from './components/NavBar/NavBar';
 import IndividualPage from './components/IndividualPage/IndividualPage';
 import CarCarrousels from './components/CarCarrousels/CarCarrousels';
 import { Route, Routes } from 'react-router-dom';
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { Context } from "./SharedState"
-
+import { get } from "./aux_api";
 function App() {
 
   const ruta = "http://127.0.0.1:5500/02_frontend/src/img/";
 
-  const { state } = useContext(Context);
+  const { state, actions } = useContext(Context);
+
+  useEffect(
+    () => {
+        getCars()  
+    },
+
+    []
+)
+
+function getCars() {
+    get("http://localhost:3000/api" + "/allCoches/").then(
+        data => actions.setState(data)
+    )
+}
 
   const vehiculosArray = [
     {

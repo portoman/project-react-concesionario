@@ -6,11 +6,11 @@ import { useContext } from "react"
 import { Context } from "../../SharedState"
 import { get } from "../../aux_api";
 
-function CarCarrousel({ vehiculos }) {
+function CarCarrousel() {
 
     const { state } = useContext(Context);
 
-    let [ coches, setCoches ] = useState("");
+    let [ coches, setCoches ] = useState([]);
     const [timer, setTimer] = useState(null);
 
      /*
@@ -18,16 +18,16 @@ function CarCarrousel({ vehiculos }) {
     */
     useEffect(
         () => {
-            getCars()
-            
+            getCars()  
         },
-        
-        []
+ 
+        [state]
     )
     let contador = 0
     function getCars() {
-        get("http://localhost:3000/api" + "/allCoches/").then(
-            data => setCoches(data.map(
+        //get("http://localhost:3000/api" + "/allCoches/").then(
+        
+        setCoches(state.map(
                 (element) =>
             <Carousel.Item key={contador++}>
                 <Link to={"/vehiculo/" }>
@@ -43,7 +43,7 @@ function CarCarrousel({ vehiculos }) {
                 </Carousel.Caption>
             </Carousel.Item>
             ))
-        )
+        //)
     }
     /*
     TODO: ligaremos el Link con la imagen correcta a traves del id del
