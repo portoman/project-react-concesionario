@@ -20,9 +20,11 @@ function NavBar() {
     const { state } = useContext(Context);
 
     //Mediante el método filter, segrego los coches que son de alquiler o venta
-    let vehiculosArrayAlquiler = state.filter(coche => coche.alquiler === 1);
-    let vehiculosArrayVenta = state.filter(coche => coche.alquiler === 0);
+    let vehiculosArrayAlquiler = state.filter(coche => coche.alquiler == 1);
+    let vehiculosArrayVenta = state.filter(coche => coche.alquiler == 0);
 
+    console.log("vehiculosArrayAlquiler");
+    console.log(vehiculosArrayAlquiler);
     /**
  * Función flecha que permite agrupar un array por el atributo que queramos
  * devolviendonos un Map-Diccionario, donde el elemento por el que se agrupa 
@@ -41,67 +43,138 @@ function NavBar() {
         }, {});
 
 
-    let arrayAgrupadoMarcas = groupBy("marca", vehiculosArrayAlquiler);
+    let mapaAgrupadoMarcasAlquiler = groupBy("marca", vehiculosArrayAlquiler);
+    let arrayAgrupadoMarcasVenta = groupBy("marca", vehiculosArrayVenta);
 
+    console.log("mapaAgrupadoMarcasAlquiler");
+    console.log(mapaAgrupadoMarcasAlquiler);
 
-    let arrayMarcas = []
-    let arrayMarcasIndividuales = [];
-    let arrayMarcasMultiples = [];
+    //Alquiler
+    let arrayMarcasAlquiler = []
+    let arrayMarcasIndividualesAlquiler = [];
+    let arrayMarcasMultiplesAlquiler = [];
 
     //Bucle que segrega el Map en 2 nuevos, según haya varios elementos o no
-    for (const property in arrayAgrupadoMarcas) {
-        console.log({ property });
-        arrayMarcas = property;
-        console.log(arrayAgrupadoMarcas[property].length);
-        for (let i = 0; i < arrayAgrupadoMarcas[property].length; i++) {
-            if (arrayAgrupadoMarcas[property].length == 1) {
-                arrayMarcasIndividuales.push(arrayAgrupadoMarcas[property][i].marca);
+    for (const property in mapaAgrupadoMarcasAlquiler) {
+        arrayMarcasAlquiler = property;
+        for (let i = 0; i < mapaAgrupadoMarcasAlquiler[property].length; i++) {
+            if (mapaAgrupadoMarcasAlquiler[property].length == 1) {
+                arrayMarcasIndividualesAlquiler.push(mapaAgrupadoMarcasAlquiler[property][i].marca);
             } else {
-                arrayMarcasMultiples.push(arrayAgrupadoMarcas[property][i].marca);
+                arrayMarcasMultiplesAlquiler.push(mapaAgrupadoMarcasAlquiler[property][i].marca);
             }
         }
     }
-    let arrayMarcasMultiplesSinDuplicados = [];
+    console.log("arrayMarcasIndividualesAlquiler");
+    console.log(arrayMarcasIndividualesAlquiler);
+    console.log("arrayMarcasMultiplesAlquiler");
+    console.log(arrayMarcasMultiplesAlquiler);
+    //Venta
+    let arrayMarcasVenta = []
+    let arrayMarcasIndividualesVenta = [];
+    let arrayMarcasMultiplesVenta = [];
 
-
-    //Bucle que genera un nuevo array con las marcas (sin duplicar) que tienen más de un modelo
-    for (let i = 0; i < arrayMarcasMultiples.length; i++) {
-
-        const elemento = arrayMarcasMultiples[i];
-
-        if (!arrayMarcasMultiplesSinDuplicados.includes(arrayMarcasMultiples[i])) {
-            arrayMarcasMultiplesSinDuplicados.push(elemento);
+    //Bucle que segrega el Map en 2 nuevos, según haya varios elementos o no
+    for (const property in arrayAgrupadoMarcasVenta) {
+        arrayMarcasVenta = property;
+        for (let i = 0; i < arrayAgrupadoMarcasVenta[property].length; i++) {
+            if (arrayAgrupadoMarcasVenta[property].length == 1) {
+                arrayMarcasIndividualesVenta.push(arrayAgrupadoMarcasVenta[property][i].marca);
+            } else {
+                arrayMarcasMultiplesVenta.push(arrayAgrupadoMarcasVenta[property][i].marca);
+            }
         }
     }
 
+    //Alquiler
+    let arrayMarcasMultiplesSinDuplicadosAlquiler = [];
+    //Bucle que genera un nuevo array con las marcas (sin duplicar) que tienen más de un modelo
+    for (let i = 0; i < arrayMarcasMultiplesAlquiler.length; i++) {
+        const elemento = arrayMarcasMultiplesAlquiler[i];
+        if (!arrayMarcasMultiplesSinDuplicadosAlquiler.includes(arrayMarcasMultiplesAlquiler[i])) {
+            arrayMarcasMultiplesSinDuplicadosAlquiler.push(elemento);
+        }
+    }
+    console.log("arrayMarcasMultiplesSinDuplicadosAlquiler");
+    console.log(arrayMarcasMultiplesSinDuplicadosAlquiler);
 
-    let arrayMarcasIndividualesCompleto = [];
+    //Venta
+    let arrayMarcasMultiplesSinDuplicadosVenta = [];
+    //Bucle que genera un nuevo array con las marcas (sin duplicar) que tienen más de un modelo
+    for (let i = 0; i < arrayMarcasMultiplesVenta.length; i++) {
+        const elemento = arrayMarcasMultiplesVenta[i];
+        if (!arrayMarcasMultiplesSinDuplicadosVenta.includes(arrayMarcasMultiplesVenta[i])) {
+            arrayMarcasMultiplesSinDuplicadosVenta.push(elemento);
+        }
+    }
 
+    //Alquiler
+    let arrayMarcasIndividualesCompletoAlquiler = [];
     /*Blucle que genera un nuevo array con los coches de las marcas que solo tienen un modelo
     con todos sus datos*/
-    for (let i = 0; i < arrayMarcasIndividuales.length; i++) {
+    for (let i = 0; i < arrayMarcasIndividualesAlquiler.length; i++) {
         for (let j = 0; j < state.length; j++) {
-            if (arrayMarcasIndividuales[i] == state[j].marca) {
-                arrayMarcasIndividualesCompleto.push(state[j])
+            if (arrayMarcasIndividualesAlquiler[i] == state[j].marca) {
+                arrayMarcasIndividualesCompletoAlquiler.push(state[j])
+            }
+        }
+    }
+    console.log("arrayMarcasIndividualesCompletoAlquiler");
+    console.log(arrayMarcasIndividualesCompletoAlquiler);
+
+    //Venta
+    let arrayMarcasIndividualesCompletoVenta = [];
+    /*Blucle que genera un nuevo array con los coches de las marcas que solo tienen un modelo
+    con todos sus datos*/
+    for (let i = 0; i < arrayMarcasIndividualesVenta.length; i++) {
+        for (let j = 0; j < state.length; j++) {
+            if (arrayMarcasIndividualesVenta[i] == state[j].marca) {
+                arrayMarcasIndividualesCompletoVenta.push(state[j])
             }
         }
     }
 
-
-    let arrayMarcasMultiplesCompleto = [];
-
+ 
+    //Alquiler
+    let arrayMarcasMultiplesCompletoAlquiler = [];
     /*Blucle que genera un nuevo array con los coches de las marcas que tienen más de un modelo
     con todos sus datos*/
-    for (let i = 0; i < arrayMarcasMultiplesSinDuplicados.length; i++) {
+    for (let i = 0; i < arrayMarcasMultiplesSinDuplicadosAlquiler.length; i++) {
         for (let j = 0; j < state.length; j++) {
-            if (arrayMarcasMultiplesSinDuplicados[i] == state[j].marca) {
-                arrayMarcasMultiplesCompleto.push(state[j])
+            //En el array se mete los coches que coincidan con la marca y que sean de alquiler
+            if (arrayMarcasMultiplesSinDuplicadosAlquiler[i] == state[j].marca && state[j].alquiler==1) {
+                arrayMarcasMultiplesCompletoAlquiler.push(state[j])
+            }
+        }
+    }
+    console.log("arrayMarcasMultiplesCompletoAlquiler");
+    console.log(arrayMarcasMultiplesCompletoAlquiler);
+
+    //Venta
+    let arrayMarcasMultiplesCompletoVenta = [];
+    /*Blucle que genera un nuevo array con los coches de las marcas que tienen más de un modelo
+    con todos sus datos*/
+    for (let i = 0; i < arrayMarcasMultiplesSinDuplicadosVenta.length; i++) {
+        for (let j = 0; j < state.length; j++) {
+            if (arrayMarcasMultiplesSinDuplicadosVenta[i] == state[j].marca) {
+                arrayMarcasMultiplesCompletoVenta.push(state[j])
             }
         }
     }
 
+    //Alquiler
     //Constante que genera los menús para las marcas que tienen solo un modelo
-    const vehiculosAlquilerMarcasIndividuales = arrayMarcasIndividualesCompleto.map(
+    const vehiculosMarcasIndividualesAlquiler = arrayMarcasIndividualesCompletoAlquiler.map(
+        (element, index) =>
+            <Nav className="me-auto">
+                <NavDropdown title={element.marca} id="basic-nav-dropdown">
+                    <NavDropdown.Item className="submenu" href="#action/3.1">{element.modelo}</NavDropdown.Item>
+                </NavDropdown>
+            </Nav>
+    );
+    //Venta
+    //Constante que genera los menús para las marcas que tienen solo un modelo
+    const vehiculosMarcasIndividualesVenta = arrayMarcasIndividualesCompletoVenta.map(
         (element, index) =>
             <Nav className="me-auto">
                 <NavDropdown title={element.marca} id="basic-nav-dropdown">
@@ -110,20 +183,21 @@ function NavBar() {
             </Nav>
     );
 
+    //Alquiler
     /**
      * Función que devuelve un submenu con los modelos correspondientes con la marca 
      * introducida
      * @param {Marca de coche que nos interesa} elemento 
      * @returns Submenú con todos los modelos dependiendo de la marca introducida
      */
-    function segregar(elemento) {
-        const arrayModelosSeleccionados = []
-        for (let i = 0; i < arrayMarcasMultiplesCompleto.length; i++) {
-            if (arrayMarcasMultiplesCompleto[i].marca === elemento) {
-                arrayModelosSeleccionados.push(arrayMarcasMultiplesCompleto[i].modelo)
+    function segregarAlquiler(elemento) {
+        const arrayModelosSeleccionadosAlquiler = []
+        for (let i = 0; i < arrayMarcasMultiplesCompletoAlquiler.length; i++) {
+            if (arrayMarcasMultiplesCompletoAlquiler[i].marca === elemento) {
+                arrayModelosSeleccionadosAlquiler.push(arrayMarcasMultiplesCompletoAlquiler[i].modelo)
             }
         }
-        const devolucion = arrayModelosSeleccionados.map(
+        const devolucion = arrayModelosSeleccionadosAlquiler.map(
             (element, index) =>
                 <NavDropdown.Item href="#action/3.1" className="submenu">{element}</NavDropdown.Item>
         )
@@ -131,15 +205,46 @@ function NavBar() {
 
     }
     //Constante que genera los menús para las marcas que tienen múltiples modelos
-    const vehiculosAlquilerMarcasMultiples = arrayMarcasMultiplesSinDuplicados.map(
+    const vehiculosMarcasMultiplesAlquiler = arrayMarcasMultiplesSinDuplicadosAlquiler.map(
         (element, index) =>
             <Nav className="me-auto">
                 <NavDropdown title={element} id="basic-nav-dropdown" >
-                    {segregar(element)}
+                    {segregarAlquiler(element)}
                 </NavDropdown>
             </Nav>
     );
 
+
+    //Venta
+    /**
+     * Función que devuelve un submenu con los modelos correspondientes con la marca 
+     * introducida
+     * @param {Marca de coche que nos interesa} elemento 
+     * @returns Submenú con todos los modelos dependiendo de la marca introducida
+     */
+    function segregarVenta(elemento) {
+        const arrayModelosSeleccionadosVenta = []
+        for (let i = 0; i < arrayMarcasMultiplesCompletoVenta.length; i++) {
+            if (arrayMarcasMultiplesCompletoVenta[i].marca === elemento) {
+                arrayModelosSeleccionadosVenta.push(arrayMarcasMultiplesCompletoVenta[i].modelo)
+            }
+        }
+        const devolucion = arrayModelosSeleccionadosVenta.map(
+            (element, index) =>
+                <NavDropdown.Item href="#action/3.1" className="submenu">{element}</NavDropdown.Item>
+        )
+        return devolucion
+
+    }
+    //Constante que genera los menús para las marcas que tienen múltiples modelos
+    const vehiculosMarcasMultiplesVenta = arrayMarcasMultiplesSinDuplicadosVenta.map(
+        (element, index) =>
+            <Nav className="me-auto">
+                <NavDropdown title={element} id="basic-nav-dropdown" >
+                    {segregarVenta(element)}
+                </NavDropdown>
+            </Nav>
+    );
 
 
     return (
@@ -149,20 +254,14 @@ function NavBar() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <NavDropdown title="Alquiler" id="basic-nav-dropdown">
-                                {vehiculosAlquilerMarcasIndividuales}
-                                {vehiculosAlquilerMarcasMultiples}
+                                {vehiculosMarcasIndividualesAlquiler}
+                                {vehiculosMarcasMultiplesAlquiler}
                             </NavDropdown>
                         </Nav>
                         <Nav className="me-auto">
-                            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                </NavDropdown>
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown title="Venta" id="basic-nav-dropdown">
+                                {vehiculosMarcasIndividualesVenta}
+                                {vehiculosMarcasMultiplesVenta}
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
