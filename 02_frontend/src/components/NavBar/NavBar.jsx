@@ -107,7 +107,7 @@ function NavBar() {
     con todos sus datos*/
     for (let i = 0; i < arrayMarcasIndividualesAlquiler.length; i++) {
         for (let j = 0; j < state.length; j++) {
-            if (arrayMarcasIndividualesAlquiler[i] == state[j].marca && state[j].alquiler==1) {
+            if (arrayMarcasIndividualesAlquiler[i] == state[j].marca && state[j].alquiler == 1) {
                 arrayMarcasIndividualesCompletoAlquiler.push(state[j])
             }
         }
@@ -119,13 +119,13 @@ function NavBar() {
     con todos sus datos*/
     for (let i = 0; i < arrayMarcasIndividualesVenta.length; i++) {
         for (let j = 0; j < state.length; j++) {
-            if (arrayMarcasIndividualesVenta[i] == state[j].marca && state[j].alquiler==0) {
+            if (arrayMarcasIndividualesVenta[i] == state[j].marca && state[j].alquiler == 0) {
                 arrayMarcasIndividualesCompletoVenta.push(state[j])
             }
         }
     }
 
- 
+
     //Alquiler
     let arrayMarcasMultiplesCompletoAlquiler = [];
     /*Blucle que genera un nuevo array con los coches de las marcas que tienen más de un modelo
@@ -133,7 +133,7 @@ function NavBar() {
     for (let i = 0; i < arrayMarcasMultiplesSinDuplicadosAlquiler.length; i++) {
         for (let j = 0; j < state.length; j++) {
             //En el array se mete los coches que coincidan con la marca y que sean de alquiler
-            if (arrayMarcasMultiplesSinDuplicadosAlquiler[i] == state[j].marca && state[j].alquiler==1) {
+            if (arrayMarcasMultiplesSinDuplicadosAlquiler[i] == state[j].marca && state[j].alquiler == 1) {
                 arrayMarcasMultiplesCompletoAlquiler.push(state[j])
             }
         }
@@ -147,7 +147,7 @@ function NavBar() {
     con todos sus datos*/
     for (let i = 0; i < arrayMarcasMultiplesSinDuplicadosVenta.length; i++) {
         for (let j = 0; j < state.length; j++) {
-            if (arrayMarcasMultiplesSinDuplicadosVenta[i] == state[j].marca && state[j].alquiler==0) {
+            if (arrayMarcasMultiplesSinDuplicadosVenta[i] == state[j].marca && state[j].alquiler == 0) {
                 arrayMarcasMultiplesCompletoVenta.push(state[j])
             }
         }
@@ -158,7 +158,7 @@ function NavBar() {
         (element, index) =>
             <Nav className="me-auto" key={index}>
                 <NavDropdown title={element.marca} id="basic-nav-dropdown" key={index}>
-                <Link to={"/vehiculo/" + element.id_coche}><NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo}</NavDropdown.Item></Link>
+                    <Link to={"/vehiculo/" + element.id_coche}><NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo}</NavDropdown.Item></Link>
                 </NavDropdown>
             </Nav>
     );
@@ -168,11 +168,11 @@ function NavBar() {
         (element, index) =>
             <Nav className="me-auto" key={index}>
                 <NavDropdown title={element.marca} id="basic-nav-dropdown" key={index}>
-                    <NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo}</NavDropdown.Item>
+                    <Link to={"/vehiculo/" + element.id_coche}> <NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo}</NavDropdown.Item></Link>
                 </NavDropdown>
             </Nav>
     );
-  
+
 
     //Alquiler
     /**
@@ -190,12 +190,12 @@ function NavBar() {
         }
         const devolucion = arrayModelosSeleccionadosAlquiler.map(
             (element, index) =>
-            <Link to={"/vehiculo/" + element.id_coche}> <NavDropdown.Item href="#action/3.1" className="submenu" key={index}>{element.modelo}</NavDropdown.Item></Link>   
+                <Link to={"/vehiculo/" + element.id_coche}> <NavDropdown.Item href="#action/3.1" className="submenu" key={index}>{element.modelo}</NavDropdown.Item></Link>
         )
         return devolucion
 
     }
-    
+
     //Constante que genera los menús para las marcas que tienen múltiples modelos
     const vehiculosMarcasMultiplesAlquiler = arrayMarcasMultiplesSinDuplicadosAlquiler.map(
         (element, index) =>
@@ -218,17 +218,16 @@ function NavBar() {
         const arrayModelosSeleccionadosVenta = []
         for (let i = 0; i < arrayMarcasMultiplesCompletoVenta.length; i++) {
             if (arrayMarcasMultiplesCompletoVenta[i].marca === elemento) {
-                arrayModelosSeleccionadosVenta.push(arrayMarcasMultiplesCompletoVenta[i].modelo)
+                arrayModelosSeleccionadosVenta.push(arrayMarcasMultiplesCompletoVenta[i])
             }
         }
         const devolucion = arrayModelosSeleccionadosVenta.map(
             (element, index) =>
-                <NavDropdown.Item key={index} href="#action/3.1" className="submenu">{element}</NavDropdown.Item>
+                <Link to={"/vehiculo/" + element.id_coche}><NavDropdown.Item key={index} href="#action/3.1" className="submenu">{element.modelo}</NavDropdown.Item></Link>
         )
         return devolucion
-
     }
-    let contador=0;
+
     //Constante que genera los menús para las marcas que tienen múltiples modelos
     const vehiculosMarcasMultiplesVenta = arrayMarcasMultiplesSinDuplicadosVenta.map(
         (element, index) =>
