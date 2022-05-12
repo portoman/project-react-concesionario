@@ -4,6 +4,7 @@ import './NavBar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import { Link } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {
     MDBDropdown,
@@ -137,6 +138,8 @@ function NavBar() {
             }
         }
     }
+    console.log("arrayMarcasMultiplesCompletoAlquiler");
+    console.log(arrayMarcasMultiplesCompletoAlquiler);
 
     //Venta
     let arrayMarcasMultiplesCompletoVenta = [];
@@ -155,7 +158,7 @@ function NavBar() {
         (element, index) =>
             <Nav className="me-auto" key={index}>
                 <NavDropdown title={element.marca} id="basic-nav-dropdown" key={index}>
-                    <NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo}</NavDropdown.Item>
+                <Link to={"/vehiculo/" + element.id_coche}><NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo}</NavDropdown.Item></Link>
                 </NavDropdown>
             </Nav>
     );
@@ -182,16 +185,17 @@ function NavBar() {
         const arrayModelosSeleccionadosAlquiler = []
         for (let i = 0; i < arrayMarcasMultiplesCompletoAlquiler.length; i++) {
             if (arrayMarcasMultiplesCompletoAlquiler[i].marca === elemento) {
-                arrayModelosSeleccionadosAlquiler.push(arrayMarcasMultiplesCompletoAlquiler[i].modelo)
+                arrayModelosSeleccionadosAlquiler.push(arrayMarcasMultiplesCompletoAlquiler[i])
             }
         }
         const devolucion = arrayModelosSeleccionadosAlquiler.map(
             (element, index) =>
-                <NavDropdown.Item href="#action/3.1" className="submenu" key={index}>{element}</NavDropdown.Item>
+            <Link to={"/vehiculo/" + element.id_coche}> <NavDropdown.Item href="#action/3.1" className="submenu" key={index}>{element.modelo}</NavDropdown.Item></Link>   
         )
         return devolucion
 
     }
+    
     //Constante que genera los menús para las marcas que tienen múltiples modelos
     const vehiculosMarcasMultiplesAlquiler = arrayMarcasMultiplesSinDuplicadosAlquiler.map(
         (element, index) =>
