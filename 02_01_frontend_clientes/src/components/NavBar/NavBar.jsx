@@ -158,7 +158,7 @@ function NavBar() {
         (element, index) =>
             <Nav className="me-auto" key={index}>
                 <NavDropdown title={element.marca} id="basic-nav-dropdown" key={index}>
-                    <Link to={"/vehiculo/" + element.id_coche}><NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo}</NavDropdown.Item></Link>
+                    <Link to={"/vehiculo/" + element.id_coche}><NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo} - PVP: {element.precio}</NavDropdown.Item></Link>
                 </NavDropdown>
             </Nav>
     );
@@ -168,7 +168,7 @@ function NavBar() {
         (element, index) =>
             <Nav className="me-auto" key={index}>
                 <NavDropdown title={element.marca} id="basic-nav-dropdown" key={index}>
-                    <Link to={"/vehiculo/" + element.id_coche}> <NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo}</NavDropdown.Item></Link>
+                    <Link to={"/vehiculo/" + element.id_coche}> <NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo} - PVP: {element.precio}</NavDropdown.Item></Link>
                 </NavDropdown>
             </Nav>
     );
@@ -190,7 +190,7 @@ function NavBar() {
         }
         const devolucion = arrayModelosSeleccionadosAlquiler.map(
             (element, index) =>
-                <Link to={"/vehiculo/" + element.id_coche}> <NavDropdown.Item href="#action/3.1" className="submenu" key={index}>{element.modelo}</NavDropdown.Item></Link>
+                <Link to={"/vehiculo/" + element.id_coche}> <NavDropdown.Item href="#action/3.1" className="submenu" key={index}>{element.modelo} - PVP: {element.precio}</NavDropdown.Item></Link>
         )
         return devolucion
 
@@ -223,7 +223,7 @@ function NavBar() {
         }
         const devolucion = arrayModelosSeleccionadosVenta.map(
             (element, index) =>
-                <Link to={"/vehiculo/" + element.id_coche}><NavDropdown.Item key={index} href="#action/3.1" className="submenu">{element.modelo}</NavDropdown.Item></Link>
+                <Link to={"/vehiculo/" + element.id_coche}><NavDropdown.Item key={index} href="#action/3.1" className="submenu">{element.modelo} - PVP: {element.precio}</NavDropdown.Item></Link>
         )
         return devolucion
     }

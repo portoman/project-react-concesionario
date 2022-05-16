@@ -13,9 +13,9 @@ Para iniciar fotos: en "public/index.html" darle a "Go Live"
 Express: 
 
 Instalarlo: npm install express
-Inicializarlo: F5
+Inicializarlo: F5 (con NodeJs)
 
 SQLite3:
 
 Istalarlo: install sqlite3
-Inicializarla: F5
+Inicializarla: F5 (con NodeJs)
