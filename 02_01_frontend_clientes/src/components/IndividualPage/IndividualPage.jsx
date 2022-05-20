@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Context } from "../../SharedState"
 import { PATH } from '../../defines';
+import './IndividualPage.css';
 
 function IndividualPage() {
 
