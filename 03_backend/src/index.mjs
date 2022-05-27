@@ -3,7 +3,7 @@ import express from "express";
 
 import { getAllCars, postCarController, getOneCarController ,putCarController,
     deleteCarController, getAllClients, postClientController, getOneClientController,
-    putClientController} from "./controllers/tasksControllers.mjs";
+    putClientController, postFormController, getAllForms} from "./controllers/tasksControllers.mjs";
 
 const PATH_PREFIX = "/api"
 const app = express();
@@ -26,6 +26,9 @@ try {
     app.put(PATH_PREFIX+"/client/", jsonParser, putClientController);
     //app.delete(PATH_PREFIX+"/client/", jsonParser, deleteClientController);
 
+    //Formulario
+    app.post(PATH_PREFIX + "/form/", jsonParser, postFormController);
+    app.get(PATH_PREFIX + "/allForms/", getAllForms);
 
     app.listen(process.env.PORT || 3000, () => {
         console.log("Express running...");

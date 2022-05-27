@@ -158,3 +158,35 @@ export function putClientController(request, response) {
         }
     )
 }
+
+//Controlador para insertar un formulario
+export function postFormController(request, response) {
+    const { nombre, apellidos, telefono, consulta } = request.body;
+    db.run(
+        `INSERT INTO formularios(nombre, apellidos, telefono, consulta) VALUES 
+            ("${nombre}","${apellidos}",${telefono},"${consulta}")`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(201)
+            }
+        }
+    )
+}
+
+//Controlador para devolver todos los formularios
+export function getAllForms(request, response) {
+    db.all(
+        `SELECT * FROM formularios`,
+        (err, data) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.json(data)
+            }
+        }
+    )
+}
