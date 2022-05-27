@@ -38,8 +38,8 @@ function App() {
         <Route path="/" element={<CarCarrousels />} />
         /*Añadir un nuevo parametro conforme si es venta o no*/
         <Route path="/vehiculo/:id" element={<IndividualPage />} />
+        <Route path="/mainform" element={<MainForm />} />
       </Routes>
-      <MainForm/>
     </>
 
   );

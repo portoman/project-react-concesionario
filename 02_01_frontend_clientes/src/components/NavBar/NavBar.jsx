@@ -256,6 +256,9 @@ function NavBar() {
                                 {vehiculosMarcasMultiplesVenta}
                             </NavDropdown>
                         </Nav>
+                        <Nav className="me-auto">
+                        <Link to={"/mainform"}>Formulario</Link>
+                        </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
