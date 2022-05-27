@@ -10,15 +10,14 @@ export async function get(url) {
 
 
 
-export async function authPost(url, token, data) {
+export async function post(url, data) {
     const response = await fetch(
         url,
         {
-            method: "POST",
+            method: 'POST',
             body: data,
             headers: {
                 "Content-Type": "application/json",
-                Authorization: token
             }
         }
     );

@@ -18,7 +18,7 @@ CREATE DATABASE concesionario;
 
 USE concesionario;
 
-CREATE TABLE formulario(
+CREATE TABLE formularios(
     id INT(5) PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(20) NOT NULL,
     apellidos VARCHAR(20) NOT NULL,
