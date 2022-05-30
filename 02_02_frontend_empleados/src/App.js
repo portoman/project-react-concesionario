@@ -2,7 +2,9 @@ import './App.css';
 import { useContext, useEffect } from "react"
 import { Context } from './SharedState';
 import { get } from "./aux_api";
-import { Link } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
+import Container from 'react-bootstrap/Container';
+
 
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
   return (
     <>
       <h1>Concesionario Vioño</h1>
+      <NavBar />
+      
     </>
   );
 }
