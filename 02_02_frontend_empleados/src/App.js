@@ -5,7 +5,8 @@ import { get } from "./aux_api";
 import NavBar from './components/NavBar/NavBar';
 import Container from 'react-bootstrap/Container';
 import CarTable from './components/CarTable/CarTable';
-
+import { Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function App() {
 
