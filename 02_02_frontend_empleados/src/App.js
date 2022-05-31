@@ -17,7 +17,7 @@ function App() {
       getCars()
     },
 
-    []
+    [state]
   )
 
   /*Llamada al fetch de get donde se incluyen los datos de todos los coches de la base

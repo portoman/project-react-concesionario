@@ -24,3 +24,18 @@ export async function post(url, data) {
     const responseData = await response.json();
     return responseData;
 }
+
+export async function deletee(url, data) {
+    const response = await fetch(
+        url,
+        {
+            method: 'DELETE',
+            body: data,
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }
+    );
+    const responseData = await response.json();
+    return responseData;
+}
