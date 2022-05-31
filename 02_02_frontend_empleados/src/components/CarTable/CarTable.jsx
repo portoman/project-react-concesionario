@@ -6,6 +6,25 @@ function CarTable() {
 
     const { state } = useContext(Context);
 
+    function disponible(numero){
+        let texto="";
+        if(numero==1){
+            texto="Sí"
+        }else{
+            texto="No"
+        }
+        return texto;
+    }
+
+    function alquilerVenta(numero){
+        let texto="";
+        if(numero==1){
+            texto="Alquiler"
+        }else{
+            texto="Venta"
+        }
+        return texto;
+    }
 
     const vehiculos = state.map(
         (element, index) =>
@@ -18,8 +37,8 @@ function CarTable() {
                 <td>{element.km}</td>
                 <td>{element.precio}</td>
                 <td>{element.cilindrada}</td>
-                <td>{element.disponible}</td>
-                <td>{element.alquiler}</td>
+                <td>{disponible(element.disponible)}</td>
+                <td>{alquilerVenta(element.alquiler)}</td>
                 <td>{element.oferta}</td>
             </tr>
     );
