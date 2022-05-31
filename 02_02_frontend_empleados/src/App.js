@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 function App() {
 
   const { state, actions } = useContext(Context);
-  
+
   useEffect(
     () => {
       getCars()
@@ -31,7 +31,9 @@ function App() {
     <>
       <h1>Concesionario Vioño</h1>
       <NavBar />
-      <CarTable/>
+      <Routes>
+        <Route path="/carTable" element={<CarTable />} />
+      </Routes>
     </>
   );
 }

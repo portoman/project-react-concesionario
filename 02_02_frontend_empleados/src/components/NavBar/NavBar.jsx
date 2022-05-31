@@ -1,6 +1,7 @@
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
 
 
 function NavBar() {
@@ -12,7 +13,7 @@ function NavBar() {
                 <Container>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                           Alquilar
+                            Alquilar
                         </Nav>
                         <Nav className="me-auto">
                             Vender
@@ -21,7 +22,7 @@ function NavBar() {
                             Altas
                         </Nav>
                         <Nav className="me-auto">
-                            Listar vehiculos
+                            <Link to={"/carTable"}>Listar vehiculos</Link>
                         </Nav>
                         <Nav className="me-auto">
                             Listar personas
