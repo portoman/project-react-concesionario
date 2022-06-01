@@ -25,7 +25,7 @@ export async function post(url, data) {
     return responseData;
 }
 
-export async function deletee(url, data) {
+export async function apiDelete(url, data) {
     const response = await fetch(
         url,
         {

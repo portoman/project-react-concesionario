@@ -14,19 +14,12 @@ function App() {
 
   useEffect(
     () => {
-      getCars()
+      actions.getAllCars()
     },
 
     [state]
   )
-
-  /*Llamada al fetch de get donde se incluyen los datos de todos los coches de la base
-  de datos en el setState*/
-  function getCars() {
-    get("http://localhost:3000/api" + "/allCoches/").then(
-      data => actions.setState(data)
-    )
-  }
+  
   return (
     <>
       <h1>Concesionario Vioño</h1>

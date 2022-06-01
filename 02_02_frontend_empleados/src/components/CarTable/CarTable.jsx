@@ -2,12 +2,12 @@ import { useEffect, useState, useRef, useContext } from 'react';
 import Table from 'react-bootstrap/Table'
 import { Context } from "../../SharedState"
 import Button from 'react-bootstrap/Button'
-import { deletee, post } from "../../aux_api";
+import { apiDelete, post } from "../../aux_api";
 
 function CarTable() {
 
-    const { state } = useContext(Context);
-    
+    const { states, actions } = useContext(Context);
+
     function unoSiCeroNo(numero) {
         let texto = "";
         if (numero == 1) {
@@ -30,7 +30,7 @@ function CarTable() {
 
     async function clickHandler(id_coche) {
         let data = JSON.stringify({ id_coche });
-        await deletee("http://localhost:3000/api" + "/car", data);
+        await apiDelete("http://localhost:3000/api" + "/car", data);
     }
 
 
@@ -55,7 +55,7 @@ function CarTable() {
                         </tr>
                     </thead>
                     <tbody>
-                    {state.map(
+                    {states.cars.map(
                     (element, index) =>
                     <tr key={index}>
                     <td>{index}</td>
