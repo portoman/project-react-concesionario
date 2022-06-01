@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table'
 import { Context } from "../../SharedState"
 import Button from 'react-bootstrap/Button'
 import { apiDelete, post } from "../../aux_api";
+import { Link } from 'react-router-dom';
 
 function CarTable() {
 
@@ -28,7 +29,7 @@ function CarTable() {
         return texto;
     }
 
-    async function clickHandler(id_coche) {
+    async function clickHandlerDelete(id_coche) {
         let data = JSON.stringify({ id_coche });
         await apiDelete("http://localhost:3000/api" + "/car", data);
     }
@@ -52,6 +53,7 @@ function CarTable() {
                             <th>Alquiler</th>
                             <th>Oferta</th>
                             <th>Eliminar</th>
+                            <th>Modificar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,9 +70,13 @@ function CarTable() {
                     <td>{unoSiCeroNo(element.disponible)}</td>
                     <td>{alquilerVenta(element.alquiler)}</td>
                     <td>{unoSiCeroNo(element.oferta)}</td>
-                    <td><Button onClick={() => { clickHandler(element.id_coche) }} variant="primary" type="submit">
+                    <td><Button onClick={() => { clickHandlerDelete(element.id_coche) }} variant="primary" type="submit">
                         Eliminar
                     </Button></td>
+                    <td> <Link to={"/vehiculo/" + element.id_coche}><Button variant="primary" type="submit">
+                        Modificar
+                    </Button>
+                    </Link></td>
                     </tr>)}
                     </tbody>
                 </Table>

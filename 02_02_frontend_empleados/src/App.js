@@ -7,25 +7,27 @@ import Container from 'react-bootstrap/Container';
 import CarTable from './components/CarTable/CarTable';
 import { Route, Routes } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import ModificateCar from './components/ModificateCar/ModificateCar';
 
 function App() {
 
-  const { state, actions } = useContext(Context);
+  const { states, actions } = useContext(Context);
 
   useEffect(
     () => {
       actions.getAllCars()
     },
 
-    [state]
+    [states.cars]
   )
-  
+
   return (
     <>
       <h1>Concesionario Vioño</h1>
       <NavBar />
       <Routes>
         <Route path="/carTable" element={<CarTable />} />
+        <Route path="/vehiculo/:id" element={<ModificateCar />} />
       </Routes>
     </>
   );
