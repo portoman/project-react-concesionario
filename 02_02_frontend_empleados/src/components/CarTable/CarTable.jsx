@@ -32,6 +32,7 @@ function CarTable() {
     async function clickHandlerDelete(id_coche) {
         let data = JSON.stringify({ id_coche });
         await apiDelete("http://localhost:3000/api" + "/car", data);
+        actions.getAllCars();
     }
 
 
@@ -57,27 +58,27 @@ function CarTable() {
                         </tr>
                     </thead>
                     <tbody>
-                    {states.cars.map(
-                    (element, index) =>
-                    <tr key={index}>
-                    <td>{index}</td>
-                    <td>{element.matricula}</td>
-                    <td>{element.modelo}</td>
-                    <td>{element.marca}</td>
-                    <td>{element.km}</td>
-                    <td>{element.precio}</td>
-                    <td>{element.cilindrada}</td>
-                    <td>{unoSiCeroNo(element.disponible)}</td>
-                    <td>{alquilerVenta(element.alquiler)}</td>
-                    <td>{unoSiCeroNo(element.oferta)}</td>
-                    <td><Button onClick={() => { clickHandlerDelete(element.id_coche) }} variant="primary" type="submit">
-                        Eliminar
-                    </Button></td>
-                    <td> <Link to={"/vehiculo/" + element.id_coche}><Button variant="primary" type="submit">
-                        Modificar
-                    </Button>
-                    </Link></td>
-                    </tr>)}
+                        {states.cars.map(
+                            (element, index) =>
+                                <tr key={index}>
+                                    <td>{index}</td>
+                                    <td>{element.matricula}</td>
+                                    <td>{element.modelo}</td>
+                                    <td>{element.marca}</td>
+                                    <td>{element.km}</td>
+                                    <td>{element.precio}</td>
+                                    <td>{element.foto}</td>
+                                    <td>{unoSiCeroNo(element.disponible)}</td>
+                                    <td>{alquilerVenta(element.alquiler)}</td>
+                                    <td>{unoSiCeroNo(element.oferta)}</td>
+                                    <td><Button onClick={() => { clickHandlerDelete(element.id_coche) }} variant="primary" type="submit">
+                                        Eliminar
+                                    </Button></td>
+                                    <td> <Link to={"/vehiculo/" + element.id_coche}><Button variant="primary" type="submit">
+                                        Modificar
+                                    </Button>
+                                    </Link></td>
+                                </tr>)}
                     </tbody>
                 </Table>
             </div>

@@ -17,8 +17,7 @@ function App() {
     () => {
       actions.getAllCars()
     },
-
-    [states.cars]
+    []
   )
 
   return (

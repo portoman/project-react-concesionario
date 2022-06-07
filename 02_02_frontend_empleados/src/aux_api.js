@@ -36,6 +36,19 @@ export async function apiDelete(url, data) {
             }
         }
     );
-    const responseData = await response.json();
-    return responseData;
+    return response.status;
+}
+
+export async function modify(url, data) {
+    const response = await fetch(
+        url,
+        {
+            method: 'PUT',
+            body: data,
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }
+    );
+    return response.status;
 }
