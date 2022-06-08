@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef, useContext } from 'react';
-
 import './NavBar.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';

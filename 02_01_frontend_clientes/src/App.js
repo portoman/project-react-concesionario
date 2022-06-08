@@ -19,7 +19,7 @@ function App() {
       getCars()
     },
 
-    []
+    [state]
   )
 
   /*Llamada al fetch de get donde se incluyen los datos de todos los coches de la base
@@ -36,7 +36,6 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<CarCarrousels />} />
-        /*Añadir un nuevo parametro conforme si es venta o no*/
         <Route path="/vehiculo/:id" element={<IndividualPage />} />
         <Route path="/mainform" element={<MainForm />} />
       </Routes>

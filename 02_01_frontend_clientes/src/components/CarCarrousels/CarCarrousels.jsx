@@ -6,12 +6,15 @@ function CarCarrousels({ vehiculos }) {
 
     const { state } = useContext(Context);
 
-     //Mediante el método filter, segrego los coches que están disponibles para mostrar en el carrusel
+    //Mediante el método filter, segrego los coches que están disponibles para mostrar en el carrusel
     const cochesDisponibles = state.filter(element => element.disponible === 1);
 
+    //Segrego solo los coches que estén de OFERTA
+    const cochesOfertas = cochesDisponibles.filter(element => element.oferta === 1);
+
     //Mediante el método filter, segrego los coches que son de alquiler o venta
-    let vehiculosArrayAlquiler = cochesDisponibles.filter(coche => coche.alquiler === 1);
-    let vehiculosArrayVenta = cochesDisponibles.filter(coche => coche.alquiler === 0);
+    let vehiculosArrayAlquiler = cochesOfertas.filter(coche => coche.alquiler === 1);
+    let vehiculosArrayVenta = cochesOfertas.filter(coche => coche.alquiler === 0);
 
     return (
         <>

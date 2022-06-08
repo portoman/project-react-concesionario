@@ -4,6 +4,7 @@ import { Context } from "../../SharedState"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { post } from "../../aux_api";
+import { URL } from "../../defines"
 
 function MainForm() {
 
@@ -29,7 +30,7 @@ function MainForm() {
 
   async function clickHandler() {
     const data = JSON.stringify({ nombre, apellidos , telefono, consulta});
-    await post("http://localhost:3000/api" + "/form", data);
+    await post(URL + "/form", data);
   }
 
   return (
