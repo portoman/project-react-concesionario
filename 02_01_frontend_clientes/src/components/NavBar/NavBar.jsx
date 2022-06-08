@@ -19,12 +19,13 @@ function NavBar() {
 
     const { state } = useContext(Context);
 
-    //Mediante el método filter, segrego los coches que son de alquiler o venta
-    let vehiculosArrayAlquiler = state.filter(coche => coche.alquiler == 1);
-    let vehiculosArrayVenta = state.filter(coche => coche.alquiler == 0);
+    //Segrego los coches que están disponibles
+    let vehiculosDisponibles = state.filter(coche => coche.disponible === 1);
 
-    console.log("vehiculosArrayAlquiler");
-    console.log(vehiculosArrayAlquiler);
+    //Mediante el método filter, segrego los coches que son de alquiler o venta
+    let vehiculosArrayAlquiler = vehiculosDisponibles.filter(coche => coche.alquiler === 1);
+    let vehiculosArrayVenta = vehiculosDisponibles.filter(coche => coche.alquiler === 0);
+
     /**
  * Función flecha que permite agrupar un array por el atributo que queramos
  * devolviendonos un Map-Diccionario, donde el elemento por el que se agrupa 
@@ -105,9 +106,9 @@ function NavBar() {
     /*Blucle que genera un nuevo array con los coches de las marcas que solo tienen un modelo
     con todos sus datos*/
     for (let i = 0; i < arrayMarcasIndividualesAlquiler.length; i++) {
-        for (let j = 0; j < state.length; j++) {
-            if (arrayMarcasIndividualesAlquiler[i] == state[j].marca && state[j].alquiler == 1) {
-                arrayMarcasIndividualesCompletoAlquiler.push(state[j])
+        for (let j = 0; j < vehiculosDisponibles.length; j++) {
+            if (arrayMarcasIndividualesAlquiler[i] == vehiculosDisponibles[j].marca && vehiculosDisponibles[j].alquiler == 1) {
+                arrayMarcasIndividualesCompletoAlquiler.push(vehiculosDisponibles[j])
             }
         }
     }
@@ -117,9 +118,9 @@ function NavBar() {
     /*Blucle que genera un nuevo array con los coches de las marcas que solo tienen un modelo
     con todos sus datos*/
     for (let i = 0; i < arrayMarcasIndividualesVenta.length; i++) {
-        for (let j = 0; j < state.length; j++) {
-            if (arrayMarcasIndividualesVenta[i] == state[j].marca && state[j].alquiler == 0) {
-                arrayMarcasIndividualesCompletoVenta.push(state[j])
+        for (let j = 0; j < vehiculosDisponibles.length; j++) {
+            if (arrayMarcasIndividualesVenta[i] == vehiculosDisponibles[j].marca && vehiculosDisponibles[j].alquiler == 0) {
+                arrayMarcasIndividualesCompletoVenta.push(vehiculosDisponibles[j])
             }
         }
     }
@@ -130,24 +131,22 @@ function NavBar() {
     /*Blucle que genera un nuevo array con los coches de las marcas que tienen más de un modelo
     con todos sus datos*/
     for (let i = 0; i < arrayMarcasMultiplesSinDuplicadosAlquiler.length; i++) {
-        for (let j = 0; j < state.length; j++) {
+        for (let j = 0; j < vehiculosDisponibles.length; j++) {
             //En el array se mete los coches que coincidan con la marca y que sean de alquiler
-            if (arrayMarcasMultiplesSinDuplicadosAlquiler[i] == state[j].marca && state[j].alquiler == 1) {
-                arrayMarcasMultiplesCompletoAlquiler.push(state[j])
+            if (arrayMarcasMultiplesSinDuplicadosAlquiler[i] == vehiculosDisponibles[j].marca && vehiculosDisponibles[j].alquiler == 1) {
+                arrayMarcasMultiplesCompletoAlquiler.push(vehiculosDisponibles[j])
             }
         }
     }
-    console.log("arrayMarcasMultiplesCompletoAlquiler");
-    console.log(arrayMarcasMultiplesCompletoAlquiler);
 
     //Venta
     let arrayMarcasMultiplesCompletoVenta = [];
     /*Blucle que genera un nuevo array con los coches de las marcas que tienen más de un modelo
     con todos sus datos*/
     for (let i = 0; i < arrayMarcasMultiplesSinDuplicadosVenta.length; i++) {
-        for (let j = 0; j < state.length; j++) {
-            if (arrayMarcasMultiplesSinDuplicadosVenta[i] == state[j].marca && state[j].alquiler == 0) {
-                arrayMarcasMultiplesCompletoVenta.push(state[j])
+        for (let j = 0; j < vehiculosDisponibles.length; j++) {
+            if (arrayMarcasMultiplesSinDuplicadosVenta[i] == vehiculosDisponibles[j].marca && vehiculosDisponibles[j].alquiler == 0) {
+                arrayMarcasMultiplesCompletoVenta.push(vehiculosDisponibles[j])
             }
         }
     }
@@ -167,7 +166,7 @@ function NavBar() {
         (element, index) =>
             <Nav className="me-auto" key={index}>
                 <NavDropdown title={element.marca} id="basic-nav-dropdown" key={index}>
-                    <Link to={"/vehiculo/" + element.id_coche}> <NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo} - PVP: {element.precio}</NavDropdown.Item></Link>
+                    <Link to={"/vehiculo/" + element.id_coche} > <NavDropdown.Item className="submenu" href="#action/3.1" key={index}>{element.modelo} - PVP: {element.precio}</NavDropdown.Item></Link>
                 </NavDropdown>
             </Nav>
     );
@@ -256,7 +255,7 @@ function NavBar() {
                             </NavDropdown>
                         </Nav>
                         <Nav className="me-auto">
-                        <Link to={"/mainform"}>Formulario</Link>
+                            <Link to={"/mainform"}>Formulario</Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
