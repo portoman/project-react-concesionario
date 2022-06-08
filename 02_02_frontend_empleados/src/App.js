@@ -8,6 +8,7 @@ import CarTable from './components/CarTable/CarTable';
 import { Route, Routes } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ModificateCar from './components/ModificateCar/ModificateCar';
+import Uploads from './components/Uploads/Uploads';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
       <Routes>
         <Route path="/carTable" element={<CarTable />} />
         <Route path="/vehiculo/:id" element={<ModificateCar />} />
+        <Route path="/uploads" element={<Uploads />} />
       </Routes>
     </>
   );

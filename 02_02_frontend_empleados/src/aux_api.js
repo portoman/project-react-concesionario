@@ -21,8 +21,7 @@ export async function post(url, data) {
             }
         }
     );
-    const responseData = await response.json();
-    return responseData;
+    return response.status;
 }
 
 export async function apiDelete(url, data) {

@@ -19,7 +19,7 @@ function NavBar() {
                             Vender
                         </Nav>
                         <Nav className="me-auto">
-                            Altas
+                            <Link to={"/uploads"}>Altas</Link> 
                         </Nav>
                         <Nav className="me-auto">
                             <Link to={"/carTable"}>Listar vehiculos</Link>
