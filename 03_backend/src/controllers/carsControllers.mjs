@@ -37,12 +37,12 @@ export function getOneCarController(request, response) {
 //Controlador para insertar un coche
 export function postCarController(request, response) {
     const { matricula, modelo, marca, km, precio
-        , foto, cilindrada, combustible, alquiler, oferta } = request.body;
+        , foto, cilindrada, combustible,disponible, alquiler, oferta } = request.body;
     db.run(
         `INSERT INTO coches(matricula, modelo, marca, km, precio
-            , foto, cilindrada, combustible, alquiler, oferta) VALUES 
+            , foto, cilindrada, combustible, disponible, alquiler, oferta) VALUES 
             ("${matricula}","${modelo}","${marca}",${km},${precio},
-            "${foto}","${cilindrada}","${combustible}",${alquiler},${oferta})`,
+            "${foto}","${cilindrada}","${combustible}",${disponible},${alquiler},${oferta})`,
         (err) => {
             if (err) {
                 console.error(err);
