@@ -118,11 +118,18 @@ function ModificateCar() {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Disponible</Form.Label>
-                    <Form.Control type="number" onChange={disponibleInputChangeHandler} placeholder={unoSiCeroNo(coche.disponible)} />
+                    <Form.Select aria-label="Default select example" onChange={disponibleInputChangeHandler} defaultValue={coche.disponible} >
+                        <option value="0" >No</option>
+                        <option value="1">Sí</option>
+                    </Form.Select>
+                
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Alquiler</Form.Label>
-                    <Form.Control type="number" onChange={alquilerInputChangeHandler} placeholder={alquilerVenta(coche.alquiler)} />
+                    <Form.Select aria-label="Default select example" onChange={alquilerInputChangeHandler} placeholder={alquilerVenta(coche.alquiler)}>
+                        <option value="0" >Venta</option>
+                        <option value="1">Alquiler</option>
+                    </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Oferta</Form.Label>
