@@ -67,7 +67,7 @@ function CarTable() {
                                     <td>{element.marca}</td>
                                     <td>{element.km}</td>
                                     <td>{element.precio}</td>
-                                    <td>{element.foto}</td>
+                                    <td>{element.cilindrada}</td>
                                     <td>{unoSiCeroNo(element.disponible)}</td>
                                     <td>{alquilerVenta(element.alquiler)}</td>
                                     <td>{unoSiCeroNo(element.oferta)}</td>

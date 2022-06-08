@@ -94,27 +94,27 @@ function ModificateCar() {
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Matricula</Form.Label>
-                    <Form.Control type="text" onChange={matriculaInputChangeHandler} placeholder={coche.matricula} />
+                    <Form.Control type="text" onChange={matriculaInputChangeHandler} defaultValue={coche.matricula} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Modelo</Form.Label>
-                    <Form.Control type="text" onChange={modeloInputChangeHandler} placeholder={coche.modelo} />
+                    <Form.Control type="text" onChange={modeloInputChangeHandler} defaultValue={coche.modelo} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Marca</Form.Label>
-                    <Form.Control type="text" onChange={marcaInputChangeHandler} placeholder={coche.marca} />
+                    <Form.Control type="text" onChange={marcaInputChangeHandler} defaultValue={coche.marca} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Km</Form.Label>
-                    <Form.Control type="number" onChange={kmInputChangeHandler} placeholder={coche.km} />
+                    <Form.Control type="number" onChange={kmInputChangeHandler} defaultValue={coche.km} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Precio</Form.Label>
-                    <Form.Control type="number" onChange={precioInputChangeHandler} placeholder={coche.precio} />
+                    <Form.Control type="number" onChange={precioInputChangeHandler} defaultValue={coche.precio} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Cilindrada</Form.Label>
-                    <Form.Control type="text" onChange={cilindradaInputChangeHandler} placeholder={coche.cilindrada} />
+                    <Form.Control type="text" onChange={cilindradaInputChangeHandler} defaultValue={coche.cilindrada} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Disponible</Form.Label>
