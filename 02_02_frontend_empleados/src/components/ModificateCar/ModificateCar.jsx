@@ -15,11 +15,8 @@ function ModificateCar() {
     const parms = useParams();
     let id_coche = parseInt(parms.id);
 
-
-
     //Buscamos el coche en el state que coincida con el parametro de la url, para poder mostrarlo
     const coche = states.cars.find(element => element.id_coche === id_coche);
-
 
     const [matricula, setMatricula] = useState("");
     const [modelo, setModelo] = useState("");
@@ -127,7 +124,6 @@ function ModificateCar() {
                     <Form.Label>Alquiler</Form.Label>
                     <Form.Control type="number" onChange={alquilerInputChangeHandler} placeholder={alquilerVenta(coche.alquiler)} />
                 </Form.Group>
-                
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Oferta</Form.Label>
                     <Form.Select aria-label="Default select example" onChange={ofertaInputChangeHandler} defaultValue={coche.oferta}>
@@ -135,7 +131,6 @@ function ModificateCar() {
                         <option value="1">Si</option>
                     </Form.Select>
                 </Form.Group>
-                
                 <Link to="/carTable"><Button onClick={clickHandler} variant="primary" type="submit">
                     Modificar
                 </Button></Link>
