@@ -37,7 +37,7 @@ export function getOneCarController(request, response) {
 //Controlador para insertar un coche
 export function postCarController(request, response) {
     const { matricula, modelo, marca, km, precio
-        , foto, cilindrada, combustible,disponible, alquiler, oferta } = request.body;
+        , foto, cilindrada, combustible, disponible, alquiler, oferta } = request.body;
     db.run(
         `INSERT INTO coches(matricula, modelo, marca, km, precio
             , foto, cilindrada, combustible, disponible, alquiler, oferta) VALUES 
@@ -57,11 +57,11 @@ export function postCarController(request, response) {
 //Controlador para modificar un coche
 export function putCarController(request, response) {
     const { id_coche, matricula, modelo, marca, km, precio
-        , foto, cilindrada, combustible, alquiler, oferta } = request.body;
+        , foto, cilindrada, combustible, disponible, alquiler, oferta } = request.body;
     db.run(
         `UPDATE coches SET matricula="${matricula}",modelo="${modelo}",marca="${marca}",
         km= ${km},precio= ${precio},foto="${foto}",cilindrada="${cilindrada}",
-        combustible="${combustible}",alquiler=${alquiler},oferta=${oferta} WHERE id_coche="${id_coche} "`,
+        combustible="${combustible}",disponible=${disponible},alquiler=${alquiler},oferta=${oferta} WHERE id_coche="${id_coche} "`,
         (err) => {
             if (err) {
                 console.error(err);
