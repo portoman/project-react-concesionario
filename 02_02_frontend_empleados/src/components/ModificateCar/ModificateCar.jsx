@@ -63,7 +63,7 @@ function ModificateCar() {
         setFoto(coche.foto);
         setCombustible(coche.combustible);
         setId_cliente(coche.id_cliente);
-        const data = JSON.stringify({ id_coche, matricula, modelo, marca, km, precio, foto, cilindrada, combustible, id_cliente, alquiler, oferta });
+        const data = JSON.stringify({ id_coche, matricula, modelo, marca, km, precio, foto, cilindrada, combustible, disponible, alquiler, oferta });
         await modify("http://localhost:3000/api" + "/car", data);
         actions.getAllCars();
     }
