@@ -40,6 +40,9 @@ function Uploads() {
     function precioInputChangeHandler(event) {
         setPrecio(event.target.value)
     }
+    function fotoInputChangeHandler(event) {
+        setFoto(event.target.value)
+    }
     function cilindradaInputChangeHandler(event) {
         setCilindrada(event.target.value)
     }
@@ -86,26 +89,30 @@ function Uploads() {
                     <Form.Control type="number" onChange={precioInputChangeHandler} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Foto</Form.Label>
+                    <Form.Control type="text" onChange={fotoInputChangeHandler} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Cilindrada</Form.Label>
                     <Form.Control type="text" onChange={cilindradaInputChangeHandler} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Disponible</Form.Label>
-                    <Form.Select aria-label="Default select example" onChange={disponibleInputChangeHandler} value="0" >
+                    <Form.Select aria-label="Default select example" onChange={disponibleInputChangeHandler} >
                         <option value="0" >No</option>
                         <option value="1">Sí</option>
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Alquiler</Form.Label>
-                    <Form.Select aria-label="Default select example" onChange={alquilerInputChangeHandler} value="0">
+                    <Form.Select aria-label="Default select example" onChange={alquilerInputChangeHandler}>
                         <option value="0" >Venta</option>
                         <option value="1">Alquiler</option>
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail"  defaultValue="0">
                     <Form.Label>Oferta</Form.Label>
-                    <Form.Select aria-label="Default select example" onChange={ofertaInputChangeHandler} defaultValue="0">
+                    <Form.Select aria-label="Default select example" onChange={ofertaInputChangeHandler} >
                         <option value="0" >No</option>
                         <option value="1">Si</option>
                     </Form.Select>
