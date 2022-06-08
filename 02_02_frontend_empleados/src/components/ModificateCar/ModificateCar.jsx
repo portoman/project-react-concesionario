@@ -18,18 +18,18 @@ function ModificateCar() {
     //Buscamos el coche en el state que coincida con el parametro de la url, para poder mostrarlo
     const coche = states.cars.find(element => element.id_coche === id_coche);
 
-    const [matricula, setMatricula] = useState("");
-    const [modelo, setModelo] = useState("");
-    const [marca, setMarca] = useState("");
-    const [km, setKm] = useState("");
-    const [precio, setPrecio] = useState("");
-    const [foto, setFoto] = useState("");
-    const [cilindrada, setCilindrada] = useState("");
-    const [combustible, setCombustible] = useState("");
+    const [matricula, setMatricula] = useState(coche.matricula);
+    const [modelo, setModelo] = useState(coche.modelo);
+    const [marca, setMarca] = useState(coche.marca);
+    const [km, setKm] = useState(coche.km);
+    const [precio, setPrecio] = useState(coche.precio);
+    const [foto, setFoto] = useState(coche.foto);
+    const [cilindrada, setCilindrada] = useState(coche.cilindrada);
+    const [combustible, setCombustible] = useState(coche.combustible);
     const [id_cliente, setId_cliente] = useState("");
-    const [disponible, setDisponible] = useState("");
-    const [alquiler, setAlquiler] = useState("");
-    const [oferta, setOferta] = useState("");
+    const [disponible, setDisponible] = useState(coche.disponible);
+    const [alquiler, setAlquiler] = useState(coche.alquiler);
+    const [oferta, setOferta] = useState(coche.oferta);
 
     function matriculaInputChangeHandler(event) {
         setMatricula(event.target.value)
