@@ -81,7 +81,7 @@ function ModificateCar() {
     return (
 
         <>
-            <Form className="col-md-3 mx-auto">
+            <Form className="col-3 mx-auto">
                 <Form.Group className="mb-3 " controlId="formBasicEmail">
                     <Form.Label>Matricula</Form.Label>
                     <Form.Control type="text" onChange={matriculaInputChangeHandler} defaultValue={coche.matricula} />
