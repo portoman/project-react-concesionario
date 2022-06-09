@@ -160,7 +160,7 @@ export function putClientController(request, response) {
 }
 
 //Controlador para eliminar un cliente
-export function deleteCarController(request, response) {
+export function deleteClientController(request, response) {
     const { id_cliente } = request.body;
     db.run(
         `DELETE FROM clientes WHERE id_cliente="${id_cliente}"`,
