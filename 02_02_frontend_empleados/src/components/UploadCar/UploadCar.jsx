@@ -70,7 +70,7 @@ function UploadCar() {
     return (
 
         <>
-        <h2 className="mx-auto">Vehículo</h2>
+            <h2 className="mx-auto">Vehículo</h2>
             <Container>
                 <Form className="col-5 mx-auto">
                     <Row>
@@ -174,9 +174,13 @@ function UploadCar() {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <Link to="/carTable"><Button onClick={clickHandler} variant="primary" type="submit">
-                        Registrar
-                    </Button></Link>
+                    <Stack>
+                        <div className="ms-auto">
+                            <Link to="/carTable"><Button onClick={clickHandler} variant="primary" type="submit">
+                                Registrar
+                            </Button></Link>
+                        </div>
+                    </Stack>
                 </Form>
             </Container>
         </>
