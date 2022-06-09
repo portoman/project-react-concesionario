@@ -10,10 +10,10 @@ function ClientTable() {
     const { states, actions } = useContext(Context);
    
 
-    async function clickHandlerDelete(id_coche) {
-        let data = JSON.stringify({ id_coche });
-        await apiDelete("http://localhost:3000/api" + "/car", data);
-        actions.getAllCars();
+    async function clickHandlerDelete(id_cliente) {
+        let data = JSON.stringify({ id_cliente });
+        await apiDelete("http://localhost:3000/api" + "/client", data);
+        actions.getAllClients();
     }
 
 
@@ -46,7 +46,7 @@ function ClientTable() {
                                     <td>{element.telefono}</td>
                                     <td>{element.cpostal}</td>
                                     <td>{element.ciudad}</td>
-                                    <td><Button onClick={() => { clickHandlerDelete(element.id_coche) }} variant="primary" type="submit">
+                                    <td><Button onClick={() => { clickHandlerDelete(element.id_cliente) }} variant="primary" type="submit">
                                         Eliminar
                                     </Button></td>
                                     <td> <Link to={"/vehiculo/" + element.id_coche}><Button variant="primary" type="submit">
