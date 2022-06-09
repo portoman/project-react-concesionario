@@ -67,7 +67,7 @@ function Uploads() {
     return (
 
         <>
-            <Form>
+            <Form className="col-md-3 mx-auto">
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Matricula</Form.Label>
                     <Form.Control type="text" onChange={matriculaInputChangeHandler} />
@@ -110,7 +110,7 @@ function Uploads() {
                         <option value="1">Alquiler</option>
                     </Form.Select>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail"  defaultValue="0">
+                <Form.Group className="mb-3" controlId="formBasicEmail" defaultValue="0">
                     <Form.Label>Oferta</Form.Label>
                     <Form.Select aria-label="Default select example" onChange={ofertaInputChangeHandler} >
                         <option value="0" >No</option>
