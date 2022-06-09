@@ -159,6 +159,22 @@ export function putClientController(request, response) {
     )
 }
 
+//Controlador para eliminar un cliente
+export function deleteCarController(request, response) {
+    const { id_cliente } = request.body;
+    db.run(
+        `DELETE FROM clientes WHERE id_cliente="${id_cliente}"`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(200)
+            }
+        }
+    )
+}
+
 //Controlador para insertar un formulario
 export function postFormController(request, response) {
     const { nombre, apellidos, telefono, consulta } = request.body;

@@ -3,7 +3,7 @@ import express from "express";
 
 import { getAllCars, postCarController, getOneCarController ,putCarController,
     deleteCarController, getAllClients, postClientController, getOneClientController,
-    putClientController, postFormController, getAllForms} from "./controllers/carsControllers.mjs";
+    putClientController, postFormController, getAllForms} from "./controllers/Controllers.mjs";
 
 const PATH_PREFIX = "/api"
 const app = express();
