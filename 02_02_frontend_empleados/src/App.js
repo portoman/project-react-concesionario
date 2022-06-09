@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import ModificateCar from './components/ModificateCar/ModificateCar';
 import Uploads from './components/Uploads/Uploads';
 import ClientTable from './components/ClientTable/ClientTable';
+import ModificateClient from './components/ModificateClient/ModificateClient'
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/vehiculo/:id" element={<ModificateCar />} />
         <Route path="/uploads" element={<Uploads />} />
         <Route path="/clientTable" element={<ClientTable />} />
+        <Route path="/client/:id" element={<ModificateClient />} />
       </Routes>
     </>
   );

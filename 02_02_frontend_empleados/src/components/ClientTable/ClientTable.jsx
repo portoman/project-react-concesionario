@@ -49,7 +49,7 @@ function ClientTable() {
                                     <td><Button onClick={() => { clickHandlerDelete(element.id_cliente) }} variant="primary" type="submit">
                                         Eliminar
                                     </Button></td>
-                                    <td> <Link to={"/vehiculo/" + element.id_coche}><Button variant="primary" type="submit">
+                                    <td> <Link to={"/client/" + element.id_cliente}><Button variant="primary" type="submit">
                                         Modificar
                                     </Button>
                                     </Link></td>
