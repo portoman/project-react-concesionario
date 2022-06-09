@@ -9,6 +9,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ModificateCar from './components/ModificateCar/ModificateCar';
 import Uploads from './components/Uploads/Uploads';
+import ClientTable from './components/ClientTable/ClientTable';
 
 function App() {
 
@@ -17,6 +18,12 @@ function App() {
   useEffect(
     () => {
       actions.getAllCars()
+    },
+    []
+  )
+  useEffect(
+    () => {
+      actions.getAllClients()
     },
     []
   )
@@ -29,6 +36,7 @@ function App() {
         <Route path="/carTable" element={<CarTable />} />
         <Route path="/vehiculo/:id" element={<ModificateCar />} />
         <Route path="/uploads" element={<Uploads />} />
+        <Route path="/clientTable" element={<ClientTable />} />
       </Routes>
     </>
   );

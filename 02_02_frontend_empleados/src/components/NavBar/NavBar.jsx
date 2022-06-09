@@ -19,13 +19,13 @@ function NavBar() {
                             Vender
                         </Nav>
                         <Nav className="me-auto">
-                            <Link to={"/uploads"}>Altas</Link> 
+                            <Link to={"/uploads"}>Altas</Link>
                         </Nav>
                         <Nav className="me-auto">
                             <Link to={"/carTable"}>Listar vehiculos</Link>
                         </Nav>
                         <Nav className="me-auto">
-                            Listar personas
+                            <Link to={"/clientTable"}>Listar personas</Link>
                         </Nav>
                         <Nav className="me-auto">
                             Listar formularios
