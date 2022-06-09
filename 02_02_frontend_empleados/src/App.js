@@ -8,7 +8,7 @@ import CarTable from './components/CarTable/CarTable';
 import { Route, Routes } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ModificateCar from './components/ModificateCar/ModificateCar';
-import Uploads from './components/Uploads/Uploads';
+import Uploads from './views/Uploads';
 import ClientTable from './components/ClientTable/ClientTable';
 import ModificateClient from './components/ModificateClient/ModificateClient'
 
