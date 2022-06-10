@@ -85,110 +85,113 @@ function ModificateCar() {
     return (
 
         <>
-            <Container>
-                <Form className="col-5 mx-auto">
-                    <Row>
-                        <Col>
-                            <Form.Group className="mb-3 " controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Matricula</Form.Label>
-                                    <Form.Control type="text" onChange={matriculaInputChangeHandler} defaultValue={coche.matricula} />
+            <Stack gap={1}>
+                <h2 className="mx-auto">Vehiculo id: {id_coche} </h2>
+                <Container>
+                    <Form className="col-5 mx-auto">
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3 " controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Matricula</Form.Label>
+                                        <Form.Control type="text" onChange={matriculaInputChangeHandler} defaultValue={coche.matricula} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Modelo</Form.Label>
+                                        <Form.Control type="text" onChange={modeloInputChangeHandler} defaultValue={coche.modelo} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Marca</Form.Label>
+                                        <Form.Control type="text" onChange={marcaInputChangeHandler} defaultValue={coche.marca} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Km</Form.Label>
+                                        <Form.Control type="number" onChange={kmInputChangeHandler} defaultValue={coche.km} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Precio</Form.Label>
+                                        <Form.Control type="number" onChange={precioInputChangeHandler} defaultValue={coche.precio} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Cilindrada</Form.Label>
+                                        <Form.Control type="text" onChange={cilindradaInputChangeHandler} defaultValue={coche.cilindrada} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Disponible</Form.Label>
+                                        <Form.Select aria-label="Default select example" onChange={disponibleInputChangeHandler} defaultValue={coche.disponible} >
+                                            <option value="0" >No</option>
+                                            <option value="1">Sí</option>
+                                        </Form.Select>
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Alquiler</Form.Label>
+                                        <Form.Select aria-label="Default select example" onChange={alquilerInputChangeHandler} defaultValue={alquilerVenta(coche.alquiler)}>
+                                            <option value="0" >Venta</option>
+                                            <option value="1">Alquiler</option>
+                                        </Form.Select>
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Oferta</Form.Label>
+                                        <Form.Select aria-label="Default select example" onChange={ofertaInputChangeHandler} defaultValue={coche.oferta}>
+                                            <option value="0" >No</option>
+                                            <option value="1">Si</option>
+                                        </Form.Select>
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Stack>
+                                    <div className="mx-auto">
+                                        <Link to="/carTable"><Button onClick={clickHandler} variant="primary" type="submit">
+                                            Modificar
+                                        </Button></Link>
+                                    </div>
                                 </Stack>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Modelo</Form.Label>
-                                    <Form.Control type="text" onChange={modeloInputChangeHandler} defaultValue={coche.modelo} />
-                                </Stack>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Marca</Form.Label>
-                                    <Form.Control type="text" onChange={marcaInputChangeHandler} defaultValue={coche.marca} />
-                                </Stack>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Km</Form.Label>
-                                    <Form.Control type="number" onChange={kmInputChangeHandler} defaultValue={coche.km} />
-                                </Stack>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Precio</Form.Label>
-                                    <Form.Control type="number" onChange={precioInputChangeHandler} defaultValue={coche.precio} />
-                                </Stack>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Cilindrada</Form.Label>
-                                    <Form.Control type="text" onChange={cilindradaInputChangeHandler} defaultValue={coche.cilindrada} />
-                                </Stack>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Disponible</Form.Label>
-                                    <Form.Select aria-label="Default select example" onChange={disponibleInputChangeHandler} defaultValue={coche.disponible} >
-                                        <option value="0" >No</option>
-                                        <option value="1">Sí</option>
-                                    </Form.Select>
-                                </Stack>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Alquiler</Form.Label>
-                                    <Form.Select aria-label="Default select example" onChange={alquilerInputChangeHandler} defaultValue={alquilerVenta(coche.alquiler)}>
-                                        <option value="0" >Venta</option>
-                                        <option value="1">Alquiler</option>
-                                    </Form.Select>
-                                </Stack>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Oferta</Form.Label>
-                                    <Form.Select aria-label="Default select example" onChange={ofertaInputChangeHandler} defaultValue={coche.oferta}>
-                                        <option value="0" >No</option>
-                                        <option value="1">Si</option>
-                                    </Form.Select>
-                                </Stack>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Stack>
-                                <div className="mx-auto">
-                                    <Link to="/carTable"><Button onClick={clickHandler} variant="primary" type="submit">
-                                        Modificar
-                                    </Button></Link>
-                                </div>
-                            </Stack>
-                        </Col>
-                    </Row>
-                </Form>
-            </Container>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Container>
+            </Stack>
         </>
     );
 }
