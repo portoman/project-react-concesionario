@@ -11,6 +11,7 @@ import ModificateCar from './components/ModificateCar/ModificateCar';
 import Uploads from './views/Uploads';
 import ClientTable from './components/ClientTable/ClientTable';
 import ModificateClient from './components/ModificateClient/ModificateClient'
+import Sale from './components/Sale/Sale';
 
 function App() {
 
@@ -28,6 +29,12 @@ function App() {
     },
     []
   )
+  useEffect(
+    () => {
+      actions.getAllSales()
+    },
+    []
+  )
 
   return (
     <>
@@ -39,6 +46,7 @@ function App() {
         <Route path="/uploads" element={<Uploads />} />
         <Route path="/clientTable" element={<ClientTable />} />
         <Route path="/client/:id" element={<ModificateClient />} />
+        <Route path="/sale" element={<Sale />} />
       </Routes>
     </>
   );

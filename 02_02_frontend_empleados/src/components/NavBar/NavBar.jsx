@@ -16,7 +16,7 @@ function NavBar() {
                             Alquilar
                         </Nav>
                         <Nav className="me-auto">
-                            Vender
+                            <Link to={"/sale"}> Vender</Link>
                         </Nav>
                         <Nav className="me-auto">
                             <Link to={"/uploads"}>Altas</Link>

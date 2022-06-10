@@ -10,9 +10,10 @@ export function ContextProvider({ children }) {
 
     const [cars, setCars] = useState([]);
     const [clients, setClients]=useState([]);
+    const [sales, setSales]=useState([]);
 
     const context = {
-        states: {cars,clients},
+        states: {cars,clients,sales},
         actions: {
             getAllCars: function () {
                 get("http://localhost:3000/api" + "/allCoches/").then(
@@ -22,6 +23,11 @@ export function ContextProvider({ children }) {
             getAllClients: function(){
                 get("http://localhost:3000/api" + "/allClients/").then(
                     data => setClients(data)
+                ) 
+            },
+            getAllSales: function(){
+                get("http://localhost:3000/api" + "/allSales/").then(
+                    data => setSales(data)
                 ) 
             }
         }
