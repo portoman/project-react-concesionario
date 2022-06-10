@@ -59,38 +59,74 @@ function ModificateClient() {
     return (
 
         <>
-         <Container>
-            <Form className="col-3 mx-auto">
-                
-                <Form.Group className="mb-3 " controlId="formBasicEmail">
-                    <Form.Label>DNI</Form.Label>
-                    <Form.Control type="text" onChange={DNIInputChangeHandler} defaultValue={client.DNI} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" onChange={nombreInputChangeHandler} defaultValue={client.nombre} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Apellidos</Form.Label>
-                    <Form.Control type="text" onChange={apellidosInputChangeHandler} defaultValue={client.apellidos} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Teléfono</Form.Label>
-                    <Form.Control type="number" onChange={telefonoInputChangeHandler} defaultValue={client.telefono} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Código Postal</Form.Label>
-                    <Form.Control type="number" onChange={cpostalInputChangeHandler} defaultValue={client.cpostal} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Ciudad</Form.Label>
-                    <Form.Control type="text" onChange={ciudadInputChangeHandler} defaultValue={client.ciudad} />
-                </Form.Group>
-                <Link to="/clientTable"><Button onClick={clickHandler} variant="primary" type="submit">
-                    Modificar
-                </Button></Link>
-            </Form>
-            </Container>
+            <Stack gap={1}>
+                <h2 className="mx-auto">Cliente id: {id_cliente} </h2>
+                <Container>
+                    <Form className="col-5 mx-auto">
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3 " controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>DNI</Form.Label>
+                                        <Form.Control type="text" onChange={DNIInputChangeHandler} defaultValue={client.DNI} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Nombre</Form.Label>
+                                        <Form.Control type="text" onChange={nombreInputChangeHandler} defaultValue={client.nombre} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Apellidos</Form.Label>
+                                        <Form.Control type="text" onChange={apellidosInputChangeHandler} defaultValue={client.apellidos} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Teléfono</Form.Label>
+                                        <Form.Control type="number" onChange={telefonoInputChangeHandler} defaultValue={client.telefono} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Código Postal</Form.Label>
+                                        <Form.Control type="number" onChange={cpostalInputChangeHandler} defaultValue={client.cpostal} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Stack direction="horizontal" gap={2}>
+                                        <Form.Label>Ciudad</Form.Label>
+                                        <Form.Control type="text" onChange={ciudadInputChangeHandler} defaultValue={client.ciudad} />
+                                    </Stack>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Stack>
+                            <div className="ms-auto">
+                                <Link to="/clientTable"><Button onClick={clickHandler} variant="primary" type="submit">
+                                    Modificar
+                                </Button></Link>
+                            </div>
+                        </Stack>
+                    </Form>
+                </Container>
+            </Stack>
         </>
     );
 }
