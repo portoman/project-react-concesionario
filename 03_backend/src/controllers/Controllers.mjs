@@ -206,3 +206,68 @@ export function getAllForms(request, response) {
         }
     )
 }
+
+//Controlador para devolver todos las ventas
+export function getAllSales(request, response) {
+    db.all(
+        `SELECT * FROM ventas`,
+        (err, data) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.json(data)
+            }
+        }
+    )
+}
+
+
+//Controlador para insertar una venta
+export function postSaleController(request, response) {
+    const { fecha, id_coche, id_cliente, precio } = request.body;
+    db.run(
+        `INSERT INTO ventas(fecha, id_coche, id_cliente, precio) VALUES 
+            ("${fecha}","${id_coche}","${id_cliente}",${precio})`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(201)
+            }
+        }
+    )
+}
+
+//Controlador para modificar un venta
+export function putSaleController(request, response) {
+    const {id, fecha, id_coche, id_cliente, precio } = request.body;
+    db.run(
+        `UPDATE ventas SET fecha="${fecha}",id_coche="${id_coche}",id_cliente="${id_cliente}",
+        precio= ${precio} WHERE id="${id} "`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(201)
+            }
+        }
+    )
+}
+//Controlador para eliminar una venta
+export function deleteSaleController(request, response) {
+    const { id } = request.body;
+    db.run(
+        `DELETE FROM ventas WHERE id="${id}"`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(200)
+            }
+        }
+    )
+}

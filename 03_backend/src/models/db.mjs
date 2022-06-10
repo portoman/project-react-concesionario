@@ -46,7 +46,7 @@ Valores booleanos=> 0 (false), 1(true)
 Los coches si están vendidos o alquilados están no disponibles=0.
 Si son coches en alquiler. Alquiler=1, si son para ventas: Alquiler=0
 Sin son coches en oferta. Oferta=1, si no están en Oferta=0.
-*/ 
+*/
 db.run(`
     CREATE TABLE
         IF NOT EXISTS
@@ -95,4 +95,14 @@ db.run(`
             CONSTRAINT fk_coche_venta FOREIGN KEY (id_coche) REFERENCES coches(id_coche)
         )
 `);
+
+db.run(`
+CREATE TRIGGER IF NOT EXISTS car_not_available_ventas AFTER INSERT ON ventas
+BEGIN
+    UPDATE coches
+    SET disponible = 0
+    WHERE id_coche = NEW.id_coche;
+END;
+
+`)
 
