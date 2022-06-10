@@ -16,7 +16,7 @@ function Sale() {
 
 
     const [fecha, setFecha] = useState("");
-    const [id_coche, setIdcoche] = useState("");
+    const [id_coche, setIdcoche] = useState(states.cars[0].id_coche);
     const [id_cliente, setIdCliente] = useState("");
     const [precio, setPrecio] = useState("");
 
@@ -46,30 +46,33 @@ function Sale() {
         <>
             <h2 className="mx-auto">Venta</h2>
             <Container>
-                <Form className="col-5 mx-auto">
+                <Form className="col-8 mx-auto">
                     <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Fecha</Form.Label>
-                                    <Form.Control type="text" onChange={fechaInputChangeHandler} />
-                                </Stack>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Id Coche</Form.Label>
-                                    <Form.Control type="number" onChange={idCocheInputChangeHandler} />
-                                </Stack>
-                            </Form.Group>
-                        </Col>
+                        <Form.Group className="col-3 mb-3" controlId="formBasicEmail">
+                            <Stack direction="horizontal" gap={2}>
+                                <Form.Label>Fecha</Form.Label>
+                                <Form.Control type="text" onChange={fechaInputChangeHandler} />
+                            </Stack>
+                        </Form.Group>
+                    </Row>
+                    <Row>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Stack direction="horizontal" gap={2}>
+                                <Form.Label>Coche</Form.Label>
+                                <Form.Select aria-label="Default select example" onChange={idCocheInputChangeHandler}>
+                                    {states.cars.map(
+                                        (element, index) =>
+                                            <option value={element.id_coche}>Id: {element.id_coche} - Matricula: {element.matricula} - Modelo: {element.modelo} - Marca: {element.marca}</option>
+                                    )}
+                                </Form.Select>
+                            </Stack>
+                        </Form.Group>
                     </Row>
                     <Row>
                         <Col>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Stack direction="horizontal" gap={2}>
-                                    <Form.Label>Id Cliente</Form.Label>
+                                    <Form.Label>Cliente</Form.Label>
                                     <Form.Control type="number" onChange={idClienteChangeHandler} />
                                 </Stack>
                             </Form.Group>
