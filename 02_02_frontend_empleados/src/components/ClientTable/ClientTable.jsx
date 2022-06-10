@@ -24,7 +24,7 @@ function ClientTable() {
                 <Table responsive="sm">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>id</th>
                             <th>DNI</th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
@@ -39,7 +39,7 @@ function ClientTable() {
                         {states.clients.map(
                             (element, index) =>
                                 <tr key={index}>
-                                    <td>{index}</td>
+                                    <td>{element.id_cliente}</td>
                                     <td>{element.DNI}</td>
                                     <td>{element.nombre}</td>
                                     <td>{element.apellidos}</td>

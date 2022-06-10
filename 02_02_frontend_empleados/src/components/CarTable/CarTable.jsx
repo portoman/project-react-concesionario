@@ -61,7 +61,7 @@ function CarTable() {
                         {states.cars.map(
                             (element, index) =>
                                 <tr key={index}>
-                                    <td>{index}</td>
+                                    <td>{element.id_coche}</td>
                                     <td>{element.matricula}</td>
                                     <td>{element.modelo}</td>
                                     <td>{element.marca}</td>
