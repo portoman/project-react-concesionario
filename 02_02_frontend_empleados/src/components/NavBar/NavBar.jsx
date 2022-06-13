@@ -31,7 +31,7 @@ function NavBar() {
                             Listar formularios
                         </Nav>
                         <Nav className="me-auto">
-                            Listar ventas
+                            <Link to={"/saleTable"}>Listar ventas</Link>
                         </Nav>
                         <Nav className="me-auto">
                             Listar alquileres

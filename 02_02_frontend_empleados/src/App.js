@@ -12,6 +12,7 @@ import Uploads from './views/Uploads';
 import ClientTable from './components/ClientTable/ClientTable';
 import ModificateClient from './components/ModificateClient/ModificateClient'
 import Sale from './components/Sale/Sale';
+import SaleTable from './components/SaleTable/SaleTable';
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
         <Route path="/clientTable" element={<ClientTable />} />
         <Route path="/client/:id" element={<ModificateClient />} />
         <Route path="/sale" element={<Sale />} />
+        <Route path="/saleTable" element={<SaleTable />} />
       </Routes>
     </>
   );
