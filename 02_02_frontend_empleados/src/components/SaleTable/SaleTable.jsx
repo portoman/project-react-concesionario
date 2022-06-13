@@ -8,14 +8,42 @@ import { Link } from 'react-router-dom';
 function SaleTable() {
 
     const { states, actions } = useContext(Context);
-   
 
-    async function clickHandlerDelete(id_cliente) {
-        let data = JSON.stringify({ id_cliente });
-        await apiDelete("http://localhost:3000/api" + "/client", data);
+
+    async function clickHandlerDelete(id) {
+        let data = JSON.stringify({ id });
+        await apiDelete("http://localhost:3000/api" + "/sale", data);
         actions.getAllClients();
+        actions.getAllSales();
     }
 
+    /**
+     * Función para obtener la matrícula a partir del id del coche
+     * @param {*} id 
+     * @returns matricula
+     */
+    function takeMatricula(id) {
+        let coche = states.cars.filter(element => element.id_coche == id);
+        return coche[0].matricula;
+    }
+    /**
+     * Función para obtener el modelo a partir del id del coche
+     * @param {*} id id del coche
+     * @returns modelo
+     */
+    function takeModelo(id) {
+        let coche = states.cars.filter(element => element.id_coche == id);
+        return coche[0].modelo;
+    }
+    /**
+     * Función para obtener la marca a partir del id del coche
+     * @param {*} id id del coche
+     * @returns marca
+     */
+    function takeMarca(id) {
+        let coche = states.cars.filter(element => element.id_coche == id);
+        return coche[0].marca;
+    }
 
     return (
 
@@ -46,15 +74,15 @@ function SaleTable() {
                                     <td>{element.id}</td>
                                     <td>{element.fecha}</td>
                                     <td>{element.id_coche}</td>
-                                    <td>{"matricula"}</td>
-                                    <td>{"modelo"}</td>
-                                    <td>{"marca"}</td>
+                                    <td>{takeMatricula(element.id_coche)}</td>
+                                    <td>{takeModelo(element.id_coche)}</td>
+                                    <td>{takeMarca(element.id_coche)}</td>
                                     <td>{element.id_cliente}</td>
                                     <td>{"DNI"}</td>
                                     <td>{"Nombre"}</td>
                                     <td>{"Apellidos"}</td>
                                     <td>{element.precio}</td>
-                                    <td><Button onClick={() => { clickHandlerDelete(element.id_cliente) }} variant="primary" type="submit">
+                                    <td><Button onClick={() => { clickHandlerDelete(element.id) }} variant="primary" type="submit">
                                         Eliminar
                                     </Button></td>
                                     <td> <Link to={"/client/" + element.id_cliente}><Button variant="primary" type="submit">
