@@ -17,10 +17,13 @@ function Sale() {
     //Mediante el método filter, segrego los coches que están disponibles 
     const cochesDisponibles = states.cars.filter(element => element.disponible === 1);
 
+    //Variables para definir los useState con el primer dato de los arrays
+    let idInicialCoche = (cochesDisponibles.length > 0) ? cochesDisponibles[0].id_coche : "No hay coches disponibles";
+    let idInicialCliente = (states.clients.length > 0) ? states.clients[0].id_cliente : "No hay clientes disponibles";
 
     const [fecha, setFecha] = useState("");
-    const [id_coche, setIdcoche] = useState(cochesDisponibles[0].id_coche);
-    const [id_cliente, setIdCliente] = useState(states.clients[0].id_cliente);
+    const [id_coche, setIdcoche] = useState(idInicialCoche);
+    const [id_cliente, setIdCliente] = useState(idInicialCliente);
     const [precio, setPrecio] = useState("");
 
     function fechaInputChangeHandler(event) {
@@ -40,8 +43,21 @@ function Sale() {
         const data = JSON.stringify({ fecha, id_coche, id_cliente, precio });
         await post("http://localhost:3000/api" + "/sale", data);
         actions.getAllSales();
+        actions.getAllClients();
+        actions.getAllCars();
     }
 
+    /*Condicional para mapear en el select los coches disponibles en el caso de que los haya.
+    Si no los hay, lo indicará*/
+    let listadoCoches="";
+    if (idInicialCoche>0){
+        listadoCoches=cochesDisponibles.map(
+            (element, index) =>
+                <option value={element.id_coche}>Id: {element.id_coche} - Matricula: {element.matricula} - Modelo: {element.modelo} - Marca: {element.marca}</option>
+        )
+    }else{
+        listadoCoches=<option>Coches no disponibles</option>;
+    }
 
 
     return (
@@ -59,10 +75,7 @@ function Sale() {
                     <Stack direction="horizontal" gap={2}>
                         <Form.Label>Coche</Form.Label>
                         <Form.Select aria-label="Default select example" onChange={idCocheInputChangeHandler}>
-                            {cochesDisponibles.map(
-                                (element, index) =>
-                                    <option value={element.id_coche}>Id: {element.id_coche} - Matricula: {element.matricula} - Modelo: {element.modelo} - Marca: {element.marca}</option>
-                            )}
+                            {listadoCoches}
                         </Form.Select>
                     </Stack>
                 </Form.Group>
