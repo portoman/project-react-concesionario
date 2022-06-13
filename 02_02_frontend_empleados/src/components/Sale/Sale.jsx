@@ -17,10 +17,10 @@ function Sale() {
     //Mediante el método filter, segrego los coches que están disponibles 
     const cochesDisponibles = states.cars.filter(element => element.disponible === 1);
 
-    
+
     const [fecha, setFecha] = useState("");
-    const [id_coche, setIdcoche] = useState(0);
-    const [id_cliente, setIdCliente] = useState("");
+    const [id_coche, setIdcoche] = useState(cochesDisponibles[0].id_coche);
+    const [id_cliente, setIdCliente] = useState(states.clients[0].id_cliente);
     const [precio, setPrecio] = useState("");
 
     function fechaInputChangeHandler(event) {
@@ -69,7 +69,12 @@ function Sale() {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Stack direction="horizontal" gap={2}>
                         <Form.Label>Cliente</Form.Label>
-                        <Form.Control type="number" onChange={idClienteChangeHandler} />
+                        <Form.Select aria-label="Default select example" onChange={idClienteChangeHandler}>
+                            {states.clients.map(
+                                (element, index) =>
+                                    <option value={element.id_cliente}>Id: {element.id_cliente} - DNI: {element.DNI} - Nombre: {element.nombre} - Apellidos: {element.apellidos}</option>
+                            )}
+                        </Form.Select>
                     </Stack>
                 </Form.Group>
                 <Form.Group className="col-3 mb-3" controlId="formBasicEmail">
