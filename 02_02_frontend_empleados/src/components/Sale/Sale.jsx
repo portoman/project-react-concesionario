@@ -49,14 +49,14 @@ function Sale() {
 
     /*Condicional para mapear en el select los coches disponibles en el caso de que los haya.
     Si no los hay, lo indicará*/
-    let listadoCoches="";
-    if (idInicialCoche>0){
-        listadoCoches=cochesDisponibles.map(
+    let listadoCoches = "";
+    if (idInicialCoche > 0) {
+        listadoCoches = cochesDisponibles.map(
             (element, index) =>
                 <option value={element.id_coche}>Id: {element.id_coche} - Matricula: {element.matricula} - Modelo: {element.modelo} - Marca: {element.marca}</option>
         )
-    }else{
-        listadoCoches=<option>Coches no disponibles</option>;
+    } else {
+        listadoCoches = <option>Coches no disponibles</option>;
     }
 
 
