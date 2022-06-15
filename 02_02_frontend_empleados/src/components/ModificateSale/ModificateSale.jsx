@@ -114,9 +114,9 @@ function ModificateSale() {
               >
                 <option value={venta.id_cliente}>
                   Id: {venta.id_cliente} - DNI:
-                  {takeDNI(venta.id_client, states.clients)} - Nombre:
-                  {takeNombre(venta.id_client, states.clients)} - Apellidos:
-                  {takeApellidos(venta.id_client, states.clients)}
+                  {takeDNI(venta.id_cliente, states.clients)} - Nombre:
+                  {takeNombre(venta.id_cliente, states.clients)} - Apellidos:
+                  {takeApellidos(venta.id_cliente, states.clients)}
                 </option>
                 {listadoCLientes}
               </Form.Select>
