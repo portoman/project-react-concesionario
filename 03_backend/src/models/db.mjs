@@ -95,7 +95,7 @@ db.run(`
             CONSTRAINT fk_coche_venta FOREIGN KEY (id_coche) REFERENCES coches(id_coche)
         )
 `);
-
+//Trigger para que después de insertar un coche en la tabla ventas lo asigne como no disponible
 db.run(`
 CREATE TRIGGER IF NOT EXISTS car_not_available_ventas AFTER INSERT ON ventas
 BEGIN
@@ -103,6 +103,16 @@ BEGIN
     SET disponible = 0
     WHERE id_coche = NEW.id_coche;
 END;
-
 `)
+//Trigger para que después de borrar un coche en la tabla ventas lo asigne como disponible
+db.run(`
+CREATE TRIGGER IF NOT EXISTS car_available_ventas BEFORE DELETE ON ventas
+BEGIN
+    UPDATE coches
+    SET disponible = 1
+    WHERE id_coche = OLD.id_coche;
+END;
+`)
+
+
 
