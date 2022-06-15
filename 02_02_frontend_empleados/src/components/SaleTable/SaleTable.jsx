@@ -15,6 +15,7 @@ function SaleTable() {
         await apiDelete("http://localhost:3000/api" + "/sale", data);
         actions.getAllClients();
         actions.getAllSales();
+        actions.getAllCars();
     }
 
     /**
@@ -44,6 +45,37 @@ function SaleTable() {
         let coche = states.cars.filter(element => element.id_coche == id);
         return coche[0].marca;
     }
+
+    /**
+     * Función para obtener el DNI a partir del id del cliente
+     * @param {*} id id del cliente
+     * @returns DNI
+     */
+    function takeDNI(id) {
+        let cliente = states.clients.filter(element => element.id_client == id);
+        return cliente[0].DNI;
+    }
+
+    /**
+     * Función para obtener el nombre a partir del id del cliente
+     * @param {*} id id del cliente
+     * @returns nombre
+     */
+     function takeNombre(id) {
+        let cliente = states.clients.filter(element => element.id_client == id);
+        return cliente[0].nombre;
+    }
+
+     /**
+     * Función para obtener los Apellidos a partir del id del cliente
+     * @param {*} id id del cliente
+     * @returns apellidos
+     */
+      function takeApellidos(id) {
+        let cliente = states.clients.filter(element => element.id_client == id);
+        return cliente[0].apellidos;
+    }
+    
 
     return (
 
@@ -78,9 +110,9 @@ function SaleTable() {
                                     <td>{takeModelo(element.id_coche)}</td>
                                     <td>{takeMarca(element.id_coche)}</td>
                                     <td>{element.id_cliente}</td>
-                                    <td>{"DNI"}</td>
-                                    <td>{"Nombre"}</td>
-                                    <td>{"Apellidos"}</td>
+                                    <td>{takeDNI(element.id_client)}</td>
+                                    <td>{takeNombre(element.id_client)}</td>
+                                    <td>{takeApellidos(element.id_client)}</td>
                                     <td>{element.precio}</td>
                                     <td><Button onClick={() => { clickHandlerDelete(element.id) }} variant="primary" type="submit">
                                         Eliminar

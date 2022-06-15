@@ -18,8 +18,8 @@ function Sale() {
     const cochesDisponibles = states.cars.filter(element => element.disponible === 1);
 
     //Variables para definir los useState con el primer dato de los arrays
-    let idInicialCoche = (cochesDisponibles.length > 0) ? cochesDisponibles[0].id_coche : "No hay coches disponibles";
-    let idInicialCliente = (states.clients.length > 0) ? states.clients[0].id_cliente : "No hay clientes disponibles";
+    let idInicialCoche = (cochesDisponibles.length > 0) ? cochesDisponibles[0].id_coche : 0;
+    let idInicialCliente = (states.clients.length > 0) ? states.clients[0].id_cliente : 0;
 
     const [fecha, setFecha] = useState("");
     const [id_coche, setIdcoche] = useState(idInicialCoche);
