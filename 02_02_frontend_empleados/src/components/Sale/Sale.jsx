@@ -40,6 +40,8 @@ function Sale() {
     }
 
     async function clickHandler() {
+        actions.getAllCars();
+        actions.getAllClients();
         const data = JSON.stringify({ fecha, id_coche, id_cliente, precio });
         await post("http://localhost:3000/api" + "/sale", data);
         actions.getAllSales();
@@ -98,7 +100,7 @@ function Sale() {
                 </Form.Group>
                 <Stack>
                     <div className="ms-auto">
-                        <Link to="/carTable"><Button onClick={clickHandler} variant="primary" type="submit">
+                        <Link to="/saleTable"><Button onClick={clickHandler} variant="primary" type="submit">
                             Registrar
                         </Button></Link>
                     </div>
