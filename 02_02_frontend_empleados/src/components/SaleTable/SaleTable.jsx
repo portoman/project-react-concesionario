@@ -1,4 +1,4 @@
-import {  useContext } from "react";
+import { useContext } from "react";
 import Table from "react-bootstrap/Table";
 import { Context } from "../../SharedState";
 import Button from "react-bootstrap/Button";
@@ -73,7 +73,7 @@ function SaleTable() {
                 </td>
                 <td>
                   {" "}
-                  <Link to={"/client/" + element.id_cliente}>
+                  <Link to={"/sale/" + element.id}>
                     <Button variant="primary" type="submit">
                       Modificar
                     </Button>

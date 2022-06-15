@@ -10,9 +10,10 @@ import { Link } from 'react-router-dom';
 import ModificateCar from './components/ModificateCar/ModificateCar';
 import Uploads from './views/Uploads';
 import ClientTable from './components/ClientTable/ClientTable';
-import ModificateClient from './components/ModificateClient/ModificateClient'
+import ModificateClient from './components/ModificateClient/ModificateClient';
 import Sale from './components/Sale/Sale';
 import SaleTable from './components/SaleTable/SaleTable';
+import ModificateSale from './components/ModificateSale/ModificateSale';
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
         <Route path="/client/:id" element={<ModificateClient />} />
         <Route path="/sale" element={<Sale />} />
         <Route path="/saleTable" element={<SaleTable />} />
+        <Route path="/sale/:id" element={<ModificateSale />} />
       </Routes>
     </>
   );

@@ -65,6 +65,7 @@ function Sale() {
 
   return (
     <>
+    <Stack  gap={1}>
       <h2 className="mx-auto">Venta</h2>
       <Form className="col-8 mx-auto">
         <Form.Group className="col-3 mb-3" controlId="formBasicEmail">
@@ -116,6 +117,7 @@ function Sale() {
           </div>
         </Stack>
       </Form>
+      </Stack>
     </>
   );
 }
