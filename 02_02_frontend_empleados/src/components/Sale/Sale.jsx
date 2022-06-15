@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { post } from "../../aux_api";
 import Stack from "react-bootstrap/Stack";
-import { URL } from "./defines";
+import { URL } from "../../defines";
 
 function Sale() {
   const { states, actions } = useContext(Context);

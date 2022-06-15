@@ -4,7 +4,7 @@ import { Context } from "../../SharedState";
 import Button from "react-bootstrap/Button";
 import { apiDelete } from "../../aux_api";
 import { Link } from "react-router-dom";
-import { URL } from "./defines";
+import { URL } from "../../defines";
 
 function CarTable() {
   const { states, actions } = useContext(Context);

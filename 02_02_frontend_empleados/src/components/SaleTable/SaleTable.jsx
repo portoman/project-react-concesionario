@@ -12,7 +12,7 @@ import {
   takeNombre,
   takeApellidos,
 } from "../../local/functions";
-import { URL } from "./defines";
+import { URL } from "../../defines";
 
 function SaleTable() {
   const { states, actions } = useContext(Context);

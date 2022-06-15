@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
-import { URL } from "./defines";
+import { URL } from "../../defines";
 
 function UploadCar() {
   const { states, actions } = useContext(Context);
