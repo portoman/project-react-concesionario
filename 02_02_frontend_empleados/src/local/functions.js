@@ -37,7 +37,7 @@ export function takeMarca(id, coches) {
      * @returns DNI
      */
      export function takeDNI(id, clientes) {
-        let cliente = clientes.filter(element => element.id_client == id);
+        let cliente = clientes.filter(element => element.id_cliente == id);
         return cliente[0].DNI;
     }
 
@@ -47,7 +47,7 @@ export function takeMarca(id, coches) {
      * @returns nombre
      */
      export function takeNombre(id,clientes) {
-        let cliente = clientes.filter(element => element.id_client == id);
+        let cliente = clientes.filter(element => element.id_cliente == id);
         return cliente[0].nombre;
     }
 
@@ -57,6 +57,6 @@ export function takeMarca(id, coches) {
      * @returns apellidos
      */
      export function takeApellidos(id,clientes) {
-        let cliente = clientes.filter(element => element.id_client == id);
+        let cliente = clientes.filter(element => element.id_cliente == id);
         return cliente[0].apellidos;
     }

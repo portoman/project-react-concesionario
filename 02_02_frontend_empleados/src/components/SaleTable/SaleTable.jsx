@@ -56,9 +56,9 @@ function SaleTable() {
                 <td>{takeModelo(element.id_coche, states.cars)}</td>
                 <td>{takeMarca(element.id_coche, states.cars)}</td>
                 <td>{element.id_cliente}</td>
-                <td>{takeDNI(element.id_client, states.clients)}</td>
-                <td>{takeNombre(element.id_client, states.clients)}</td>
-                <td>{takeApellidos(element.id_client, states.clients)}</td>
+                <td>{takeDNI(element.id_cliente, states.clients)}</td>
+                <td>{takeNombre(element.id_cliente, states.clients)}</td>
+                <td>{takeApellidos(element.id_cliente, states.clients)}</td>
                 <td>{element.precio}</td>
                 <td>
                   <Button

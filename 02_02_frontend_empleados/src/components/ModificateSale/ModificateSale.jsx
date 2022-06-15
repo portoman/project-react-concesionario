@@ -31,8 +31,7 @@ function ModificateSale() {
     (element) => element.disponible === 1
   );
 
-
-  const [id, idVenta] = useState(venta.id);
+  const [id, setIdVenta] = useState(venta.id);
   const [fecha, setFecha] = useState(venta.fecha);
   const [id_coche, setIdcoche] = useState(venta.id_coche);
   const [id_cliente, setIdCliente] = useState(venta.id_cliente);
@@ -54,7 +53,7 @@ function ModificateSale() {
   async function clickHandler() {
     actions.getAllCars();
     actions.getAllClients();
-    const data = JSON.stringify({ fecha, id_coche, id_cliente, precio });
+    const data = JSON.stringify({ id, fecha, id_coche, id_cliente, precio });
     await modify(URL + "/sale", data);
     actions.getAllSales();
     actions.getAllClients();
@@ -126,7 +125,11 @@ function ModificateSale() {
           <Form.Group className="col-3 mb-3" controlId="formBasicEmail">
             <Stack direction="horizontal" gap={2}>
               <Form.Label>Precio</Form.Label>
-              <Form.Control type="number" onChange={precioInputChangeHandler} />
+              <Form.Control
+                type="number"
+                onChange={precioInputChangeHandler}
+                defaultValue={venta.precio}
+              />
             </Stack>
           </Form.Group>
           <Stack>
