@@ -16,6 +16,8 @@ import SaleTable from './components/SaleTable/SaleTable';
 import ModificateSale from './components/ModificateSale/ModificateSale';
 import Rent from './components/Rent/Rent';
 import RentTable from './components/RentTable/RentTable';
+import Stack from "react-bootstrap/Stack";
+
 
 function App() {
 
@@ -48,7 +50,8 @@ function App() {
 
   return (
     <>
-      <h1>Concesionario Vioño</h1>
+    <Stack  gap={1}>
+      <h1 className="mx-auto">Concesionario Vioño</h1>
       <NavBar />
       <Routes>
         <Route path="/carTable" element={<CarTable />} />
@@ -62,6 +65,7 @@ function App() {
         <Route path="/rent" element={<Rent />} />
         <Route path="/rentTable" element={<RentTable />} />
       </Routes>
+    </Stack>
     </>
   );
 }
