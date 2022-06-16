@@ -18,7 +18,7 @@ import Rent from './components/Rent/Rent';
 import RentTable from './components/RentTable/RentTable';
 import Stack from "react-bootstrap/Stack";
 import ModificateRent from './components/ModificateRent/ModificateRent'
-
+import FormTable from './components/FormTable/FormTable'
 
 function App() {
 
@@ -48,6 +48,12 @@ function App() {
     },
     []
   )
+  useEffect(
+    () => {
+      actions.getAllForms()
+    },
+    []
+  )
 
   return (
     <>
@@ -66,6 +72,7 @@ function App() {
         <Route path="/rent" element={<Rent />} />
         <Route path="/rentTable" element={<RentTable />} />
         <Route path="/rent/:id" element={<ModificateRent />} />
+        <Route path="/formTable" element={<FormTable />} />
       </Routes>
     </Stack>
     </>

@@ -24,7 +24,9 @@ function NavBar() {
             <Nav className="me-auto">
               <Link to={"/clientTable"}>Listar personas</Link>
             </Nav>
-            <Nav className="me-auto">Listar formularios</Nav>
+            <Nav className="me-auto">
+            <Link to={"/formTable"}>Listar formularios</Link>
+            </Nav>
             <Nav className="me-auto">
               <Link to={"/saleTable"}>Listar ventas</Link>
             </Nav>

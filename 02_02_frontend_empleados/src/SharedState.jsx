@@ -10,9 +10,10 @@ export function ContextProvider({ children }) {
   const [clients, setClients] = useState([]);
   const [sales, setSales] = useState([]);
   const [rents, setRents] = useState([]);
+  const [forms, setForms] = useState([]);
 
   const context = {
-    states: { cars, clients, sales, rents },
+    states: { cars, clients, sales, rents, forms },
     actions: {
       getAllCars: function () {
         get(URL + "/allCoches/").then((data) => setCars(data));
@@ -25,6 +26,9 @@ export function ContextProvider({ children }) {
       },
       getAllRents: function () {
         get(URL + "/allRents/").then((data) => setRents(data));
+      },
+      getAllForms: function () {
+        get(URL + "/allForms/").then((data) => setForms(data));
       },
     },
   };
