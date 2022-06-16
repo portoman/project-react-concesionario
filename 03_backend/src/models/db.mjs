@@ -113,6 +113,22 @@ BEGIN
     WHERE id_coche = OLD.id_coche;
 END;
 `)
-
-
+//Trigger para que después de insertar un coche en la tabla alquileres lo asigne como no disponible
+db.run(`
+CREATE TRIGGER IF NOT EXISTS car_not_available_alquileres AFTER INSERT ON alquileres
+BEGIN
+    UPDATE coches
+    SET disponible = 0
+    WHERE id_coche = NEW.id_coche;
+END;
+`)
+//Trigger para que después de borrar un coche en la tabla alquileres lo asigne como disponible
+db.run(`
+CREATE TRIGGER IF NOT EXISTS car_available_alquileres BEFORE DELETE ON alquileres
+BEGIN
+    UPDATE coches
+    SET disponible = 1
+    WHERE id_coche = OLD.id_coche;
+END;
+`)
 
