@@ -4,7 +4,8 @@ import express from "express";
 import { getAllCars, postCarController, getOneCarController ,putCarController,
     deleteCarController, getAllClients, postClientController, getOneClientController,
     putClientController, deleteClientController, postFormController, getAllForms,getAllSales,
-postSaleController,putSaleController, deleteSaleController} from "./controllers/Controllers.mjs";
+postSaleController,putSaleController, deleteSaleController, getAllRents, postRentController,
+putRentController,deleteRentController} from "./controllers/Controllers.mjs";
 
 const PATH_PREFIX = "/api"
 const app = express();
@@ -36,6 +37,12 @@ try {
     app.post(PATH_PREFIX + "/sale/", jsonParser, postSaleController);
     app.put(PATH_PREFIX+"/sale/", jsonParser, putSaleController);
     app.delete(PATH_PREFIX+"/sale/", jsonParser, deleteSaleController);
+
+    //Alquileres
+    app.get(PATH_PREFIX + "/allRents/", getAllRents);
+    app.post(PATH_PREFIX + "/rent/", jsonParser, postRentController);
+    app.put(PATH_PREFIX+"/rent/", jsonParser, putRentController);
+    app.delete(PATH_PREFIX+"/rent/", jsonParser, deleteRentController);
 
     app.listen(process.env.PORT || 3000, () => {
         console.log("Express running...");

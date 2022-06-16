@@ -242,7 +242,7 @@ export function postSaleController(request, response) {
 
 //Controlador para modificar un venta
 export function putSaleController(request, response) {
-    const {id, fecha, id_coche, id_cliente, precio } = request.body;
+    const { id, fecha, id_coche, id_cliente, precio } = request.body;
     db.run(
         `UPDATE ventas SET fecha="${fecha}",id_coche="${id_coche}",id_cliente="${id_cliente}",
         precio= ${precio} WHERE id="${id} "`,
@@ -261,6 +261,70 @@ export function deleteSaleController(request, response) {
     const { id } = request.body;
     db.run(
         `DELETE FROM ventas WHERE id="${id}"`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(200)
+            }
+        }
+    )
+}
+
+//Controlador para devolver todos los alquileres
+export function getAllRents(request, response) {
+    db.all(
+        `SELECT * FROM alquileres`,
+        (err, data) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.json(data)
+            }
+        }
+    )
+}
+
+//Controlador para insertar un alquiler
+export function postRentController(request, response) {
+    const { fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio } = request.body;
+    db.run(
+        `INSERT INTO alquileres(fecha_entrega,fecha_devolucion,id_coche, id_cliente, precio) VALUES 
+            ("${fecha_entrega}","${fecha_devolucion}","${id_coche}","${id_cliente}",${precio})`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(201)
+            }
+        }
+    )
+}
+
+//Controlador para modificar un alquiler
+export function putRentController(request, response) {
+    const { id, fecha_entrega,fecha_devolucion, id_coche, id_cliente, precio } = request.body;
+    db.run(
+        `UPDATE alquileres SET fecha_entrega="${fecha_entrega}",fecha_devolucion="${fecha_devolucion}",id_coche="${id_coche}",id_cliente="${id_cliente}",
+        precio= ${precio} WHERE id="${id} "`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(201)
+            }
+        }
+    )
+}
+//Controlador para eliminar un alquiler
+export function deleteRentController(request, response) {
+    const { id } = request.body;
+    db.run(
+        `DELETE FROM alquileres WHERE id="${id}"`,
         (err) => {
             if (err) {
                 console.error(err);
