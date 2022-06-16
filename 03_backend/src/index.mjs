@@ -5,7 +5,7 @@ import { getAllCars, postCarController, getOneCarController ,putCarController,
     deleteCarController, getAllClients, postClientController, getOneClientController,
     putClientController, deleteClientController, postFormController, getAllForms,getAllSales,
 postSaleController,putSaleController, deleteSaleController, getAllRents, postRentController,
-putRentController,deleteRentController} from "./controllers/Controllers.mjs";
+putRentController,deleteRentController,deleteFormController} from "./controllers/Controllers.mjs";
 
 const PATH_PREFIX = "/api"
 const app = express();
@@ -31,6 +31,7 @@ try {
     //Formulario
     app.post(PATH_PREFIX + "/form/", jsonParser, postFormController);
     app.get(PATH_PREFIX + "/allForms/", getAllForms);
+    app.delete(PATH_PREFIX+"/form/", jsonParser, deleteFormController);
 
     //Ventas
     app.get(PATH_PREFIX + "/allSales/", getAllSales);

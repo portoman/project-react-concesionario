@@ -207,6 +207,22 @@ export function getAllForms(request, response) {
     )
 }
 
+//Controlador para eliminar el formulario
+export function deleteFormController(request, response) {
+    const { id } = request.body;
+    db.run(
+        `DELETE FROM formularios WHERE id="${id}"`,
+        (err) => {
+            if (err) {
+                console.error(err);
+                response.sendStatus(500)
+            } else {
+                response.sendStatus(200)
+            }
+        }
+    )
+}
+
 //Controlador para devolver todos las ventas
 export function getAllSales(request, response) {
     db.all(
