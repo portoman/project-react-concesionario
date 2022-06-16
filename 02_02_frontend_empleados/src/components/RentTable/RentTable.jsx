@@ -4,6 +4,7 @@ import { Context } from "../../SharedState";
 import Button from "react-bootstrap/Button";
 import { apiDelete } from "../../aux_api";
 import { Link } from "react-router-dom";
+import Stack from "react-bootstrap/Stack";
 import {
   takeMatricula,
   takeModelo,
@@ -26,7 +27,7 @@ function RentTable() {
   }
 
   return (
-    <>
+    <><Stack gap={1}>
       <div>
         <Table responsive="sm">
           <thead>
@@ -74,7 +75,7 @@ function RentTable() {
                   </Button>
                 </td>
                 <td>
-                  <Link to={"/sale/" + element.id}>
+                  <Link to={"/rent/" + element.id}>
                     <Button variant="primary" type="submit">
                       Modificar
                     </Button>
@@ -85,6 +86,7 @@ function RentTable() {
           </tbody>
         </Table>
       </div>
+    </Stack>
     </>
   );
 }

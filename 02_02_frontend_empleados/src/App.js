@@ -17,6 +17,7 @@ import ModificateSale from './components/ModificateSale/ModificateSale';
 import Rent from './components/Rent/Rent';
 import RentTable from './components/RentTable/RentTable';
 import Stack from "react-bootstrap/Stack";
+import ModificateRent from './components/ModificateRent/ModificateRent'
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
         <Route path="/sale/:id" element={<ModificateSale />} />
         <Route path="/rent" element={<Rent />} />
         <Route path="/rentTable" element={<RentTable />} />
+        <Route path="/rent/:id" element={<ModificateRent />} />
       </Routes>
     </Stack>
     </>
