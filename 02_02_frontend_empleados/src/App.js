@@ -14,6 +14,7 @@ import ModificateClient from './components/ModificateClient/ModificateClient';
 import Sale from './components/Sale/Sale';
 import SaleTable from './components/SaleTable/SaleTable';
 import ModificateSale from './components/ModificateSale/ModificateSale';
+import Rent from './components/Rent/Rent';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
         <Route path="/sale" element={<Sale />} />
         <Route path="/saleTable" element={<SaleTable />} />
         <Route path="/sale/:id" element={<ModificateSale />} />
+        <Route path="/rent" element={<Rent />} />
       </Routes>
     </>
   );

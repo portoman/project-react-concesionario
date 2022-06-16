@@ -7,7 +7,7 @@ import { post } from "../../aux_api";
 import Stack from "react-bootstrap/Stack";
 import { URL } from "../../defines";
 
-function Sale() {
+function Rent() {
   const { states, actions } = useContext(Context);
 
   //Mediante el método filter, segrego los coches que están disponibles
@@ -66,7 +66,7 @@ function Sale() {
   return (
     <>
       <Stack gap={1}>
-        <h2 className="mx-auto">Venta</h2>
+        <h2 className="mx-auto">Alquiler</h2>
         <Form className="col-8 mx-auto">
           <Form.Group className="col-3 mb-3" controlId="formBasicEmail">
             <Stack direction="horizontal" gap={2}>
@@ -122,4 +122,4 @@ function Sale() {
   );
 }
 
-export default Sale;
+export default Rent;

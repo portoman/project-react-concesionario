@@ -9,7 +9,9 @@ function NavBar() {
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">Alquilar</Nav>
+            <Nav className="me-auto">
+              <Link to={"/rent"}>Alquilar</Link>
+            </Nav>
             <Nav className="me-auto">
               <Link to={"/sale"}> Vender</Link>
             </Nav>
