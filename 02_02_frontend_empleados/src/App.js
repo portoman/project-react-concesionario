@@ -15,6 +15,7 @@ import Sale from './components/Sale/Sale';
 import SaleTable from './components/SaleTable/SaleTable';
 import ModificateSale from './components/ModificateSale/ModificateSale';
 import Rent from './components/Rent/Rent';
+import RentTable from './components/RentTable/RentTable';
 
 function App() {
 
@@ -38,6 +39,12 @@ function App() {
     },
     []
   )
+  useEffect(
+    () => {
+      actions.getAllRents()
+    },
+    []
+  )
 
   return (
     <>
@@ -53,6 +60,7 @@ function App() {
         <Route path="/saleTable" element={<SaleTable />} />
         <Route path="/sale/:id" element={<ModificateSale />} />
         <Route path="/rent" element={<Rent />} />
+        <Route path="/rentTable" element={<RentTable />} />
       </Routes>
     </>
   );

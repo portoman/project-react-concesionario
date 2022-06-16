@@ -21,13 +21,17 @@ function Rent() {
   let idInicialCliente =
     states.clients.length > 0 ? states.clients[0].id_cliente : 0;
 
-  const [fecha, setFecha] = useState("");
+  const [fecha_entrega, setFechaEntrega] = useState("");
+  const [fecha_devolucion, setFechaDevolucion] = useState("");
   const [id_coche, setIdcoche] = useState(idInicialCoche);
   const [id_cliente, setIdCliente] = useState(idInicialCliente);
   const [precio, setPrecio] = useState("");
 
-  function fechaInputChangeHandler(event) {
-    setFecha(event.target.value);
+  function fechaEntregaInputChangeHandler(event) {
+    setFechaEntrega(event.target.value);
+  }
+  function fechaDevolucionInputChangeHandler(event) {
+    setFechaDevolucion(event.target.value);
   }
   function idCocheInputChangeHandler(event) {
     setIdcoche(event.target.value);
@@ -42,9 +46,9 @@ function Rent() {
   async function clickHandler() {
     actions.getAllCars();
     actions.getAllClients();
-    const data = JSON.stringify({ fecha, id_coche, id_cliente, precio });
-    await post(URL + "/sale", data);
-    actions.getAllSales();
+    const data = JSON.stringify({ fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio });
+    await post(URL + "/rent", data);
+    actions.getAllRents();
     actions.getAllClients();
     actions.getAllCars();
   }
@@ -68,10 +72,12 @@ function Rent() {
       <Stack gap={1}>
         <h2 className="mx-auto">Alquiler</h2>
         <Form className="col-8 mx-auto">
-          <Form.Group className="col-3 mb-3" controlId="formBasicEmail">
+          <Form.Group className="col-8 mb-3" controlId="formBasicEmail">
             <Stack direction="horizontal" gap={2}>
-              <Form.Label>Fecha</Form.Label>
-              <Form.Control type="date" onChange={fechaInputChangeHandler} />
+              <Form.Label>Fecha entrega</Form.Label>
+              <Form.Control type="date" onChange={fechaEntregaInputChangeHandler} />
+              <Form.Label>Fecha devolución</Form.Label>
+              <Form.Control type="date" onChange={fechaDevolucionInputChangeHandler} />
             </Stack>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -109,7 +115,7 @@ function Rent() {
           </Form.Group>
           <Stack>
             <div className="ms-auto">
-              <Link to="/saleTable">
+              <Link to="/rentTable">
                 <Button onClick={clickHandler} variant="primary" type="submit">
                   Registrar
                 </Button>

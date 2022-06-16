@@ -28,7 +28,10 @@ function NavBar() {
             <Nav className="me-auto">
               <Link to={"/saleTable"}>Listar ventas</Link>
             </Nav>
-            <Nav className="me-auto">Listar alquileres</Nav>
+            <Nav className="me-auto">
+            <Link to={"/rentTable"}>Listar alquileres
+            </Link>
+            </Nav>
             <Nav className="me-auto">Buscar</Nav>
           </Navbar.Collapse>
         </Container>
