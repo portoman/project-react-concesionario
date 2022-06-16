@@ -19,9 +19,9 @@ function RentTable() {
 
   async function clickHandlerDelete(id) {
     let data = JSON.stringify({ id });
-    await apiDelete(URL + "/sale", data);
+    await apiDelete(URL + "/rent", data);
     actions.getAllClients();
-    actions.getAllSales();
+    actions.getAllRents();
     actions.getAllCars();
   }
 
