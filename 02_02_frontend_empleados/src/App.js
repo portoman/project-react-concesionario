@@ -19,6 +19,7 @@ import RentTable from './components/RentTable/RentTable';
 import Stack from "react-bootstrap/Stack";
 import ModificateRent from './components/ModificateRent/ModificateRent'
 import FormTable from './components/FormTable/FormTable'
+import SearchFor from './components/SearchFor/SearchFor';
 
 function App() {
 
@@ -73,6 +74,7 @@ function App() {
         <Route path="/rentTable" element={<RentTable />} />
         <Route path="/rent/:id" element={<ModificateRent />} />
         <Route path="/formTable" element={<FormTable />} />
+        <Route path="/searchFor" element={<SearchFor />} />
       </Routes>
     </Stack>
     </>

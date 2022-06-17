@@ -25,16 +25,17 @@ function NavBar() {
               <Link to={"/clientTable"}>Listar personas</Link>
             </Nav>
             <Nav className="me-auto">
-            <Link to={"/formTable"}>Listar formularios</Link>
+              <Link to={"/formTable"}>Listar formularios</Link>
             </Nav>
             <Nav className="me-auto">
               <Link to={"/saleTable"}>Listar ventas</Link>
             </Nav>
             <Nav className="me-auto">
-            <Link to={"/rentTable"}>Listar alquileres
-            </Link>
+              <Link to={"/rentTable"}>Listar alquileres</Link>
             </Nav>
-            <Nav className="me-auto">Buscar</Nav>
+            <Nav className="me-auto">
+              <Link to={"/searchFor"}>Buscar</Link>
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
