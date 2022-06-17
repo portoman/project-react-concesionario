@@ -21,7 +21,7 @@ function SearchFor() {
 
   const [value, setValue] = useState("id_cliente");
   const [valor, setValor] = useState("");
-  const [client, setClient] = useState("");
+  const [client, setClient] = useState(states.clients[0]);
 
   async function clickHandlerDelete(id_cliente) {
     let data = JSON.stringify({ id_cliente });
@@ -30,10 +30,10 @@ function SearchFor() {
   }
 
   async function clickHandlerSearchFor(value, clientes, valor) {
-    let valor2=value;
-    let cliente = clientes.filter(
-      (element) => element.valor2 === valor
-    );
+    let valor2 = value;
+    let valorNumero = Number(valor);
+    let prueba = clientes.filter(element => element[valor2] === valorNumero);
+    setClient(clientes.filter(element => element[valor2] === valorNumero));
   }
 
   return (
@@ -57,8 +57,8 @@ function SearchFor() {
                 </tr>
               </thead>
               <tbody>
-                {states.clients.map((element, index) => (
-                  <tr key={index}>
+                {
+                  <tr>
                     <td>{client.id_cliente}</td>
                     <td>{client.DNI}</td>
                     <td>{client.nombre}</td>
@@ -69,7 +69,7 @@ function SearchFor() {
                     <td>
                       <Button
                         onClick={() => {
-                          clickHandlerDelete(element.id_cliente);
+                          clickHandlerDelete(client.id_cliente);
                         }}
                         variant="primary"
                         type="submit"
@@ -79,14 +79,14 @@ function SearchFor() {
                     </td>
                     <td>
                       {" "}
-                      <Link to={"/client/" + element.id_cliente}>
+                      <Link to={"/client/" + client.id_cliente}>
                         <Button variant="primary" type="submit">
                           Modificar
                         </Button>
                       </Link>
                     </td>
                   </tr>
-                ))}
+                }
               </tbody>
             </Table>
           </div>
@@ -105,7 +105,7 @@ function SearchFor() {
                   clickHandlerSearchFor(value, states.clients, valor);
                 }}
                 variant="primary"
-                type="submit"
+                type="button"
               >
                 Buscar
               </Button>
