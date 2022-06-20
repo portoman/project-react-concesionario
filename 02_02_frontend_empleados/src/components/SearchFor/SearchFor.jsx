@@ -36,12 +36,19 @@ function SearchFor() {
   const [valueSale, setValueSale] = useState("");
   const [sales, setSales] = useState([{}]);
 
+  //Alquileres
+  const [atributeRent, setAtributeRent] = useState("id");
+  const [valueRent, setValueRent] = useState("");
+  const [rents, setRents] = useState([{}]);
+
+  ////Handler borrado genérico
   async function clickHandlerDelete(id_cliente, prop) {
     let data = JSON.stringify({ id_cliente });
     await apiDelete(URL + prop, data);
     actions.getAllClients();
   }
 
+  //Handler buscar clientes
   async function clickHandlerSearchForClient(value, datos, valor) {
     if (!isNaN(valor)) {
       if (value === "id_cliente" || value === "telefono" || value === "cpostal") {
@@ -52,6 +59,8 @@ function SearchFor() {
       setClient(datos.filter(element => element[value] === valor));
     }
   }
+
+  //Handler buscar coches
   async function clickHandlerSearchForCar(value, datos, valor) {
     switch (valor) {
       case "Sí":
@@ -78,7 +87,8 @@ function SearchFor() {
     }
   }
 
-  async function clickHandlerSearchForSales(value, datos, valor) {
+  //Handler buscar ventas
+  async function clickHandlerSearchForSale(value, datos, valor) {
     if (!isNaN(valor)) {
       if (value === "id" || value === "id_coche" || value === "id_cliente" || value === "precio") {
         let valorNumero = Number(valor);
@@ -86,6 +96,18 @@ function SearchFor() {
       }
     } else {
       setSales(datos.filter(element => element[value] === valor));
+    }
+  }
+
+  //Handler buscar alquileres
+  async function clickHandlerSearchForRent(value, datos, valor) {
+    if (!isNaN(valor)) {
+      if (value === "id" || value === "id_coche" || value === "id_cliente" || value === "precio") {
+        let valorNumero = Number(valor);
+        setRents(datos.filter(element => element[value] === valorNumero));
+      }
+    } else {
+      setRents(datos.filter(element => element[value] === valor));
     }
   }
 
@@ -320,7 +342,83 @@ function SearchFor() {
               </Form.Group>
               <Button
                 onClick={() => {
-                  clickHandlerSearchForSales(atributeSale, states.sales, valueSale);
+                  clickHandlerSearchForSale(atributeSale, states.sales, valueSale);
+                }}
+                variant="primary"
+                type="button"
+              >
+                Buscar
+              </Button>
+            </Stack>
+          </Form>
+        </Stack>
+      </Stack>
+      <Stack gap={1}>
+        <h2 className="mx-auto">Buscar alquileres</h2>
+        <Stack direction="horizontal" gap={2}>
+          <div className="col-9">
+            <Table responsive="sm">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>fecha entrega</th>
+                  <th>fecha devolución</th>
+                  <th>id_coche</th>
+                  <th>id_cliente</th>
+                  <th>Precio</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {rents.map((element, index) => (
+                  <tr>
+                    <td>{element.id}</td>
+                    <td>{element.fecha_entrega}</td>
+                    <td>{element.fecha_devolucion}</td>
+                    <td>{element.id_coche}</td>
+                    <td>{element.id_cliente}</td>
+                    <td>{element.precio}</td>
+                    <td>
+                      <Button
+                        onClick={() => {
+                          clickHandlerDelete(element.id, "/rent");
+                        }}
+                        variant="primary"
+                        type="submit"
+                      >
+                        Eliminar
+                      </Button>
+                    </td>
+                    <td>
+                      {" "}
+                      <Link to={"/rent/" + element.id}>
+                        <Button variant="primary" type="submit">
+                          Modificar
+                        </Button>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+          <Form>
+            <Stack direction="horizontal" gap={2}>
+              <Form.Select aria-label="Default select example" value={atributeRent} onChange={(event) => setAtributeRent(event.target.value)} >
+                <option value="id">ID</option>
+                <option value="fecha_entrega">Fecha Entrega</option>
+                <option value="fecha_devolucion">Fecha Devolución</option>
+                <option value="id_coche">ID Coche</option>
+                <option value="id_cliente">ID Cliente</option>
+                <option value="precio">Precio</option>
+              </Form.Select>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Control type="text" onChange={(event) => setValueRent(event.target.value)} />
+              </Form.Group>
+              <Button
+                onClick={() => {
+                  clickHandlerSearchForRent(atributeRent, states.rents, valueRent);
                 }}
                 variant="primary"
                 type="button"
