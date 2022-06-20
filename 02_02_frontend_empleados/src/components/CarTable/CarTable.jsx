@@ -5,29 +5,14 @@ import Button from "react-bootstrap/Button";
 import { apiDelete } from "../../aux_api";
 import { Link } from "react-router-dom";
 import { URL } from "../../defines";
+import {
+  unoSiCeroNo,
+  alquilerVenta
+} from "../../local/functions";
 
 function CarTable() {
   const { states, actions } = useContext(Context);
 
-  function unoSiCeroNo(numero) {
-    let texto = "";
-    if (numero == 1) {
-      texto = "Sí";
-    } else {
-      texto = "No";
-    }
-    return texto;
-  }
-
-  function alquilerVenta(numero) {
-    let texto = "";
-    if (numero == 1) {
-      texto = "Alquiler";
-    } else {
-      texto = "Venta";
-    }
-    return texto;
-  }
 
   async function clickHandlerDelete(id_coche) {
     let data = JSON.stringify({ id_coche });
