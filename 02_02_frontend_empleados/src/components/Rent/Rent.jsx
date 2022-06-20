@@ -46,8 +46,10 @@ function Rent() {
   async function clickHandler() {
     actions.getAllCars();
     actions.getAllClients();
-    const data = JSON.stringify({ fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio });
-    await post(URL + "/rent", data);
+    if (idInicialCoche != 0) {
+      const data = JSON.stringify({ fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio });
+      await post(URL + "/rent", data);
+    }
     actions.getAllRents();
     actions.getAllClients();
     actions.getAllCars();

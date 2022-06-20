@@ -42,8 +42,10 @@ function Sale() {
   async function clickHandler() {
     actions.getAllCars();
     actions.getAllClients();
-    const data = JSON.stringify({ fecha, id_coche, id_cliente, precio });
-    await post(URL + "/sale", data);
+    if (idInicialCoche != 0) {
+      const data = JSON.stringify({ fecha, id_coche, id_cliente, precio });
+      await post(URL + "/sale", data);
+    }
     actions.getAllSales();
     actions.getAllClients();
     actions.getAllCars();
