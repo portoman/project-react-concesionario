@@ -21,7 +21,7 @@ function SearchFor() {
 
   const [value, setValue] = useState("id_cliente");
   const [valor, setValor] = useState("");
-  const [client, setClient] = useState(states.clients[0]);
+  const [client, setClient] = useState([{}]);
 
   async function clickHandlerDelete(id_cliente) {
     let data = JSON.stringify({ id_cliente });
@@ -57,19 +57,19 @@ function SearchFor() {
                 </tr>
               </thead>
               <tbody>
-                {
+                {client.map((element, index) => (
                   <tr>
-                    <td>{client.id_cliente}</td>
-                    <td>{client.DNI}</td>
-                    <td>{client.nombre}</td>
-                    <td>{client.apellidos}</td>
-                    <td>{client.telefono}</td>
-                    <td>{client.cpostal}</td>
-                    <td>{client.ciudad}</td>
+                    <td>{element.id_cliente}</td>
+                    <td>{element.DNI}</td>
+                    <td>{element.nombre}</td>
+                    <td>{element.apellidos}</td>
+                    <td>{element.telefono}</td>
+                    <td>{element.cpostal}</td>
+                    <td>{element.ciudad}</td>
                     <td>
                       <Button
                         onClick={() => {
-                          clickHandlerDelete(client.id_cliente);
+                          clickHandlerDelete(element.id_cliente);
                         }}
                         variant="primary"
                         type="submit"
@@ -79,14 +79,14 @@ function SearchFor() {
                     </td>
                     <td>
                       {" "}
-                      <Link to={"/client/" + client.id_cliente}>
+                      <Link to={"/client/" + element.id_cliente}>
                         <Button variant="primary" type="submit">
                           Modificar
                         </Button>
                       </Link>
                     </td>
                   </tr>
-                }
+                ))}
               </tbody>
             </Table>
           </div>
