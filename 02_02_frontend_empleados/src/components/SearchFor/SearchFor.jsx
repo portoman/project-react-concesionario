@@ -29,11 +29,15 @@ function SearchFor() {
     actions.getAllClients();
   }
 
-  async function clickHandlerSearchFor(value, clientes, valor) {
-    let valor2 = value;
-    let valorNumero = Number(valor);
-    let prueba = clientes.filter(element => element[valor2] === valorNumero);
-    setClient(clientes.filter(element => element[valor2] === valorNumero));
+  async function clickHandlerSearchFor(value, datos, valor) {
+    if (!isNaN(valor)) {
+      if (value === "id_cliente" || value === "telefono" || value === "cpostal") {
+        let valorNumero = Number(valor);
+        setClient(datos.filter(element => element[value] === valorNumero));
+      }
+    } else {
+      setClient(datos.filter(element => element[value] === valor));
+    }
   }
 
   return (
@@ -93,9 +97,13 @@ function SearchFor() {
           <Form>
             <Stack direction="horizontal" gap={2}>
               <Form.Select aria-label="Default select example" value={value} onChange={(event) => setValue(event.target.value)} >
-                <option value="id_cliente">id_cliente</option>
+                <option value="id_cliente">ID</option>
                 <option value="DNI">DNI</option>
-                <option value="nombre">nombre</option>
+                <option value="nombre">Nombre</option>
+                <option value="apellidos">Apellidos</option>
+                <option value="telefono">Teléfono</option>
+                <option value="cpostal">CP</option>
+                <option value="ciudad">Ciudad</option>
               </Form.Select>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Control type="text" placeholder="id" onChange={(event) => setValor(event.target.value)} />
