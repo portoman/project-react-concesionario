@@ -21,14 +21,20 @@ import Form from 'react-bootstrap/Form';
 function SearchFor() {
   const { states, actions } = useContext(Context);
 
-  const [atributoCliente, setAtributoCliente] = useState("id_cliente");
-  const [valorCliente, setValorCliente] = useState("");
+  //Clientes
+  const [atributeClient, setAtributeClient] = useState("id_cliente");
+  const [valueClient, setValueClient] = useState("");
   const [clients, setClient] = useState([{}]);
 
-
-  const [atributoCar, setAtributoCar] = useState("id_coche");
-  const [valorCar, setValorCar] = useState("");
+  //Coches
+  const [atributeCar, setAtributeCar] = useState("id_coche");
+  const [valueCar, setValueCar] = useState("");
   const [cars, setCars] = useState([{}]);
+
+  //Ventas
+  const [atributeSale, setAtributeSale] = useState("id");
+  const [valueSale, setValueSale] = useState("");
+  const [sales, setSales] = useState([{}]);
 
   async function clickHandlerDelete(id_cliente, prop) {
     let data = JSON.stringify({ id_cliente });
@@ -69,6 +75,17 @@ function SearchFor() {
       }
     } else {
       setCars(datos.filter(element => element[value] === valor));
+    }
+  }
+
+  async function clickHandlerSearchForSales(value, datos, valor) {
+    if (!isNaN(valor)) {
+      if (value === "id" || value === "id_coche" || value === "id_cliente" || value === "precio") {
+        let valorNumero = Number(valor);
+        setSales(datos.filter(element => element[value] === valorNumero));
+      }
+    } else {
+      setSales(datos.filter(element => element[value] === valor));
     }
   }
 
@@ -128,7 +145,7 @@ function SearchFor() {
           </div>
           <Form>
             <Stack direction="horizontal" gap={2}>
-              <Form.Select aria-label="Default select example" value={atributoCliente} onChange={(event) => setAtributoCliente(event.target.value)} >
+              <Form.Select aria-label="Default select example" value={atributeClient} onChange={(event) => setAtributeClient(event.target.value)} >
                 <option value="id_cliente">ID</option>
                 <option value="DNI">DNI</option>
                 <option value="nombre">Nombre</option>
@@ -138,11 +155,11 @@ function SearchFor() {
                 <option value="ciudad">Ciudad</option>
               </Form.Select>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control type="text" placeholder="id" onChange={(event) => setValorCliente(event.target.value)} />
+                <Form.Control type="text" onChange={(event) => setValueClient(event.target.value)} />
               </Form.Group>
               <Button
                 onClick={() => {
-                  clickHandlerSearchForClient(atributoCliente, states.clients, valorCliente);
+                  clickHandlerSearchForClient(atributeClient, states.clients, valueClient);
                 }}
                 variant="primary"
                 type="button"
@@ -213,7 +230,7 @@ function SearchFor() {
           </div>
           <Form>
             <Stack direction="horizontal" gap={2}>
-              <Form.Select aria-label="Default select example" value={atributoCar} onChange={(event) => setAtributoCar(event.target.value)} >
+              <Form.Select aria-label="Default select example" value={atributeCar} onChange={(event) => setAtributeCar(event.target.value)} >
                 <option value="id_coche">ID</option>
                 <option value="matricula">Matricula</option>
                 <option value="modelo">Modelo</option>
@@ -226,11 +243,84 @@ function SearchFor() {
                 <option value="oferta">Oferta</option>
               </Form.Select>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control type="text" placeholder="id" onChange={(event) => setValorCar(event.target.value)} />
+                <Form.Control type="text" onChange={(event) => setValueCar(event.target.value)} />
               </Form.Group>
               <Button
                 onClick={() => {
-                  clickHandlerSearchForCar(atributoCar, states.cars, valorCar);
+                  clickHandlerSearchForCar(atributeCar, states.cars, valueCar);
+                }}
+                variant="primary"
+                type="button"
+              >
+                Buscar
+              </Button>
+            </Stack>
+          </Form>
+        </Stack>
+      </Stack>
+      <Stack gap={1}>
+        <h2 className="mx-auto">Buscar ventas</h2>
+        <Stack direction="horizontal" gap={2}>
+          <div className="col-9">
+            <Table responsive="sm">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>fecha</th>
+                  <th>id_coche</th>
+                  <th>id_cliente</th>
+                  <th>Precio</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {sales.map((element, index) => (
+                  <tr>
+                    <td>{element.id}</td>
+                    <td>{element.fecha}</td>
+                    <td>{element.id_coche}</td>
+                    <td>{element.id_cliente}</td>
+                    <td>{element.precio}</td>
+                    <td>
+                      <Button
+                        onClick={() => {
+                          clickHandlerDelete(element.id, "/sale");
+                        }}
+                        variant="primary"
+                        type="submit"
+                      >
+                        Eliminar
+                      </Button>
+                    </td>
+                    <td>
+                      {" "}
+                      <Link to={"/sale/" + element.id}>
+                        <Button variant="primary" type="submit">
+                          Modificar
+                        </Button>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+          <Form>
+            <Stack direction="horizontal" gap={2}>
+              <Form.Select aria-label="Default select example" value={atributeSale} onChange={(event) => setAtributeSale(event.target.value)} >
+                <option value="id">ID</option>
+                <option value="fecha">Fecha</option>
+                <option value="id_coche">ID Coche</option>
+                <option value="id_cliente">ID Cliente</option>
+                <option value="precio">Precio</option>
+              </Form.Select>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Control type="text" onChange={(event) => setValueSale(event.target.value)} />
+              </Form.Group>
+              <Button
+                onClick={() => {
+                  clickHandlerSearchForSales(atributeSale, states.sales, valueSale);
                 }}
                 variant="primary"
                 type="button"
