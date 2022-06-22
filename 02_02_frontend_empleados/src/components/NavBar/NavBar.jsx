@@ -2,6 +2,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
+import Logout from "../Logout/Logout";
 
 function NavBar() {
   return (
@@ -35,6 +36,9 @@ function NavBar() {
             </Nav>
             <Nav className="me-auto">
               <Link to={"/searchFor"}>Buscar</Link>
+            </Nav>
+            <Nav className="me-auto">
+              <Logout/>
             </Nav>
           </Navbar.Collapse>
         </Container>
