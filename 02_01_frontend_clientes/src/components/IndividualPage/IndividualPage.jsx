@@ -6,14 +6,14 @@ import './IndividualPage.css';
 
 function IndividualPage() {
 
-    const { state } = useContext(Context);
+    const { states, actions } = useContext(Context);
 
     //Variable para coger datos de la URL
     const parms = useParams();
     let numero = parseInt(parms.id);
 
     //Buscamos el coche en el state que coincida con el parametro de la url, para poder mostrarlo
-    const coche = state.find(element => element.id_coche === numero);
+    const coche = states.cars.find(element => element.id_coche === numero);
 
     return (
         <>

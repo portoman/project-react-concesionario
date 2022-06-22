@@ -8,7 +8,7 @@ import { PATH } from '../../defines';
 
 function CarCarrousel({ vehiculos }) {
 
-    const { state } = useContext(Context);
+    const { states, actions } = useContext(Context);
 
     let [coches, setCoches] = useState([]);
 
@@ -17,7 +17,7 @@ function CarCarrousel({ vehiculos }) {
             getCars()
         },
 
-        [state]
+        [states]
     )
     let contador = 0
 
