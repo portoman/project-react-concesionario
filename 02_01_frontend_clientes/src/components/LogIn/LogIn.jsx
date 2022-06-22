@@ -5,15 +5,27 @@ import { PATH } from "../../defines";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
+import Authorization from "../Authorization/Authorization";
+import Private from "../Private/Private";
 
 function Login() {
   const { actions } = useContext(Context);
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  function usernameInputChangeHandler(event) {
+    setUsername(event.target.value);
+  }
+  function passwordInputChangeHandler(event) {
+    setPassword(event.target.value);
+  }
+
   function loginHandler(event) {
     event.preventDefault();
     actions.getAPIToken(
-      event.target.elements.username.value,
-      event.target.elements.password.value
+      username,
+      password
     );
   }
 
@@ -23,13 +35,13 @@ function Login() {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Stack direction="horizontal" gap={2}>
             <Form.Label>Nombre</Form.Label>
-            <Form.Control type="text" name="username" />
+            <Form.Control type="text" onChange={usernameInputChangeHandler}/>
           </Stack>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Stack direction="horizontal" gap={2}>
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" name="password" id="" />
+            <Form.Control type="password" onChange={passwordInputChangeHandler} />
           </Stack>
         </Form.Group>
 
@@ -41,7 +53,9 @@ function Login() {
           </div>
         </Stack>
       </Form>
+      <Authorization><Private /></Authorization>
     </>
+
   );
 }
 
