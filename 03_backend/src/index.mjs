@@ -1,4 +1,5 @@
 import express from "express";
+import jwt from "jsonwebtoken";
 
 import {
   getAllCars,
@@ -23,8 +24,15 @@ import {
   deleteRentController,
   deleteFormController,
 } from "./controllers/Controllers.mjs";
+import multer from "multer";
 
 const PATH_PREFIX = "/api";
+const UPLOADS_FOLDER = "./uploads/"
+
+const upload = multer({ dest: UPLOADS_FOLDER });
+
+
+
 const app = express();
 try {
   const jsonParser = express.json();
@@ -90,7 +98,7 @@ try {
   }
 
   //1. Endpoint Autenticación
-  app.get("/login/", (req, res) => {
+  app.get(PATH_PREFIX + "/login/", (req, res) => {
     const [username, password] = decodeBasicToken(req)
     if (
       /* Aquí iria la comprobación de que el usuario y pass existan
@@ -116,13 +124,23 @@ try {
   })
 
   //2. Uso del token
-  app.get("/secretos/", authMiddleware, (req, res) => {
+  app.get(PATH_PREFIX + "/secretos/", authMiddleware, (req, res) => {
     res.send(`El secreto de la vida, el universo y de todo: 42`)
   })
 
   app.listen(process.env.PORT || 3000, () => {
     console.log("Express running...");
   });
+
+  //Imagenes Multer
+  app.post("/api/v0.0/uploadOnePhoto/", upload.single('photo'), (req, res) => {
+    console.log("File:", req.file)
+    console.log("Body:", req.body)
+    res.sendStatus(201)
+  })
+
+  app.use("/api/v0.0/public/", express.static(UPLOADS_FOLDER))
+
 } catch (err) {
   console.error(err);
 }
