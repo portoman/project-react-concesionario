@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { Context } from "../../SharedState";
+import Button from "react-bootstrap/Button";
 
 function Logout() {
 
@@ -11,7 +12,7 @@ function Logout() {
 
     return (
         <div id="Logout">
-            <button onClick={clickHandler}>Logout</button>
+            <Button onClick={clickHandler} variant="primary" type="submit">Logout</Button>
         </div>
     )
 }
