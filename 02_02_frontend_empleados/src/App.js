@@ -20,6 +20,7 @@ import Stack from "react-bootstrap/Stack";
 import ModificateRent from './components/ModificateRent/ModificateRent'
 import FormTable from './components/FormTable/FormTable'
 import SearchFor from './components/SearchFor/SearchFor';
+import Authorization from './components/Authorization/Authorization';
 
 function App() {
 
@@ -58,25 +59,29 @@ function App() {
 
   return (
     <>
-    <Stack  gap={1}>
-      <h1 className="mx-auto">Concesionario Vioño</h1>
-      <NavBar />
-      <Routes>
-        <Route path="/carTable" element={<CarTable />} />
-        <Route path="/vehiculo/:id" element={<ModificateCar />} />
-        <Route path="/uploads" element={<Uploads />} />
-        <Route path="/clientTable" element={<ClientTable />} />
-        <Route path="/client/:id" element={<ModificateClient />} />
-        <Route path="/sale" element={<Sale />} />
-        <Route path="/saleTable" element={<SaleTable />} />
-        <Route path="/sale/:id" element={<ModificateSale />} />
-        <Route path="/rent" element={<Rent />} />
-        <Route path="/rentTable" element={<RentTable />} />
-        <Route path="/rent/:id" element={<ModificateRent />} />
-        <Route path="/formTable" element={<FormTable />} />
-        <Route path="/searchFor" element={<SearchFor />} />
-      </Routes>
-    </Stack>
+      <Stack gap={1}>
+        <h1 className="mx-auto">Concesionario Vioño</h1>
+
+        <Authorization>
+          <NavBar />
+          <Routes>
+            <Route path="/carTable" element={<CarTable />} />
+            <Route path="/vehiculo/:id" element={<ModificateCar />} />
+            <Route path="/uploads" element={<Uploads />} />
+            <Route path="/clientTable" element={<ClientTable />} />
+            <Route path="/client/:id" element={<ModificateClient />} />
+            <Route path="/sale" element={<Sale />} />
+            <Route path="/saleTable" element={<SaleTable />} />
+            <Route path="/sale/:id" element={<ModificateSale />} />
+            <Route path="/rent" element={<Rent />} />
+            <Route path="/rentTable" element={<RentTable />} />
+            <Route path="/rent/:id" element={<ModificateRent />} />
+            <Route path="/formTable" element={<FormTable />} />
+            <Route path="/searchFor" element={<SearchFor />} />
+          </Routes>
+        </Authorization>
+
+      </Stack>
     </>
   );
 }
