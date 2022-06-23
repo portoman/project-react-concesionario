@@ -1,5 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import { config } from "dotenv"
 
 import {
   getAllCars,
@@ -28,6 +29,10 @@ import multer from "multer";
 
 const PATH_PREFIX = "/api";
 const UPLOADS_FOLDER = "./uploads/"
+
+if ( process.env.NODE_ENV != "production" ) {
+  config()
+}
 
 const upload = multer({ dest: UPLOADS_FOLDER });
 
@@ -70,7 +75,7 @@ try {
   app.delete(PATH_PREFIX + "/rent/", jsonParser, deleteRentController);
 
   //Autorización
-  const secret = "abc123.secreto.serio" // Esto debería de estar en un .env
+  const secret = process.env.SECRET 
 
   const user = {
     username: "Alfonso",
@@ -138,8 +143,9 @@ try {
     res.sendStatus(201)
   })
 */
-  app.use(PATH_PREFIX + "/", express.static("../../02_02_frontend_empleados/build", { index: "index.html" }))
-  app.use(PATH_PREFIX + "/public/", express.static(UPLOADS_FOLDER))
+app.use(PATH_PREFIX + "/", express.static("../../02_01_frontend_clientes/build", { index: "index.html" }))
+app.use(PATH_PREFIX + "/backoffice/", express.static("../../02_02_frontend_empleados/build", { index: "index.html" }))
+app.use(PATH_PREFIX + "/public/", express.static(UPLOADS_FOLDER))
 
 } catch (err) {
   console.error(err);

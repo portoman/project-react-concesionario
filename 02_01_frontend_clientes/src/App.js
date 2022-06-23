@@ -29,7 +29,7 @@ function App() {
     <>
       <Stack direction="horizontal">
         <h1 className="mx-auto"><Link to={"/"}>Concesionario Vioño</Link></h1>
-        <Link to={"/login"}><Button className="ms-auto">Empleados</Button></Link>
+        <Link to={"/backoffice"}><Button className="ms-auto">Empleados</Button></Link>
       </Stack>
       <NavBar />
       <Routes>
