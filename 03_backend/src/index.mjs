@@ -31,17 +31,16 @@ const UPLOADS_FOLDER = "./uploads/"
 
 const upload = multer({ dest: UPLOADS_FOLDER });
 
-
-
 const app = express();
 try {
   const jsonParser = express.json();
   //app.use(requestLog);
   //app.post(PATH_PREFIX+"/users/", jsonParser, postUserController);
 
+  //upload.single('photo')
   //Coches
   app.get(PATH_PREFIX + "/allCoches/", getAllCars);
-  app.post(PATH_PREFIX + "/car/", jsonParser, postCarController);
+  app.post(PATH_PREFIX + "/car/", upload.single('photo'), postCarController);
   app.get(PATH_PREFIX + "/car/:id", getOneCarController);
   app.put(PATH_PREFIX + "/car/", jsonParser, putCarController);
   app.delete(PATH_PREFIX + "/car/", jsonParser, deleteCarController);
@@ -133,13 +132,14 @@ try {
   });
 
   //Imagenes Multer
-  app.post("/api/v0.0/uploadOnePhoto/", upload.single('photo'), (req, res) => {
+ /* app.post(PATH_PREFIX + "/uploadOnePhoto/", upload.single('photo'), (req, res) => {
     console.log("File:", req.file)
     console.log("Body:", req.body)
     res.sendStatus(201)
   })
-
-  app.use("/api/v0.0/public/", express.static(UPLOADS_FOLDER))
+*/
+  app.use(PATH_PREFIX + "/", express.static("../../02_02_frontend_empleados/build", { index: "index.html" }))
+  app.use(PATH_PREFIX + "/public/", express.static(UPLOADS_FOLDER))
 
 } catch (err) {
   console.error(err);

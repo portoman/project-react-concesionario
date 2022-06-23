@@ -37,7 +37,8 @@ export function getOneCarController(request, response) {
 //Controlador para insertar un coche
 export function postCarController(request, response) {
     const { matricula, modelo, marca, km, precio
-        , foto, cilindrada, combustible, disponible, alquiler, oferta } = request.body;
+        , cilindrada, combustible, disponible, alquiler, oferta } = request.body;
+    const foto = request.file.filename;
     db.run(
         `INSERT INTO coches(matricula, modelo, marca, km, precio
             , foto, cilindrada, combustible, disponible, alquiler, oferta) VALUES 
@@ -322,7 +323,7 @@ export function postRentController(request, response) {
 
 //Controlador para modificar un alquiler
 export function putRentController(request, response) {
-    const { id, fecha_entrega,fecha_devolucion, id_coche, id_cliente, precio } = request.body;
+    const { id, fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio } = request.body;
     db.run(
         `UPDATE alquileres SET fecha_entrega="${fecha_entrega}",fecha_devolucion="${fecha_devolucion}",id_coche="${id_coche}",id_cliente="${id_cliente}",
         precio= ${precio} WHERE id="${id} "`,

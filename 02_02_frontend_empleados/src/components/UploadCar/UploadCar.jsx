@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { Context } from "../../SharedState";
 import Form from "react-bootstrap/Form";
@@ -12,6 +12,8 @@ import { URL } from "../../defines";
 
 function UploadCar() {
   const { states, actions } = useContext(Context);
+
+  const navigate = useNavigate();
 
   const [matricula, setMatricula] = useState("");
   const [modelo, setModelo] = useState("");
@@ -57,30 +59,26 @@ function UploadCar() {
     setOferta(event.target.value);
   }
 
-  async function clickHandler() {
-    const data = JSON.stringify({
-      id_coche,
-      matricula,
-      modelo,
-      marca,
-      km,
-      precio,
-      foto,
-      cilindrada,
-      combustible,
-      disponible,
-      alquiler,
-      oferta,
-    });
-    await post(URL + "/car", data);
+
+  async function submitOneFileFormHandler(event) {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    await fetch(
+      'http://localhost:3000/api/car/',
+      {
+        method: "POST",
+        body: formData
+      }
+    )
     actions.getAllCars();
+    navigate("/carTable");
   }
 
   return (
     <>
       <h2 className="mx-auto">Vehículo</h2>
       <Container>
-        <Form className="col-5 mx-auto">
+        <Form className="col-5 mx-auto" onSubmit={submitOneFileFormHandler}>
           <Row>
             <Col>
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -88,7 +86,7 @@ function UploadCar() {
                   <Form.Label>Matricula</Form.Label>
                   <Form.Control
                     type="text"
-                    onChange={matriculaInputChangeHandler}
+                    onChange={matriculaInputChangeHandler} name="matricula"
                   />
                 </Stack>
               </Form.Group>
@@ -99,7 +97,7 @@ function UploadCar() {
                   <Form.Label>Modelo</Form.Label>
                   <Form.Control
                     type="text"
-                    onChange={modeloInputChangeHandler}
+                    onChange={modeloInputChangeHandler} name="modelo"
                   />
                 </Stack>
               </Form.Group>
@@ -112,7 +110,7 @@ function UploadCar() {
                   <Form.Label>Marca</Form.Label>
                   <Form.Control
                     type="text"
-                    onChange={marcaInputChangeHandler}
+                    onChange={marcaInputChangeHandler} name="marca"
                   />
                 </Stack>
               </Form.Group>
@@ -121,7 +119,7 @@ function UploadCar() {
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Stack direction="horizontal" gap={2}>
                   <Form.Label>Km</Form.Label>
-                  <Form.Control type="number" onChange={kmInputChangeHandler} />
+                  <Form.Control type="number" onChange={kmInputChangeHandler} name="km" />
                 </Stack>
               </Form.Group>
             </Col>
@@ -133,7 +131,7 @@ function UploadCar() {
                   <Form.Label>Precio</Form.Label>
                   <Form.Control
                     type="number"
-                    onChange={precioInputChangeHandler}
+                    onChange={precioInputChangeHandler} name="precio"
                   />
                 </Stack>
               </Form.Group>
@@ -142,7 +140,7 @@ function UploadCar() {
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Stack direction="horizontal" gap={2}>
                   <Form.Label>Foto</Form.Label>
-                  <Form.Control type="text" onChange={fotoInputChangeHandler} />
+                  <Form.Control type="file" name="photo" onChange={fotoInputChangeHandler} />
                 </Stack>
               </Form.Group>
             </Col>
@@ -154,7 +152,7 @@ function UploadCar() {
                   <Form.Label>Cilindrada</Form.Label>
                   <Form.Control
                     type="text"
-                    onChange={cilindradaInputChangeHandler}
+                    onChange={cilindradaInputChangeHandler} name="cilindrada"
                   />
                 </Stack>
               </Form.Group>
@@ -165,7 +163,7 @@ function UploadCar() {
                   <Form.Label>Disponible</Form.Label>
                   <Form.Select
                     aria-label="Default select example"
-                    onChange={disponibleInputChangeHandler}
+                    onChange={disponibleInputChangeHandler} name="disponible"
                   >
                     <option value="0">No</option>
                     <option value="1">Sí</option>
@@ -181,7 +179,7 @@ function UploadCar() {
                   <Form.Label>Alquiler</Form.Label>
                   <Form.Select
                     aria-label="Default select example"
-                    onChange={alquilerInputChangeHandler}
+                    onChange={alquilerInputChangeHandler} name="alquiler"
                   >
                     <option value="0">Venta</option>
                     <option value="1">Alquiler</option>
@@ -199,7 +197,7 @@ function UploadCar() {
                   <Form.Label>Oferta</Form.Label>
                   <Form.Select
                     aria-label="Default select example"
-                    onChange={ofertaInputChangeHandler}
+                    onChange={ofertaInputChangeHandler} name="oferta"
                   >
                     <option value="0">No</option>
                     <option value="1">Si</option>
@@ -210,15 +208,15 @@ function UploadCar() {
           </Row>
           <Stack>
             <div className="ms-auto">
-              <Link to="/carTable">
-                <Button onClick={clickHandler} variant="primary" type="submit">
-                  Registrar
-                </Button>
-              </Link>
+              <Button variant="primary" type="submit">
+                Registrar
+              </Button>
             </div>
           </Stack>
         </Form>
+
       </Container>
+
     </>
   );
 }
