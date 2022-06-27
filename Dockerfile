@@ -15,11 +15,13 @@ RUN npm install
 RUN npm run build
 RUN rm .gitignore package.json package-lock.json public src node_modules -rf
 
+
+WORKDIR /usr/src/app/
+RUN rm 04_documentation .gitignore README.md -rf
+
 WORKDIR /usr/src/app/03_backend
 RUN npm install --omit=dev
 RUN rm SQL uploads package-lock.json -rf
 
-WORKDIR /usr/src/app/
-RUN rm 04_documentation .gitignore README.md -rf
 
 ENTRYPOINT [ "npm", "start" ]
