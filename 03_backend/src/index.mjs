@@ -30,7 +30,7 @@ import multer from "multer";
 const PATH_PREFIX = "/api";
 const UPLOADS_FOLDER = "./uploads/"
 
-if ( process.env.NODE_ENV != "production" ) {
+if (process.env.NODE_ENV != "production") {
   config()
 }
 
@@ -43,6 +43,12 @@ try {
   //app.post(PATH_PREFIX+"/users/", jsonParser, postUserController);
 
   //upload.single('photo')
+
+  app.use(express.json())
+  app.use('/', express.static('../02_01_frontend_clientes/build', { index: "index.html" }));
+  app.use("/backoffice/", express.static("../02_02_frontend_empleados/build", { index: "index.html" }))
+  app.use("/public/", express.static(UPLOADS_FOLDER))
+
   //Coches
   app.get(PATH_PREFIX + "/allCoches/", getAllCars);
   app.post(PATH_PREFIX + "/car/", upload.single('photo'), postCarController);
@@ -75,7 +81,7 @@ try {
   app.delete(PATH_PREFIX + "/rent/", jsonParser, deleteRentController);
 
   //Autorización
-  const secret = process.env.SECRET 
+  const secret = process.env.SECRET
 
   const user = {
     username: "Alfonso",
@@ -132,20 +138,19 @@ try {
     res.send(`El secreto de la vida, el universo y de todo: 42`)
   })
 
+
+
   app.listen(process.env.PORT || 3000, () => {
     console.log("Express running...");
   });
 
   //Imagenes Multer
- /* app.post(PATH_PREFIX + "/uploadOnePhoto/", upload.single('photo'), (req, res) => {
-    console.log("File:", req.file)
-    console.log("Body:", req.body)
-    res.sendStatus(201)
-  })
-*/
-app.use("/", express.static("../../02_01_frontend_clientes/build", { index: "index.html" }))
-app.use("/backoffice/", express.static("../../02_02_frontend_empleados/build", { index: "index.html" }))
-app.use("/public/", express.static(UPLOADS_FOLDER))
+  /* app.post(PATH_PREFIX + "/uploadOnePhoto/", upload.single('photo'), (req, res) => {
+     console.log("File:", req.file)
+     console.log("Body:", req.body)
+     res.sendStatus(201)
+   })
+ */
 
 } catch (err) {
   console.error(err);
