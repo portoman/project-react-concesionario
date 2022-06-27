@@ -143,9 +143,9 @@ try {
     res.sendStatus(201)
   })
 */
-app.use(PATH_PREFIX + "/", express.static("../../02_01_frontend_clientes/build", { index: "index.html" }))
-app.use(PATH_PREFIX + "/backoffice/", express.static("../../02_02_frontend_empleados/build", { index: "index.html" }))
-app.use(PATH_PREFIX + "/public/", express.static(UPLOADS_FOLDER))
+app.use("/", express.static("../../02_01_frontend_clientes/build", { index: "index.html" }))
+app.use("/backoffice/", express.static("../../02_02_frontend_empleados/build", { index: "index.html" }))
+app.use("/public/", express.static(UPLOADS_FOLDER))
 
 } catch (err) {
   console.error(err);
