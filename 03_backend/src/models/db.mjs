@@ -1,3 +1,4 @@
+import mysql from 'mysql';
 /*import sqlite3 from 'sqlite3';
 
 export const db = new sqlite3.Database('./vehicleDealer.db', (err) => {
@@ -6,10 +7,11 @@ export const db = new sqlite3.Database('./vehicleDealer.db', (err) => {
     }
     console.log('Connected to the chat database.');
 });*/
-
 const conexion = process.env.CON
 
-export let connection = mysql.createConnection(conexion);
+export let connection = mysql.createConnection("mysql://root:C6tCQGopl5avzic9sxtE@containers-us-west-68.railway.app:7373/railway");
+
+connection.connect();
 
 connection.query(`
     CREATE TABLE
@@ -136,3 +138,4 @@ BEGIN
 END;
 `)
 
+connection.end();
