@@ -1,12 +1,11 @@
-import pg from 'pg';
-const { Pool, Client } = pg;
+const { Client } = require('pg');
 
 const connectionString = 'postgresql://postgres:s4yUFSs4HEyafreRTb9K@containers-us-west-44.railway.app:7403/railway'
 export const client = new Client({
     connectionString,
 })
 
-client.connect()
+await client.connect()
 
 client.query(`
     CREATE TABLE
@@ -132,4 +131,4 @@ BEGIN
     WHERE id_coche = OLD.id_coche;
 END;
 `)
-client.end()
+await client.end()
