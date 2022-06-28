@@ -4,7 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
 import { useContext } from "react"
 import { Context } from "../../SharedState"
-import { PATH } from '../../defines';
+import { PATH, HOST } from '../../defines';
 
 function CarCarrousel({ vehiculos }) {
 
@@ -20,7 +20,6 @@ function CarCarrousel({ vehiculos }) {
         [states]
     )
     let contador = 0
-
     function getCars() {
         setCoches(vehiculos.map(
             (element) =>
@@ -28,7 +27,7 @@ function CarCarrousel({ vehiculos }) {
                     <Link to={"/vehiculo/" + element.id_coche}>
                         <img
                             className="d-block w-100"
-                            src={PATH + element.foto}
+                            src={HOST + element.foto}
                             alt="First slide"
                         />
                     </Link>
