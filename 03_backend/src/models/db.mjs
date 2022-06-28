@@ -1,19 +1,14 @@
-import mysql from 'mysql';
-/*import sqlite3 from 'sqlite3';
+import pg from 'pg';
+const { Pool, Client } = pg;
 
-export const db = new sqlite3.Database('./vehicleDealer.db', (err) => {
-    if (err) {
-        throw err.message;
-    }
-    console.log('Connected to the chat database.');
-});*/
-const conexion = process.env.CON
+const connectionString = 'postgresql://postgres:s4yUFSs4HEyafreRTb9K@containers-us-west-44.railway.app:7403/railway'
+export const client = new Client({
+    connectionString,
+})
 
-export let connection = mysql.createConnection("mysql://root:C6tCQGopl5avzic9sxtE@containers-us-west-68.railway.app:7373/railway");
+client.connect()
 
-connection.connect();
-
-connection.query(`
+client.query(`
     CREATE TABLE
         IF NOT EXISTS
         formularios(
@@ -25,7 +20,7 @@ connection.query(`
         )
 `);
 
-connection.query(`
+client.query(`
     CREATE TABLE
         IF NOT EXISTS
         usuariosConcesionarios(
@@ -34,7 +29,7 @@ connection.query(`
         )
 `);
 
-connection.query(`
+client.query(`
     CREATE TABLE
         IF NOT EXISTS
         clientes(
@@ -53,7 +48,7 @@ Los coches si están vendidos o alquilados están no disponibles=0.
 Si son coches en alquiler. Alquiler=1, si son para ventas: Alquiler=0
 Sin son coches en oferta. Oferta=1, si no están en Oferta=0.
 */
-connection.query(`
+client.query(`
     CREATE TABLE
         IF NOT EXISTS
         coches(
@@ -73,7 +68,7 @@ connection.query(`
 `);
 
 
-connection.query(`
+client.query(`
     CREATE TABLE
         IF NOT EXISTS
         alquileres(
@@ -88,7 +83,7 @@ connection.query(`
         )
 `);
 
-connection.query(`
+client.query(`
     CREATE TABLE
         IF NOT EXISTS
         ventas(
@@ -102,7 +97,7 @@ connection.query(`
         )
 `);
 //Trigger para que después de insertar un coche en la tabla ventas lo asigne como no disponible
-connection.query(`
+client.query(`
 CREATE TRIGGER IF NOT EXISTS car_not_available_ventas AFTER INSERT ON ventas
 BEGIN
     UPDATE coches
@@ -111,7 +106,7 @@ BEGIN
 END;
 `)
 //Trigger para que después de borrar un coche en la tabla ventas lo asigne como disponible
-connection.query(`
+client.query(`
 CREATE TRIGGER IF NOT EXISTS car_available_ventas BEFORE DELETE ON ventas
 BEGIN
     UPDATE coches
@@ -120,7 +115,7 @@ BEGIN
 END;
 `)
 //Trigger para que después de insertar un coche en la tabla alquileres lo asigne como no disponible
-connection.query(`
+client.query(`
 CREATE TRIGGER IF NOT EXISTS car_not_available_alquileres AFTER INSERT ON alquileres
 BEGIN
     UPDATE coches
@@ -129,7 +124,7 @@ BEGIN
 END;
 `)
 //Trigger para que después de borrar un coche en la tabla alquileres lo asigne como disponible
-connection.query(`
+client.query(`
 CREATE TRIGGER IF NOT EXISTS car_available_alquileres BEFORE DELETE ON alquileres
 BEGIN
     UPDATE coches
@@ -137,5 +132,4 @@ BEGIN
     WHERE id_coche = OLD.id_coche;
 END;
 `)
-
-connection.end();
+client.end()

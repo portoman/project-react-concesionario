@@ -1,9 +1,9 @@
 
-import { connection } from "../models/db.mjs"
-
+import { client } from "../models/db.mjs"
+/*
 //Controlador para devolver todos los coches
 export function getAllCars(request, response) {
-    connection.query(
+    client.query(
         `SELECT * FROM coches`,
         (err, data) => {
             if (err) {
@@ -15,6 +15,7 @@ export function getAllCars(request, response) {
         }
     )
 }
+*/
 /*
 //Controlador para devolver un coche
 export function getOneCarController(request, response) {
