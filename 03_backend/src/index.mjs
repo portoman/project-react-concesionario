@@ -27,7 +27,8 @@ import {
   deleteFormController,
 } from "./controllers/Controllers.mjs";*/
 import {
-  getAllCars
+  getAllCars,
+  getOneCarController
 } from "./controllers/Controllers.mjs";
 
 import {
@@ -91,9 +92,9 @@ try {
 
   //Coches
   app.get(PATH_PREFIX + "/allCoches/", getAllCars);
+  app.get(PATH_PREFIX + "/car/:id", getOneCarController);
   /*
   app.post(PATH_PREFIX + "/car/", upload.single('photo'), postCarController);
-  app.get(PATH_PREFIX + "/car/:id", getOneCarController);
   app.put(PATH_PREFIX + "/car/", jsonParser, putCarController);
   app.delete(PATH_PREFIX + "/car/", jsonParser, deleteCarController);
 

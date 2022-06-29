@@ -18,25 +18,25 @@ export async function getAllCars(request, response) {
     }
 }
 
-/*
 //Controlador para devolver un coche
-export function getOneCarController(request, response) {
+export async function getOneCarController(request, response) {
     const car = parseInt(request.params.id)
-    db.all(
-        `SELECT id_coche, matricula, modelo, marca, km, precio
-        , foto, cilindrada, combustible, alquiler, oferta FROM coches WHERE id_coche="${car}"`,
-        (err, data) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.json(data)
-            }
+    try {
+        const data = await db.query(
+            `SELECT id_coche, matricula, modelo, marca, km, precio
+        , foto, cilindrada, combustible, alquiler, oferta FROM coches WHERE id_coche=${car}`)
+        if (data.rowCount === 0) {
+            response.sendStatus(404)
+        } else {
+            response.json(data.rows)
         }
-    )
+    } catch (error) {
+        console.error(error);
+        response.sendStatus(500)
+    }
 }
 
-
+/*
 //Controlador para insertar un coche
 export function postCarController(request, response) {
     const { matricula, modelo, marca, km, precio
