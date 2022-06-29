@@ -25,30 +25,31 @@ export const createFormsTableSQL = `
             PRIMARY KEY(id)
         )
 `;
-/*
-client.query(`
+
+export const createEmployeesTableSQL =`
     CREATE TABLE
         IF NOT EXISTS
         usuariosConcesionarios(
             usuario DECIMAL(5) PRIMARY KEY,
             contraseña VARCHAR(20) NOT NULL
         )
-`);
+`;
 
-client.query(`
+export const createCustomersTableSQL =`
     CREATE TABLE
         IF NOT EXISTS
         clientes(
-            id_cliente INTEGER PRIMARY KEY AUTOINCREMENT,
+            id_cliente SERIAL,
             DNI VARCHAR(8) NOT NULL UNIQUE,
             nombre VARCHAR(20) NOT NULL,
             apellidos VARCHAR(20) NOT NULL,
             telefono DECIMAL(8) NOT NULL,
             cpostal DECIMAL(5) NOT NULL,
-            ciudad VARCHAR(20) NOT NULL
+            ciudad VARCHAR(20) NOT NULL,
+            PRIMARY KEY(id_cliente)
         )
-`);
-*/
+`;
+
 /*
 Valores booleanos=> 0 (false), 1(true)
 Los coches si están vendidos o alquilados están no disponibles=0.
