@@ -1,5 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import pg from "pg";
 import { config } from "dotenv"
 /*
 import {
@@ -27,17 +28,39 @@ import {
 } from "./controllers/Controllers.mjs";*/
 /*import {
   getAllCars
-} from "./controllers/Controllers.mjs";*/
+} from "./controllers/Controllers.mjs";
+*/
+import {
+  createFormsTableSQL
+} from "./models/db.mjs";
+
 import multer from "multer";
 
 const PATH_PREFIX = "/api";
 const UPLOADS_FOLDER = "./uploads/"
 
+// Usa .env si el servicio no está en producción
 if (process.env.NODE_ENV != "production") {
   config()
 }
 
 const upload = multer({ dest: UPLOADS_FOLDER });
+
+/**
+ * Initialize DB
+ */
+export const db = new pg.Client(process.env.PGURL)
+db.connect()
+
+/**
+ * Table creation
+ */
+try {
+  db.query(createFormsTableSQL);
+} catch (error) {
+  console.error("Error trying to create tables")
+  throw error
+}
 
 const app = express();
 try {
@@ -108,30 +131,30 @@ try {
       }
     }
   */
-/*
-  //1. Endpoint Autenticación
-  app.get(PATH_PREFIX + "/login/", (req, res) => {
-    const [username, password] = decodeBasicToken(req)
-    if (
-      username === user.username && password === user.password
-    ) {
-      //Creación de token/firma con un secret
-      const token = jwt.sign(
-        {
-          level: user.accessLevel
-        },
-        secret,
-        {
-          expiresIn: "1h",
-        }
-      )
-      res.send(token)
-    } else {
-      res.sendStatus(401)
-    }
-  })
-*/
-   
+  /*
+    //1. Endpoint Autenticación
+    app.get(PATH_PREFIX + "/login/", (req, res) => {
+      const [username, password] = decodeBasicToken(req)
+      if (
+        username === user.username && password === user.password
+      ) {
+        //Creación de token/firma con un secret
+        const token = jwt.sign(
+          {
+            level: user.accessLevel
+          },
+          secret,
+          {
+            expiresIn: "1h",
+          }
+        )
+        res.send(token)
+      } else {
+        res.sendStatus(401)
+      }
+    })
+  */
+
   /*
    //2. Uso del token
    app.get(PATH_PREFIX + "/secretos/", authMiddleware, (req, res) => {
@@ -140,9 +163,7 @@ try {
  
  
  
-   app.listen(process.env.PORT || 3000, () => {
-     console.log("Express running...");
-   });
+   
  
    //Imagenes Multer
    /* app.post(PATH_PREFIX + "/uploadOnePhoto/", upload.single('photo'), (req, res) => {
@@ -151,6 +172,9 @@ try {
       res.sendStatus(201)
     })
   */
+  app.listen(process.env.PORT || 3000, () => {
+    console.log("Express running...");
+  });
 
 } catch (err) {
   console.error(err);

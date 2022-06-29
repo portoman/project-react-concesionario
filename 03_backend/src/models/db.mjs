@@ -1,24 +1,31 @@
+/*import express from "express";
+import pg from "pg";
+import { config } from "dotenv";
+
 const { Client } = require('pg');
 
 const connectionString = 'postgresql://postgres:s4yUFSs4HEyafreRTb9K@containers-us-west-44.railway.app:7403/railway'
 export const client = new Client({
     connectionString,
 })
+*/
 
-await client.connect()
-
-client.query(`
+/**
+ * SQL quieries strings
+ */
+export const createFormsTableSQL = `
     CREATE TABLE
         IF NOT EXISTS
         formularios(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL,
             nombre VARCHAR(20) NOT NULL,
             apellidos VARCHAR(20) NOT NULL,
             telefono DECIMAL(8) NOT NULL,
-            consulta VARCHAR(200)
+            consulta VARCHAR(200),
+            PRIMARY KEY(id)
         )
-`);
-
+`;
+/*
 client.query(`
     CREATE TABLE
         IF NOT EXISTS
@@ -41,12 +48,14 @@ client.query(`
             ciudad VARCHAR(20) NOT NULL
         )
 `);
+*/
 /*
 Valores booleanos=> 0 (false), 1(true)
 Los coches si están vendidos o alquilados están no disponibles=0.
 Si son coches en alquiler. Alquiler=1, si son para ventas: Alquiler=0
 Sin son coches en oferta. Oferta=1, si no están en Oferta=0.
 */
+/*
 client.query(`
     CREATE TABLE
         IF NOT EXISTS
@@ -95,6 +104,8 @@ client.query(`
             CONSTRAINT fk_coche_venta FOREIGN KEY (id_coche) REFERENCES coches(id_coche)
         )
 `);
+*/
+/*
 //Trigger para que después de insertar un coche en la tabla ventas lo asigne como no disponible
 client.query(`
 CREATE TRIGGER IF NOT EXISTS car_not_available_ventas AFTER INSERT ON ventas
@@ -132,3 +143,4 @@ BEGIN
 END;
 `)
 await client.end()
+*/

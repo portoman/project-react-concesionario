@@ -1,5 +1,5 @@
 
-import { client } from "../models/db.mjs"
+//import { client } from "../models/db.mjs"
 /*
 //Controlador para devolver todos los coches
 export function getAllCars(request, response) {
