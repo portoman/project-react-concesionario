@@ -56,12 +56,12 @@ Los coches si están vendidos o alquilados están no disponibles=0.
 Si son coches en alquiler. Alquiler=1, si son para ventas: Alquiler=0
 Sin son coches en oferta. Oferta=1, si no están en Oferta=0.
 */
-/*
-client.query(`
+
+export const createCarsTableSQL =`
     CREATE TABLE
         IF NOT EXISTS
         coches(
-            id_coche INTEGER PRIMARY KEY AUTOINCREMENT,
+            id_coche SERIAL,
             matricula VARCHAR(50) UNIQUE NOT NULL,
             modelo VARCHAR(30),
             marca VARCHAR(30),
@@ -72,40 +72,41 @@ client.query(`
             combustible VARCHAR(30),
             disponible INTEGER DEFAULT 1 CHECK (disponible=0 OR disponible=1),
             alquiler INTEGER DEFAULT 1 CHECK (alquiler=0 OR alquiler=1),
-            oferta INTEGER DEFAULT 1 CHECK (oferta=0 OR oferta=1)
+            oferta INTEGER DEFAULT 1 CHECK (oferta=0 OR oferta=1),
+            PRIMARY KEY(id_coche)
         )
-`);
+`;
 
 
-client.query(`
+export const createRentsTableSQL=`
     CREATE TABLE
         IF NOT EXISTS
         alquileres(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL,
             fecha_entrega VARCHAR(30),
             fecha_devolucion VARCHAR(30),
             id_coche INTEGER,
             id_cliente INTEGER,
             precio DECIMAL(10),
             CONSTRAINT fk_cliente_alquiler FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente), 
-            CONSTRAINT fk_coche_alquiler FOREIGN KEY (id_coche) REFERENCES coches(id_coche)
+            CONSTRAINT fk_coche_alquiler FOREIGN KEY (id_coche) REFERENCES coches(id_coche),
+            PRIMARY KEY(id)
         )
-`);
-
-client.query(`
+`;
+export const createSalesTableSQL=`
     CREATE TABLE
         IF NOT EXISTS
         ventas(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL,
             fecha VARCHAR(30),
             id_coche INTEGER,
             id_cliente INTEGER,
             precio DECIMAL(10),
             CONSTRAINT fk_cliente_venta FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente), 
-            CONSTRAINT fk_coche_venta FOREIGN KEY (id_coche) REFERENCES coches(id_coche)
+            CONSTRAINT fk_coche_venta FOREIGN KEY (id_coche) REFERENCES coches(id_coche),
+            PRIMARY KEY(id)
         )
-`);
-*/
+`;
 /*
 //Trigger para que después de insertar un coche en la tabla ventas lo asigne como no disponible
 client.query(`
