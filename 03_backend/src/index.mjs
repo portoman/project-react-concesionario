@@ -26,10 +26,10 @@ import {
   deleteRentController,
   deleteFormController,
 } from "./controllers/Controllers.mjs";*/
-/*import {
+import {
   getAllCars
 } from "./controllers/Controllers.mjs";
-*/
+
 import {
   createFormsTableSQL,
   createEmployeesTableSQL,
@@ -90,7 +90,7 @@ try {
   app.use("/public/", express.static("./uploads/"));
 
   //Coches
-  //app.get(PATH_PREFIX + "/allCoches/", getAllCars);
+  app.get(PATH_PREFIX + "/allCoches/", getAllCars);
   /*
   app.post(PATH_PREFIX + "/car/", upload.single('photo'), postCarController);
   app.get(PATH_PREFIX + "/car/:id", getOneCarController);

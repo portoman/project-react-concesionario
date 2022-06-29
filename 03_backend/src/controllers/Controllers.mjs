@@ -1,21 +1,23 @@
 
-//import { client } from "../models/db.mjs"
-/*
+import { db } from "../index.mjs"
+
 //Controlador para devolver todos los coches
-export function getAllCars(request, response) {
-    client.query(
-        `SELECT * FROM coches`,
-        (err, data) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.json(data)
-            }
+export async function getAllCars(request, response) {
+    try {
+        const data = await db.query(
+            `SELECT * FROM coches`)
+        if (data.rowCount === 0) {
+            response.sendStatus(404)
+        } else {
+            response.json(data.rows)
         }
-    )
+
+    } catch (error) {
+        console.error(error);
+        response.sendStatus(500)
+    }
 }
-*/
+
 /*
 //Controlador para devolver un coche
 export function getOneCarController(request, response) {
