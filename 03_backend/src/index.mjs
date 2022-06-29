@@ -36,7 +36,11 @@ import {
   createCustomersTableSQL,
   createCarsTableSQL,
   createRentsTableSQL,
-  createSalesTableSQL
+  createSalesTableSQL,
+  createCarNotAvailableTriggerSQL,
+  createCarAvailableTriggerSQL,
+  createNotAvailableRentsTriggerSQL,
+  createAvailableRentsTriggerSQL
 } from "./models/db.mjs";
 
 import multer from "multer";
@@ -67,6 +71,10 @@ try {
   db.query(createCarsTableSQL);
   db.query(createRentsTableSQL);
   db.query(createSalesTableSQL);
+  //db.query(createCarNotAvailableTriggerSQL);
+  //db.query(createCarAvailableTriggerSQL);
+  //db.query(createNotAvailableRentsTriggerSQL);
+  //db.query(createAvailableRentsTriggerSQL);
 } catch (error) {
   console.error("Error trying to create tables")
   throw error

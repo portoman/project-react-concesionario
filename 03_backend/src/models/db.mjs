@@ -26,7 +26,7 @@ export const createFormsTableSQL = `
         )
 `;
 
-export const createEmployeesTableSQL =`
+export const createEmployeesTableSQL = `
     CREATE TABLE
         IF NOT EXISTS
         usuariosConcesionarios(
@@ -35,7 +35,7 @@ export const createEmployeesTableSQL =`
         )
 `;
 
-export const createCustomersTableSQL =`
+export const createCustomersTableSQL = `
     CREATE TABLE
         IF NOT EXISTS
         clientes(
@@ -57,7 +57,7 @@ Si son coches en alquiler. Alquiler=1, si son para ventas: Alquiler=0
 Sin son coches en oferta. Oferta=1, si no están en Oferta=0.
 */
 
-export const createCarsTableSQL =`
+export const createCarsTableSQL = `
     CREATE TABLE
         IF NOT EXISTS
         coches(
@@ -78,7 +78,7 @@ export const createCarsTableSQL =`
 `;
 
 
-export const createRentsTableSQL=`
+export const createRentsTableSQL = `
     CREATE TABLE
         IF NOT EXISTS
         alquileres(
@@ -93,7 +93,7 @@ export const createRentsTableSQL=`
             PRIMARY KEY(id)
         )
 `;
-export const createSalesTableSQL=`
+export const createSalesTableSQL = `
     CREATE TABLE
         IF NOT EXISTS
         ventas(
@@ -107,17 +107,35 @@ export const createSalesTableSQL=`
             PRIMARY KEY(id)
         )
 `;
-/*
+
 //Trigger para que después de insertar un coche en la tabla ventas lo asigne como no disponible
-client.query(`
-CREATE TRIGGER IF NOT EXISTS car_not_available_ventas AFTER INSERT ON ventas
+/*
+//En SQL
+export const createCarNotAvailableTriggerpSQL = `
+CREATE TRIGGER car_not_available_ventas AFTER INSERT ON ventas
 BEGIN
     UPDATE coches
     SET disponible = 0
     WHERE id_coche = NEW.id_coche;
 END;
-`)
+`;*/
+export const createCarNotAvailableTriggerSQL =`
+CREATE OR REPLACE FUNCTION auditlogfunc() RETURNS TRIGGER AS $example_table$
+   BEGIN
+        UPDATE coches
+        SET disponible = 0
+        WHERE id_coche = NEW.id_coche;
+      RETURN NEW;
+   END;
+$example_table$ LANGUAGE plpgsql;
+
+CREATE  TRIGGER  car_not_available_ventas AFTER INSERT ON ventas
+FOR EACH ROW EXECUTE PROCEDURE auditlogfunc();
+`;
+
 //Trigger para que después de borrar un coche en la tabla ventas lo asigne como disponible
+/*
+//En SQL
 client.query(`
 CREATE TRIGGER IF NOT EXISTS car_available_ventas BEFORE DELETE ON ventas
 BEGIN
@@ -126,7 +144,24 @@ BEGIN
     WHERE id_coche = OLD.id_coche;
 END;
 `)
+*/
+export const createCarAvailableTriggerSQL =`
+CREATE OR REPLACE FUNCTION auditlogfunc2() RETURNS TRIGGER AS $example_table$
+   BEGIN
+        UPDATE coches
+        SET disponible = 1
+        WHERE id_coche = OLD.id_coche;
+      RETURN NEW;
+   END;
+$example_table$ LANGUAGE plpgsql;
+
+CREATE TRIGGER car_available_ventas BEFORE DELETE ON ventas
+FOR EACH ROW EXECUTE PROCEDURE auditlogfunc2();
+`;
+
 //Trigger para que después de insertar un coche en la tabla alquileres lo asigne como no disponible
+/*
+//En SQL
 client.query(`
 CREATE TRIGGER IF NOT EXISTS car_not_available_alquileres AFTER INSERT ON alquileres
 BEGIN
@@ -135,7 +170,24 @@ BEGIN
     WHERE id_coche = NEW.id_coche;
 END;
 `)
+*/
+export const createNotAvailableRentsTriggerSQL =`
+CREATE OR REPLACE FUNCTION auditlogfunc3() RETURNS TRIGGER AS $example_table$
+   BEGIN
+        UPDATE coches
+        SET disponible = 0
+        WHERE id_coche = NEW.id_coche;
+      RETURN NEW;
+   END;
+$example_table$ LANGUAGE plpgsql;
+
+CREATE TRIGGER car_not_available_alquileres AFTER INSERT ON alquileres
+FOR EACH ROW EXECUTE PROCEDURE auditlogfunc3();
+`;
+
 //Trigger para que después de borrar un coche en la tabla alquileres lo asigne como disponible
+/*
+//En SQL
 client.query(`
 CREATE TRIGGER IF NOT EXISTS car_available_alquileres BEFORE DELETE ON alquileres
 BEGIN
@@ -144,5 +196,17 @@ BEGIN
     WHERE id_coche = OLD.id_coche;
 END;
 `)
-await client.end()
 */
+export const createAvailableRentsTriggerSQL =`
+CREATE OR REPLACE FUNCTION auditlogfunc3() RETURNS TRIGGER AS $example_table$
+   BEGIN
+        UPDATE coches
+        SET disponible = 1
+        WHERE id_coche = OLD.id_coche;
+      RETURN NEW;
+   END;
+$example_table$ LANGUAGE plpgsql;
+
+CREATE TRIGGER car_available_alquileres BEFORE DELETE ON alquileres
+FOR EACH ROW EXECUTE PROCEDURE auditlogfunc3();
+`;
