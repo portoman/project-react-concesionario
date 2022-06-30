@@ -59,25 +59,29 @@ export async function postCarController(request, response) {
         response.sendStatus(500)
     }
 }
-/*
+
 //Controlador para modificar un coche
-export function putCarController(request, response) {
+export async function putCarController(request, response) {
     const { id_coche, matricula, modelo, marca, km, precio
         , foto, cilindrada, combustible, disponible, alquiler, oferta } = request.body;
-    db.run(
-        `UPDATE coches SET matricula="${matricula}",modelo="${modelo}",marca="${marca}",
-        km= ${km},precio= ${precio},foto="${foto}",cilindrada="${cilindrada}",
-        combustible="${combustible}",disponible=${disponible},alquiler=${alquiler},oferta=${oferta} WHERE id_coche="${id_coche} "`,
-        (err) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.sendStatus(201)
-            }
+
+    try {
+        const data = await db.query(
+            `UPDATE coches SET matricula=$1,modelo=$2,marca=$3,
+        km= $4,precio= $5,foto=$6,cilindrada=$7,
+        combustible=$8,disponible=$9,alquiler=$10,oferta=$11 WHERE id_coche=12`,
+        [matricula,modelo,marca,km,precio,foto,cilindrada,combustible,disponible,alquiler,oferta,id_coche])
+        if (data.rowCount === 0) {
+            response.sendStatus(404)
+        } else {
+            response.json(data.rows)
         }
-    )
+    } catch (error) {
+        console.error(error);
+        response.sendStatus(500)
+    }
 }
+/*
 //Controlador para eliminar un coche
 export function deleteCarController(request, response) {
     const { id_coche } = request.body;
