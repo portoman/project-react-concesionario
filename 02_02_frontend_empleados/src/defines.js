@@ -6,11 +6,11 @@ switch (window.location.hostname) {
         break;
 
     case "127.0.0.1":
-        URL="http://127.0.0.1:3000/"
+        URL="http://127.0.0.1:3000/api"
         break;
         
     default:
-        URL="/"
+        URL="/api"
         break;
 }
 
