@@ -28,7 +28,8 @@ import {
 } from "./controllers/Controllers.mjs";*/
 import {
   getAllCars,
-  getOneCarController
+  getOneCarController,
+  postCarController
 } from "./controllers/Controllers.mjs";
 
 import {
@@ -93,8 +94,9 @@ try {
   //Coches
   app.get(PATH_PREFIX + "/allCoches/", getAllCars);
   app.get(PATH_PREFIX + "/car/:id", getOneCarController);
-  /*
   app.post(PATH_PREFIX + "/car/", upload.single('photo'), postCarController);
+  /*
+  
   app.put(PATH_PREFIX + "/car/", jsonParser, putCarController);
   app.delete(PATH_PREFIX + "/car/", jsonParser, deleteCarController);
 
@@ -122,7 +124,7 @@ try {
   app.put(PATH_PREFIX + "/rent/", jsonParser, putRentController);
   app.delete(PATH_PREFIX + "/rent/", jsonParser, deleteRentController);
 */
-  /*
+  
     //Autorización
     const secret = process.env.SECRET
   
@@ -149,8 +151,8 @@ try {
         res.sendStatus(401)
       }
     }
-  */
-  /*
+  
+  
     //1. Endpoint Autenticación
     app.get(PATH_PREFIX + "/login/", (req, res) => {
       const [username, password] = decodeBasicToken(req)
@@ -172,7 +174,7 @@ try {
         res.sendStatus(401)
       }
     })
-  */
+  
 
   /*
    //2. Uso del token

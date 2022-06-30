@@ -36,28 +36,30 @@ export async function getOneCarController(request, response) {
     }
 }
 
-/*
+
 //Controlador para insertar un coche
-export function postCarController(request, response) {
+export async function postCarController(request, response) {
     const { matricula, modelo, marca, km, precio
         , cilindrada, combustible, disponible, alquiler, oferta } = request.body;
     const foto = request.file.filename;
-    db.run(
-        `INSERT INTO coches(matricula, modelo, marca, km, precio
-            , foto, cilindrada, combustible, disponible, alquiler, oferta) VALUES 
-            ("${matricula}","${modelo}","${marca}",${km},${precio},
-            "${foto}","${cilindrada}","${combustible}",${disponible},${alquiler},${oferta})`,
-        (err) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.sendStatus(201)
-            }
+    try {
+        const data = await db.query(
+            `INSERT INTO coches(matricula, modelo, marca, km, precio
+                , foto, cilindrada, combustible, disponible, alquiler, oferta) VALUES 
+                ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *`, [
+            matricula, modelo, marca, km, precio,
+            foto, cilindrada, combustible, disponible, alquiler, oferta])
+        if (data.rowCount === 0) {
+            response.sendStatus(404)
+        } else {
+            response.json(data.rows)
         }
-    )
+    } catch (error) {
+        console.error(error);
+        response.sendStatus(500)
+    }
 }
-
+/*
 //Controlador para modificar un coche
 export function putCarController(request, response) {
     const { id_coche, matricula, modelo, marca, km, precio

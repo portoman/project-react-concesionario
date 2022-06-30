@@ -67,7 +67,7 @@ export const createCarsTableSQL = `
             marca VARCHAR(30),
             km DECIMAL(9),
             precio DECIMAL(9),
-            foto VARCHAR(30),
+            foto CHAR(33),
             cilindrada VARCHAR(30),
             combustible VARCHAR(30),
             disponible INTEGER DEFAULT 1 CHECK (disponible=0 OR disponible=1),
