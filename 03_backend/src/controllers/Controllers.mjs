@@ -70,7 +70,7 @@ export async function putCarController(request, response) {
             `UPDATE coches SET matricula=$1,modelo=$2,marca=$3,
         km= $4,precio= $5,foto=$6,cilindrada=$7,
         combustible=$8,disponible=$9,alquiler=$10,oferta=$11 WHERE id_coche=12`,
-        [matricula,modelo,marca,km,precio,foto,cilindrada,combustible,disponible,alquiler,oferta,id_coche])
+            [matricula, modelo, marca, km, precio, foto, cilindrada, combustible, disponible, alquiler, oferta, id_coche])
         if (data.rowCount === 0) {
             response.sendStatus(404)
         } else {

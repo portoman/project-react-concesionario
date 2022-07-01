@@ -29,7 +29,8 @@ import {
 import {
   getAllCars,
   getOneCarController,
-  postCarController
+  postCarController,
+  putCarController
 } from "./controllers/Controllers.mjs";
 
 import {
@@ -89,15 +90,16 @@ try {
   app.use(express.json());
   app.use('/', express.static('../02_01_frontend_clientes/build', { index: "index.html" }));
   app.use("/backoffice/", express.static("../02_02_frontend_empleados/build", { index: "index.html" }))
-  app.use("/public/", express.static("./uploads/"));
+  app.use("/public/", express.static("../uploads/"));
 
   //Coches
   app.get(PATH_PREFIX + "/allCoches/", getAllCars);
   app.get(PATH_PREFIX + "/car/:id", getOneCarController);
   app.post(PATH_PREFIX + "/car/", upload.single('photo'), postCarController);
+  app.put(PATH_PREFIX + "/car/", jsonParser, putCarController);
   /*
   
-  app.put(PATH_PREFIX + "/car/", jsonParser, putCarController);
+  
   app.delete(PATH_PREFIX + "/car/", jsonParser, deleteCarController);
 
   //Clientes
