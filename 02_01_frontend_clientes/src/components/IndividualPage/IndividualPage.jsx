@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Context } from "../../SharedState"
-import { PATH } from '../../defines';
+import { PATH, host } from '../../defines';
 import './IndividualPage.css';
 
 function IndividualPage() {
@@ -20,7 +20,7 @@ function IndividualPage() {
             <h2>Marca: {coche.marca}</h2>
             <h2>Modelo: {coche.modelo}</h2>
             <h2>Precio: {coche.precio}</h2>
-            <img src={PATH + coche.foto} />
+            <img src={host + PATH + coche.foto} />
         </>
 
     );
