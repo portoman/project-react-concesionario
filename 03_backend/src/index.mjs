@@ -90,7 +90,7 @@ try {
   app.use(express.json());
   app.use('/', express.static('../02_01_frontend_clientes/build', { index: "index.html" }));
   app.use("/backoffice/", express.static("../02_02_frontend_empleados/build", { index: "index.html" }))
-  app.use("/public/", express.static("/uploads/"));
+  app.use("/public/", express.static("./uploads/"));
 
   //Coches
   app.get(PATH_PREFIX + "/allCoches/", getAllCars);
