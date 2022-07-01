@@ -16,6 +16,6 @@ switch (window.location.hostname) {
         break;
 
     default:
-        host = "/api"
+        host = "/"
         break;
 }
