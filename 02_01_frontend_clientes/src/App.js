@@ -13,7 +13,7 @@ import Stack from 'react-bootstrap/Stack';
 
 function App() {
 
-  const ruta = "http://127.0.0.1:5500/02_01_frontend_clientes/src/img/";
+  //const ruta = "http://127.0.0.1:5500/02_01_frontend_clientes/src/img/";
 
   const { states, actions } = useContext(Context);
 
