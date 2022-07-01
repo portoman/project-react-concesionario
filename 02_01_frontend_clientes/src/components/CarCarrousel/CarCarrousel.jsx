@@ -4,7 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
 import { useContext } from "react"
 import { Context } from "../../SharedState"
-import { PATH, URL } from '../../defines';
+import { PATH, host } from '../../defines';
 
 function CarCarrousel({ vehiculos }) {
 
@@ -27,7 +27,7 @@ function CarCarrousel({ vehiculos }) {
                     <Link to={"/vehiculo/" + element.id_coche}>
                         <img
                             className="d-block w-100"
-                            src={ URL + PATH + element.foto}
+                            src={ host + PATH + element.foto}
                             alt="First slide"
                         />
                     </Link>

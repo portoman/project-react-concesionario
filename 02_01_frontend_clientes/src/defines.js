@@ -4,18 +4,18 @@ export const PATH = "/public/";
 export const loginEndpoint = '/login/'
 export const secretsEndpoint = '/secretos/'
 
-export let URL;
+export let host;
 
 switch (window.location.hostname) {
-  case "localhost":
-      URL="http://localhost:3000/api"
-      break;
+    case "localhost":
+        host = "http://localhost:3000"
+        break;
 
-  case "127.0.0.1":
-      URL="http://127.0.0.1:3000/api"
-      break;
-      
-  default:
-      URL="/api"
-      break;
+    case "127.0.0.1":
+        host = "http://127.0.0.1:3000"
+        break;
+
+    default:
+        host = "/api"
+        break;
 }

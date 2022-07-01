@@ -6,14 +6,12 @@ import MainForm from './components/MainForm/MainForm';
 import { Route, Routes } from 'react-router-dom';
 import { useContext, useEffect } from "react"
 import { Context } from "./SharedState"
-import { get } from "./aux_api";
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 
 function App() {
 
-  //const ruta = "http://127.0.0.1:5500/02_01_frontend_clientes/src/img/";
 
   const { states, actions } = useContext(Context);
 

@@ -1,6 +1,6 @@
 import { get } from "./aux_api";
 import { useState, createContext, useEffect } from "react";
-import { URL, loginEndpoint, secretsEndpoint } from "./defines";
+import { host, loginEndpoint, secretsEndpoint } from "./defines";
 export const Context = createContext();
 
 /*Componente que se comparte en toda la aplicación. 
@@ -15,7 +15,7 @@ export function ContextProvider({ children }) {
     states: { cars },
     actions: {
       getAllCars: function () {
-        get(URL + "/allCoches/").then((data) => setCars(data));
+        get(host + "/api" + "/allCoches/").then((data) => setCars(data));
       },
     },
   };
