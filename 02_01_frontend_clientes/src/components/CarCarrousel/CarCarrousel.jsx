@@ -27,7 +27,7 @@ function CarCarrousel({ vehiculos }) {
                     <Link to={"/vehiculo/" + element.id_coche}>
                         <img
                             className="d-block w-100"
-                            src={ PATH + element.foto}
+                            src={ URL + PATH + element.foto}
                             alt="First slide"
                         />
                     </Link>

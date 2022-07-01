@@ -48,7 +48,7 @@ import {
 import multer from "multer";
 
 const PATH_PREFIX = "/api";
-const UPLOADS_FOLDER = "./uploads"
+const UPLOADS_FOLDER = "./uploads/"
 
 // Usa .env si el servicio no está en producción
 if (process.env.NODE_ENV != "production") {
