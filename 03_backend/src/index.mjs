@@ -31,7 +31,9 @@ import {
   getOneCarController,
   postCarController,
   putCarController,
-  deleteCarController
+  deleteCarController,
+  getAllClients,
+  postClientController
 } from "./controllers/Controllers.mjs";
 
 import {
@@ -99,14 +101,12 @@ try {
   app.post(PATH_PREFIX + "/car/", upload.single('photo'), postCarController);
   app.put(PATH_PREFIX + "/car/", jsonParser, putCarController);
   app.delete(PATH_PREFIX + "/car/", jsonParser, deleteCarController);
-  /*
-  
-  
-  
 
   //Clientes
   app.get(PATH_PREFIX + "/allClients/", getAllClients);
   app.post(PATH_PREFIX + "/client/", jsonParser, postClientController);
+  /*
+  
   app.get(PATH_PREFIX + "/client/:id", getOneClientController);
   app.put(PATH_PREFIX + "/client/", jsonParser, putClientController);
   app.delete(PATH_PREFIX + "/client/", jsonParser, deleteClientController);
@@ -128,57 +128,57 @@ try {
   app.put(PATH_PREFIX + "/rent/", jsonParser, putRentController);
   app.delete(PATH_PREFIX + "/rent/", jsonParser, deleteRentController);
 */
-  
-    //Autorización
-    const secret = process.env.SECRET
-  
-    const user = {
-      username: "Alfonso",
-      password: "123",
-      accessLevel: 0,
+
+  //Autorización
+  const secret = process.env.SECRET
+
+  const user = {
+    username: "Alfonso",
+    password: "123",
+    accessLevel: 0,
+  }
+
+  function decodeBasicToken(request) {
+    const [authType, b64token] = request.headers.authorization.split(" ")
+    const tokenBuffer = new Buffer.from(b64token, "base64")
+    const token = tokenBuffer.toString()
+    return token.split(":")
+  }
+
+  function authMiddleware(req, res, next) {
+    try {
+      const [method, token] = req.headers.authorization.split(" ")
+      const { level } = jwt.verify(token, secret)
+      res.locals.level = level
+      next()
+    } catch (err) {
+      res.sendStatus(401)
     }
-  
-    function decodeBasicToken(request) {
-      const [authType, b64token] = request.headers.authorization.split(" ")
-      const tokenBuffer = new Buffer.from(b64token, "base64")
-      const token = tokenBuffer.toString()
-      return token.split(":")
+  }
+
+
+  //1. Endpoint Autenticación
+  app.get(PATH_PREFIX + "/login/", (req, res) => {
+    const [username, password] = decodeBasicToken(req)
+    if (
+      username === user.username && password === user.password
+    ) {
+      //Creación de token/firma con un secret
+      const token = jwt.sign(
+        {
+          level: user.accessLevel
+        },
+        secret,
+        {
+          expiresIn: "1h",
+        }
+      )
+      res.send(token)
+    } else {
+      res.sendStatus(401)
     }
-  
-    function authMiddleware(req, res, next) {
-      try {
-        const [method, token] = req.headers.authorization.split(" ")
-        const { level } = jwt.verify(token, secret)
-        res.locals.level = level
-        next()
-      } catch (err) {
-        res.sendStatus(401)
-      }
-    }
-  
-  
-    //1. Endpoint Autenticación
-    app.get(PATH_PREFIX + "/login/", (req, res) => {
-      const [username, password] = decodeBasicToken(req)
-      if (
-        username === user.username && password === user.password
-      ) {
-        //Creación de token/firma con un secret
-        const token = jwt.sign(
-          {
-            level: user.accessLevel
-          },
-          secret,
-          {
-            expiresIn: "1h",
-          }
-        )
-        res.send(token)
-      } else {
-        res.sendStatus(401)
-      }
-    })
-  
+  })
+
 
   /*
    //2. Uso del token

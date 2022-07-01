@@ -98,44 +98,44 @@ export async function deleteCarController(request, response) {
         response.sendStatus(500)
     }
 }
-/*
-//Controlador para devolver todos los clientes
-export function getAllClients(request, response) {
-    db.all(
-        `SELECT * FROM clientes`,
-        (err, data) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.json(data)
-            }
-        }
-    )
-}
 
+//Controlador para devolver todos los clientes
+export async function getAllClients(request, response) {
+    try {
+        const data = await db.query(
+            `SELECT * FROM clientes`)
+        if (data.rowCount === 0) {
+            response.sendStatus(404)
+        } else {
+            response.json(data.rows)
+        }
+
+    } catch (error) {
+        console.error(error);
+        response.sendStatus(500)
+    }
+}
 
 
 //Controlador para insertar un cliente
-export function postClientController(request, response) {
-    const { DNI, nombre, apellidos, telefono, cpostal
-        , ciudad } = request.body;
-    db.run(
-        `INSERT INTO clientes(DNI, nombre, apellidos, telefono, cpostal
-            , ciudad) VALUES 
-            ("${DNI}","${nombre}","${apellidos}",${telefono},${cpostal},
-            "${ciudad}")`,
-        (err) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.sendStatus(201)
-            }
+export async function postClientController(request, response) {
+    const { DNI, nombre, apellidos, telefono, cpostal, ciudad } = request.body;
+    try {
+        const data = await db.query(
+            `INSERT INTO clientes(DNI, nombre, apellidos, telefono, cpostal
+            , ciudad) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *`, [
+            DNI, nombre, apellidos, telefono, cpostal, ciudad])
+        if (data.rowCount === 0) {
+            response.sendStatus(404)
+        } else {
+            response.json(data.rows)
         }
-    )
+    } catch (error) {
+        console.error(error);
+        response.sendStatus(500)
+    }
 }
-
+/*
 //Controlador para devolver un cliente
 export function getOneClientController(request, response) {
     const client = parseInt(request.params.id)

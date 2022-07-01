@@ -21,7 +21,7 @@ RUN rm 04_documentation .gitignore README.md -rf
 
 WORKDIR /usr/src/app/03_backend
 RUN npm install --omit=dev
-RUN rm SQL uploads package-lock.json -rf
+RUN rm SQL package-lock.json -rf
 
 
 ENTRYPOINT [ "npm", "start" ]
