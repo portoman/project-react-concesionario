@@ -81,23 +81,24 @@ export async function putCarController(request, response) {
         response.sendStatus(500)
     }
 }
-/*
-//Controlador para eliminar un coche
-export function deleteCarController(request, response) {
-    const { id_coche } = request.body;
-    db.run(
-        `DELETE FROM coches WHERE id_coche="${id_coche}"`,
-        (err) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.sendStatus(200)
-            }
-        }
-    )
-}
 
+//Controlador para eliminar un coche
+export async function deleteCarController(request, response) {
+    const { id_coche } = request.body;
+    try {
+        const data = await db.query(
+            `DELETE FROM coches WHERE id_coche=$1`, [id_coche])
+        if (data.rowCount === 0) {
+            response.sendStatus(404)
+        } else {
+            response.json(data.rows)
+        }
+    } catch (error) {
+        console.error(error);
+        response.sendStatus(500)
+    }
+}
+/*
 //Controlador para devolver todos los clientes
 export function getAllClients(request, response) {
     db.all(

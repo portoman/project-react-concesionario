@@ -30,7 +30,8 @@ import {
   getAllCars,
   getOneCarController,
   postCarController,
-  putCarController
+  putCarController,
+  deleteCarController
 } from "./controllers/Controllers.mjs";
 
 import {
@@ -97,10 +98,11 @@ try {
   app.get(PATH_PREFIX + "/car/:id", getOneCarController);
   app.post(PATH_PREFIX + "/car/", upload.single('photo'), postCarController);
   app.put(PATH_PREFIX + "/car/", jsonParser, putCarController);
+  app.delete(PATH_PREFIX + "/car/", jsonParser, deleteCarController);
   /*
   
   
-  app.delete(PATH_PREFIX + "/car/", jsonParser, deleteCarController);
+  
 
   //Clientes
   app.get(PATH_PREFIX + "/allClients/", getAllClients);
