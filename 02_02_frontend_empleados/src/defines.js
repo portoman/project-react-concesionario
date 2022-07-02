@@ -1,18 +1,19 @@
-export let URL;
+export let host;
 
 switch (window.location.hostname) {
     case "localhost":
-        URL="http://localhost:3000/api"
+        host="http://localhost:3000"
         break;
 
     case "127.0.0.1":
-        URL="http://127.0.0.1:3000/api"
+        host="http://127.0.0.1:3000"
         break;
         
     default:
-        URL="/api"
+        host=""
         break;
 }
 
-export const loginEndpoint = '/login/'
-export const secretsEndpoint = '/secretos/'
+export const loginEndpoint = '/login/';
+export const secretsEndpoint = '/secretos/';
+export const api="/api";

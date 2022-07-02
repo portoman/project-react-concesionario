@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { post } from "../../aux_api";
 import Stack from "react-bootstrap/Stack";
-import { URL } from "../../defines";
+import { host, api } from "../../defines";
 
 function Sale() {
   const { states, actions } = useContext(Context);
@@ -44,7 +44,7 @@ function Sale() {
     actions.getAllClients();
     if (idInicialCoche != 0) {
       const data = JSON.stringify({ fecha, id_coche, id_cliente, precio });
-      await post(URL + "/sale", data);
+      await post(host + api + "/sale", data);
     }
     actions.getAllSales();
     actions.getAllClients();

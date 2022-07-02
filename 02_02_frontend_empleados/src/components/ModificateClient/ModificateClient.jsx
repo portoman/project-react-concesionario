@@ -9,7 +9,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
-import { URL } from "../../defines";
+import { host, api } from "../../defines";
 
 function ModificateClient() {
   const { states, actions } = useContext(Context);
@@ -61,7 +61,7 @@ function ModificateClient() {
       cpostal,
       ciudad,
     });
-    await modify(URL + "/client", data);
+    await modify(host + api + "/client", data);
     actions.getAllClients();
   }
 

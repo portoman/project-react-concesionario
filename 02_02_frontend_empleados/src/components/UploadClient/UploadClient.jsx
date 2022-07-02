@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
-import { URL } from "../../defines";
+import { host, api } from "../../defines";
 
 function UploadClient() {
   const { states, actions } = useContext(Context);
@@ -49,7 +49,7 @@ function UploadClient() {
       cpostal,
       ciudad,
     });
-    await post(URL + "/client", data);
+    await post(host + api + "/client", data);
     actions.getAllClients();
   }
 

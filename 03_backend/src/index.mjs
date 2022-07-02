@@ -43,10 +43,10 @@ import {
   createCarsTableSQL,
   createRentsTableSQL,
   createSalesTableSQL,
-  createCarNotAvailableTriggerSQL,
-  createCarAvailableTriggerSQL,
-  createNotAvailableRentsTriggerSQL,
-  createAvailableRentsTriggerSQL
+  //createCarNotAvailableTriggerSQL,
+  //createCarAvailableTriggerSQL,
+  //createNotAvailableRentsTriggerSQL,
+  //createAvailableRentsTriggerSQL
 } from "./models/db.mjs";
 
 import multer from "multer";

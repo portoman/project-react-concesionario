@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { post } from "../../aux_api";
 import Stack from "react-bootstrap/Stack";
-import { URL } from "../../defines";
+import { host, api } from "../../defines";
 
 function Rent() {
   const { states, actions } = useContext(Context);
@@ -47,8 +47,14 @@ function Rent() {
     actions.getAllCars();
     actions.getAllClients();
     if (idInicialCoche != 0) {
-      const data = JSON.stringify({ fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio });
-      await post(URL + "/rent", data);
+      const data = JSON.stringify({
+        fecha_entrega,
+        fecha_devolucion,
+        id_coche,
+        id_cliente,
+        precio,
+      });
+      await post(host + api + "/rent", data);
     }
     actions.getAllRents();
     actions.getAllClients();
@@ -77,9 +83,15 @@ function Rent() {
           <Form.Group className="col-8 mb-3" controlId="formBasicEmail">
             <Stack direction="horizontal" gap={2}>
               <Form.Label>Fecha entrega</Form.Label>
-              <Form.Control type="date" onChange={fechaEntregaInputChangeHandler} />
+              <Form.Control
+                type="date"
+                onChange={fechaEntregaInputChangeHandler}
+              />
               <Form.Label>Fecha devolución</Form.Label>
-              <Form.Control type="date" onChange={fechaDevolucionInputChangeHandler} />
+              <Form.Control
+                type="date"
+                onChange={fechaDevolucionInputChangeHandler}
+              />
             </Stack>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">

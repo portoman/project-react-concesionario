@@ -119,6 +119,7 @@ BEGIN
     WHERE id_coche = NEW.id_coche;
 END;
 `;*/
+/*
 export const createCarNotAvailableTriggerSQL =`
 CREATE OR REPLACE FUNCTION auditlogfunc() RETURNS TRIGGER AS $example_table$
    BEGIN
@@ -132,7 +133,7 @@ $example_table$ LANGUAGE plpgsql;
 CREATE  TRIGGER  car_not_available_ventas AFTER INSERT ON ventas
 FOR EACH ROW EXECUTE PROCEDURE auditlogfunc();
 `;
-
+*/
 //Trigger para que después de borrar un coche en la tabla ventas lo asigne como disponible
 /*
 //En SQL
@@ -145,6 +146,7 @@ BEGIN
 END;
 `)
 */
+/*
 export const createCarAvailableTriggerSQL =`
 CREATE OR REPLACE FUNCTION auditlogfunc2() RETURNS TRIGGER AS $example_table$
    BEGIN
@@ -158,7 +160,7 @@ $example_table$ LANGUAGE plpgsql;
 CREATE TRIGGER car_available_ventas BEFORE DELETE ON ventas
 FOR EACH ROW EXECUTE PROCEDURE auditlogfunc2();
 `;
-
+*/
 //Trigger para que después de insertar un coche en la tabla alquileres lo asigne como no disponible
 /*
 //En SQL
@@ -171,6 +173,7 @@ BEGIN
 END;
 `)
 */
+/*
 export const createNotAvailableRentsTriggerSQL =`
 CREATE OR REPLACE FUNCTION auditlogfunc3() RETURNS TRIGGER AS $example_table$
    BEGIN
@@ -184,7 +187,7 @@ $example_table$ LANGUAGE plpgsql;
 CREATE TRIGGER car_not_available_alquileres AFTER INSERT ON alquileres
 FOR EACH ROW EXECUTE PROCEDURE auditlogfunc3();
 `;
-
+*/
 //Trigger para que después de borrar un coche en la tabla alquileres lo asigne como disponible
 /*
 //En SQL
@@ -197,6 +200,7 @@ BEGIN
 END;
 `)
 */
+/*
 export const createAvailableRentsTriggerSQL =`
 CREATE OR REPLACE FUNCTION auditlogfunc3() RETURNS TRIGGER AS $example_table$
    BEGIN
@@ -210,3 +214,4 @@ $example_table$ LANGUAGE plpgsql;
 CREATE TRIGGER car_available_alquileres BEFORE DELETE ON alquileres
 FOR EACH ROW EXECUTE PROCEDURE auditlogfunc3();
 `;
+*/

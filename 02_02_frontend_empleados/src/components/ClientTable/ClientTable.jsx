@@ -4,14 +4,14 @@ import { Context } from "../../SharedState";
 import Button from "react-bootstrap/Button";
 import { apiDelete } from "../../aux_api";
 import { Link } from "react-router-dom";
-import { URL } from "../../defines";
+import { host,api } from "../../defines";
 
 function ClientTable() {
   const { states, actions } = useContext(Context);
 
   async function clickHandlerDelete(id_cliente) {
     let data = JSON.stringify({ id_cliente });
-    await apiDelete(URL + "/client", data);
+    await apiDelete(host+api + "/client", data);
     actions.getAllClients();
   }
 

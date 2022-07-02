@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { modify } from "../../aux_api";
 import Stack from "react-bootstrap/Stack";
-import { URL } from "../../defines";
+import { host, api } from "../../defines";
 import { useParams } from "react-router-dom";
 import {
   takeMatricula,
@@ -31,9 +31,11 @@ function ModificateRent() {
     (element) => element.disponible === 1
   );
 
-  const [id, setIdVenta] = useState(alquiler.id);
+  const [id] = useState(alquiler.id);
   const [fecha_entrega, setFechaEntrega] = useState(alquiler.fecha_entrega);
-  const [fecha_devolucion, setFechaDevolucion] = useState(alquiler.fecha_devolucion);
+  const [fecha_devolucion, setFechaDevolucion] = useState(
+    alquiler.fecha_devolucion
+  );
   const [id_coche, setIdcoche] = useState(alquiler.id_coche);
   const [id_cliente, setIdCliente] = useState(alquiler.id_cliente);
   const [precio, setPrecio] = useState(alquiler.precio);
@@ -57,8 +59,15 @@ function ModificateRent() {
   async function clickHandler() {
     actions.getAllCars();
     actions.getAllClients();
-    const data = JSON.stringify({ id, fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio });
-    await modify(URL + "/rent", data);
+    const data = JSON.stringify({
+      id,
+      fecha_entrega,
+      fecha_devolucion,
+      id_coche,
+      id_cliente,
+      precio,
+    });
+    await modify(host + api + "/rent", data);
     actions.getAllRents();
     actions.getAllClients();
     actions.getAllCars();
@@ -106,10 +115,10 @@ function ModificateRent() {
                 onChange={idCocheInputChangeHandler}
               >
                 <option value={alquiler.id_coche}>
-                  Id: {alquiler.id_coche} -
-                  Matricula: {takeMatricula(alquiler.id_coche, states.cars)} -
-                  Modelo: {takeModelo(alquiler.id_coche, states.cars)} -
-                  Marca: {takeMarca(alquiler.id_coche, states.cars)}
+                  Id: {alquiler.id_coche} - Matricula:{" "}
+                  {takeMatricula(alquiler.id_coche, states.cars)} - Modelo:{" "}
+                  {takeModelo(alquiler.id_coche, states.cars)} - Marca:{" "}
+                  {takeMarca(alquiler.id_coche, states.cars)}
                 </option>
                 {listadoCoches}
               </Form.Select>
@@ -123,10 +132,10 @@ function ModificateRent() {
                 onChange={idClienteChangeHandler}
               >
                 <option value={alquiler.id_cliente}>
-                  Id: {alquiler.id_cliente} -
-                  DNI: {takeDNI(alquiler.id_cliente, states.clients)} -
-                  Nombre: {takeNombre(alquiler.id_cliente, states.clients)} -
-                  Apellidos: {takeApellidos(alquiler.id_cliente, states.clients)}
+                  Id: {alquiler.id_cliente} - DNI:{" "}
+                  {takeDNI(alquiler.id_cliente, states.clients)} - Nombre:{" "}
+                  {takeNombre(alquiler.id_cliente, states.clients)} - Apellidos:{" "}
+                  {takeApellidos(alquiler.id_cliente, states.clients)}
                 </option>
                 {listadoCLientes}
               </Form.Select>
