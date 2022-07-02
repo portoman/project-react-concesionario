@@ -56,7 +56,7 @@ function Sale() {
   let listadoCoches = "";
   if (idInicialCoche > 0) {
     listadoCoches = cochesDisponibles.map((element, index) => (
-      <option value={element.id_coche}>
+      <option value={element.id_coche}  key={index}>
         Id: {element.id_coche} - Matricula: {element.matricula} - Modelo:{" "}
         {element.modelo} - Marca: {element.marca}
       </option>
@@ -95,7 +95,7 @@ function Sale() {
                 onChange={idClienteChangeHandler}
               >
                 {states.clients.map((element, index) => (
-                  <option value={element.id_cliente}>
+                  <option value={element.id_cliente}  key={index}>
                     Id: {element.id_cliente} - DNI: {element.DNI} - Nombre:{" "}
                     {element.nombre} - Apellidos: {element.apellidos}
                   </option>
