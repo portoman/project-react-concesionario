@@ -1,6 +1,6 @@
 import { get } from "./aux_api";
 import { useState, createContext } from "react";
-import { host,api, loginEndpoint, secretsEndpoint } from "./defines";
+import { host, api, loginEndpoint, secretsEndpoint } from "./defines";
 export const Context = createContext();
 
 /*Componente que se comparte en toda la aplicación.
@@ -20,19 +20,19 @@ export function ContextProvider({ children }) {
     states: { cars, clients, sales, rents, forms, state },
     actions: {
       getAllCars: function () {
-        get(host + "/api" + "/allCoches/").then((data) => setCars(data));
+        get(host + api + "/allCoches/").then((data) => setCars(data));
       },
       getAllClients: function () {
-        get(host + "/api" + "/allClients/").then((data) => setClients(data));
+        get(host + api + "/allClients/").then((data) => setClients(data));
       },
       getAllSales: function () {
-        get(host + "/api" + "/allSales/").then((data) => setSales(data));
+        get(host + api + "/allSales/").then((data) => setSales(data));
       },
       getAllRents: function () {
-        get(host + "/api" + "/allRents/").then((data) => setRents(data));
+        get(host + api + "/allRents/").then((data) => setRents(data));
       },
       getAllForms: function () {
-        get(host + "/api" + "/allForms/").then((data) => setForms(data));
+        get(host + api + "/allForms/").then((data) => setForms(data));
       },
       setToken: function (token) {
         const newState = { ...state, token };

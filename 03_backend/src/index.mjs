@@ -1,7 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import pg from "pg";
-import { config } from "dotenv"
+import { config } from "dotenv";
 /*
 import {
   getAllCars,
@@ -33,7 +33,7 @@ import {
   putCarController,
   deleteCarController,
   getAllClients,
-  postClientController
+  postClientController,
 } from "./controllers/Controllers.mjs";
 
 import {
@@ -46,17 +46,17 @@ import {
   createCarNotAvailableTriggerSQL,
   createCarAvailableTriggerSQL,
   createNotAvailableRentsTriggerSQL,
-  createAvailableRentsTriggerSQL
+  createAvailableRentsTriggerSQL,
 } from "./models/db.mjs";
 
 import multer from "multer";
 
 const PATH_PREFIX = "/api";
-const UPLOADS_FOLDER = "./uploads/"
+const UPLOADS_FOLDER = "./uploads/";
 
 // Usa .env si el servicio no está en producción
 if (process.env.NODE_ENV != "production") {
-  config()
+  config();
 }
 
 const upload = multer({ dest: UPLOADS_FOLDER });
@@ -64,8 +64,8 @@ const upload = multer({ dest: UPLOADS_FOLDER });
 /**
  * Initialize DB
  */
-export const db = new pg.Client(process.env.PGURL)
-db.connect()
+export const db = new pg.Client(process.env.PGURL);
+db.connect();
 
 /**
  * Table creation
@@ -77,13 +77,13 @@ try {
   db.query(createCarsTableSQL);
   db.query(createRentsTableSQL);
   db.query(createSalesTableSQL);
-  db.query(createCarNotAvailableTriggerSQL);
-  db.query(createCarAvailableTriggerSQL);
-  db.query(createNotAvailableRentsTriggerSQL);
-  db.query(createAvailableRentsTriggerSQL);
+  // db.query(createCarNotAvailableTriggerSQL);
+  //db.query(createCarAvailableTriggerSQL);
+  //db.query(createNotAvailableRentsTriggerSQL);
+  //db.query(createAvailableRentsTriggerSQL);
 } catch (error) {
-  console.error("Error trying to create tables")
-  throw error
+  console.error("Error trying to create tables");
+  throw error;
 }
 
 const app = express();
@@ -91,14 +91,20 @@ try {
   const jsonParser = express.json();
 
   app.use(express.json());
-  app.use('/', express.static('../02_01_frontend_clientes/build', { index: "index.html" }));
-  app.use("/backoffice/", express.static("../02_02_frontend_empleados/build", { index: "index.html" }))
+  app.use(
+    "/",
+    express.static("../02_01_frontend_clientes/build", { index: "index.html" })
+  );
+  app.use(
+    "/backoffice/",
+    express.static("../02_02_frontend_empleados/build", { index: "index.html" })
+  );
   app.use("/public/", express.static("./uploads/"));
 
   //Coches
   app.get(PATH_PREFIX + "/allCoches/", getAllCars);
   app.get(PATH_PREFIX + "/car/:id", getOneCarController);
-  app.post(PATH_PREFIX + "/car/", upload.single('photo'), postCarController);
+  app.post(PATH_PREFIX + "/car/", upload.single("photo"), postCarController);
   app.put(PATH_PREFIX + "/car/", jsonParser, putCarController);
   app.delete(PATH_PREFIX + "/car/", jsonParser, deleteCarController);
 
@@ -130,55 +136,51 @@ try {
 */
 
   //Autorización
-  const secret = process.env.SECRET
+  const secret = process.env.SECRET;
 
   const user = {
     username: "Alfonso",
     password: "123",
     accessLevel: 0,
-  }
+  };
 
   function decodeBasicToken(request) {
-    const [authType, b64token] = request.headers.authorization.split(" ")
-    const tokenBuffer = new Buffer.from(b64token, "base64")
-    const token = tokenBuffer.toString()
-    return token.split(":")
+    const [authType, b64token] = request.headers.authorization.split(" ");
+    const tokenBuffer = new Buffer.from(b64token, "base64");
+    const token = tokenBuffer.toString();
+    return token.split(":");
   }
 
   function authMiddleware(req, res, next) {
     try {
-      const [method, token] = req.headers.authorization.split(" ")
-      const { level } = jwt.verify(token, secret)
-      res.locals.level = level
-      next()
+      const [method, token] = req.headers.authorization.split(" ");
+      const { level } = jwt.verify(token, secret);
+      res.locals.level = level;
+      next();
     } catch (err) {
-      res.sendStatus(401)
+      res.sendStatus(401);
     }
   }
 
-
   //1. Endpoint Autenticación
   app.get(PATH_PREFIX + "/login/", (req, res) => {
-    const [username, password] = decodeBasicToken(req)
-    if (
-      username === user.username && password === user.password
-    ) {
+    const [username, password] = decodeBasicToken(req);
+    if (username === user.username && password === user.password) {
       //Creación de token/firma con un secret
       const token = jwt.sign(
         {
-          level: user.accessLevel
+          level: user.accessLevel,
         },
         secret,
         {
           expiresIn: "1h",
         }
-      )
-      res.send(token)
+      );
+      res.send(token);
     } else {
-      res.sendStatus(401)
+      res.sendStatus(401);
     }
-  })
-
+  });
 
   /*
    //2. Uso del token
@@ -200,7 +202,6 @@ try {
   app.listen(process.env.PORT || 3000, () => {
     console.log("Express running...");
   });
-
 } catch (err) {
   console.error(err);
 }
