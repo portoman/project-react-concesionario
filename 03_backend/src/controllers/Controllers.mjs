@@ -219,7 +219,6 @@ export async function putClientController(request, response) {
   }
 }
 
-
 //Controlador para eliminar un cliente
 export async function deleteClientController(request, response) {
   const { id_cliente } = request.body;
@@ -237,55 +236,57 @@ export async function deleteClientController(request, response) {
     response.sendStatus(500);
   }
 }
-/*
-//Controlador para insertar un formulario
-export function postFormController(request, response) {
-    const { nombre, apellidos, telefono, consulta } = request.body;
-    db.run(
-        `INSERT INTO formularios(nombre, apellidos, telefono, consulta) VALUES 
-            ("${nombre}","${apellidos}",${telefono},"${consulta}")`,
-        (err) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.sendStatus(201)
-            }
-        }
-    )
-}
 
+//Controlador para insertar un formulario
+export async function postFormController(request, response) {
+  const { nombre, apellidos, telefono, consulta } = request.body;
+  try {
+    const data = await db.query(
+      `INSERT INTO formularios(nombre, apellidos, telefono, consulta) VALUES 
+            ($1,$2,$3,$4) RETURNING *`,
+      [nombre, apellidos, telefono, consulta]
+    );
+    if (data.rowCount === 0) {
+      response.sendStatus(404);
+    } else {
+      response.json(data.rows);
+    }
+  } catch (error) {
+    console.error(error);
+    response.sendStatus(500);
+  }
+}
 //Controlador para devolver todos los formularios
-export function getAllForms(request, response) {
-    db.all(
-        `SELECT * FROM formularios`,
-        (err, data) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.json(data)
-            }
-        }
-    )
+export async function getAllForms(request, response) {
+  try {
+    const data = await db.query(`SELECT * FROM formularios`);
+    if (data.rowCount === 0) {
+      response.sendStatus(404);
+    } else {
+      response.json(data.rows);
+    }
+  } catch (error) {
+    console.error(error);
+    response.sendStatus(500);
+  }
 }
 
 //Controlador para eliminar el formulario
-export function deleteFormController(request, response) {
-    const { id } = request.body;
-    db.run(
-        `DELETE FROM formularios WHERE id="${id}"`,
-        (err) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.sendStatus(200)
-            }
-        }
-    )
+export async function deleteFormController(request, response) {
+  const { id } = request.body;
+  try {
+    const data = await db.query(`DELETE FROM formularios WHERE id=$1`, [id]);
+    if (data.rowCount === 0) {
+      response.sendStatus(404);
+    } else {
+      response.json(data.rows);
+    }
+  } catch (error) {
+    console.error(error);
+    response.sendStatus(500);
+  }
 }
-
+/*
 //Controlador para devolver todos las ventas
 export function getAllSales(request, response) {
     db.all(

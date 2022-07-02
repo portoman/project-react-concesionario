@@ -36,7 +36,10 @@ import {
   postClientController,
   getOneClientController,
   putClientController,
-  deleteClientController
+  deleteClientController,
+  postFormController,
+  getAllForms,
+  deleteFormController,
 } from "./controllers/Controllers.mjs";
 
 import {
@@ -117,12 +120,12 @@ try {
   app.get(PATH_PREFIX + "/client/:id", getOneClientController);
   app.put(PATH_PREFIX + "/client/", jsonParser, putClientController);
   app.delete(PATH_PREFIX + "/client/", jsonParser, deleteClientController);
-  /*
+
   //Formulario
   app.post(PATH_PREFIX + "/form/", jsonParser, postFormController);
   app.get(PATH_PREFIX + "/allForms/", getAllForms);
   app.delete(PATH_PREFIX + "/form/", jsonParser, deleteFormController);
-
+  /*
   //Ventas
   app.get(PATH_PREFIX + "/allSales/", getAllSales);
   app.post(PATH_PREFIX + "/sale/", jsonParser, postSaleController);
