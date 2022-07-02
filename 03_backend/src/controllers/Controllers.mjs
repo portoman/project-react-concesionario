@@ -4,11 +4,7 @@ import { db } from "../index.mjs";
 export async function getAllCars(request, response) {
   try {
     const data = await db.query(`SELECT * FROM coches`);
-    if (data.rowCount === 0) {
-      response.sendStatus(404);
-    } else {
-      response.json(data.rows);
-    }
+    response.json(data.rows);
   } catch (error) {
     console.error(error);
     response.sendStatus(500);
@@ -149,11 +145,7 @@ export async function deleteCarController(request, response) {
 export async function getAllClients(request, response) {
   try {
     const data = await db.query(`SELECT * FROM clientes`);
-    if (data.rowCount === 0) {
-      response.sendStatus(404);
-    } else {
-      response.json(data.rows);
-    }
+    response.json(data.rows);
   } catch (error) {
     console.error(error);
     response.sendStatus(500);
@@ -291,11 +283,7 @@ export async function deleteFormController(request, response) {
 export async function getAllSales(request, response) {
   try {
     const data = await db.query(`SELECT * FROM ventas`);
-    if (data.rowCount === 0) {
-      response.sendStatus(404);
-    } else {
-      response.json(data.rows);
-    }
+    response.json(data.rows);
   } catch (error) {
     console.error(error);
     response.sendStatus(500);
