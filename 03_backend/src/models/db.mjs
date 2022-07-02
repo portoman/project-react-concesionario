@@ -191,7 +191,7 @@ END;
 */
 
 export const createAvailableRentsTriggerSQL =`
-CREATE OR REPLACE FUNCTION auditlogfunc3() RETURNS TRIGGER AS $example_table$
+CREATE OR REPLACE FUNCTION auditlogfunc4() RETURNS TRIGGER AS $example_table$
    BEGIN
         UPDATE coches
         SET disponible = 1
@@ -201,5 +201,5 @@ CREATE OR REPLACE FUNCTION auditlogfunc3() RETURNS TRIGGER AS $example_table$
 $example_table$ LANGUAGE plpgsql;
 
 CREATE TRIGGER car_available_alquileres BEFORE DELETE ON alquileres
-FOR EACH ROW EXECUTE PROCEDURE auditlogfunc3();
+FOR EACH ROW EXECUTE PROCEDURE auditlogfunc4();
 `;

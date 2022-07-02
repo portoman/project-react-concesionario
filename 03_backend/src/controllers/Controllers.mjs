@@ -359,53 +359,57 @@ export async function getAllRents(request, response) {
 
 //Controlador para insertar un alquiler
 export async function postRentController(request, response) {
-    const { fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio } = request.body;
-    try {
-      const data = await db.query(
-        `INSERT INTO alquileres(fecha_entrega,fecha_devolucion,id_coche, id_cliente, precio) VALUES 
+  const { fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio } =
+    request.body;
+  try {
+    const data = await db.query(
+      `INSERT INTO alquileres(fecha_entrega,fecha_devolucion,id_coche, id_cliente, precio) VALUES 
         ($1,$2,$3,$4,$5) RETURNING *`,
-        [fecha_entrega,fecha_devolucion,id_coche, id_cliente, precio]
-      );
-      if (data.rowCount === 0) {
-        response.sendStatus(404);
-      } else {
-        response.json(data.rows);
-      }
-    } catch (error) {
-      console.error(error);
-      response.sendStatus(500);
+      [fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio]
+    );
+    if (data.rowCount === 0) {
+      response.sendStatus(404);
+    } else {
+      response.json(data.rows);
     }
+  } catch (error) {
+    console.error(error);
+    response.sendStatus(500);
   }
-/*
+}
+
 //Controlador para modificar un alquiler
-export function putRentController(request, response) {
-    const { id, fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio } = request.body;
-    db.run(
-        `UPDATE alquileres SET fecha_entrega="${fecha_entrega}",fecha_devolucion="${fecha_devolucion}",id_coche="${id_coche}",id_cliente="${id_cliente}",
-        precio= ${precio} WHERE id="${id} "`,
-        (err) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.sendStatus(201)
-            }
-        }
-    )
+export async function putRentController(request, response) {
+  const { id, fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio } =
+    request.body;
+  try {
+    const data = await db.query(
+      `UPDATE alquileres SET fecha_entrega=$1,fecha_devolucion=$2,id_coche=$3,id_cliente=$4,
+        precio= $5 WHERE id=$6`,
+      [fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio, id]
+    );
+    if (data.rowCount === 0) {
+      response.sendStatus(404);
+    } else {
+      response.json(data.rows);
+    }
+  } catch (error) {
+    console.error(error);
+    response.sendStatus(500);
+  }
 }
 //Controlador para eliminar un alquiler
-export function deleteRentController(request, response) {
-    const { id } = request.body;
-    db.run(
-        `DELETE FROM alquileres WHERE id="${id}"`,
-        (err) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.sendStatus(200)
-            }
-        }
-    )
+export async function deleteRentController(request, response) {
+  const { id } = request.body;
+  try {
+    const data = await db.query(`DELETE FROM alquileres WHERE id=$1`, [id]);
+    if (data.rowCount === 0) {
+      response.sendStatus(404);
+    } else {
+      response.json(data.rows);
+    }
+  } catch (error) {
+    console.error(error);
+    response.sendStatus(500);
+  }
 }
-*/

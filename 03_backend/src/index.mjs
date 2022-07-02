@@ -46,6 +46,8 @@ import {
   deleteSaleController,
   getAllRents,
   postRentController,
+  putRentController,
+  deleteRentController,
 } from "./controllers/Controllers.mjs";
 
 import {
@@ -141,11 +143,8 @@ try {
   //Alquileres
   app.get(PATH_PREFIX + "/allRents/", getAllRents);
   app.post(PATH_PREFIX + "/rent/", jsonParser, postRentController);
-  /*
-  
   app.put(PATH_PREFIX + "/rent/", jsonParser, putRentController);
   app.delete(PATH_PREFIX + "/rent/", jsonParser, deleteRentController);
-*/
 
   //Autorización
   const secret = process.env.SECRET;
