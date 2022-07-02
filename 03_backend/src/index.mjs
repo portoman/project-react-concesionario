@@ -40,6 +40,10 @@ import {
   postFormController,
   getAllForms,
   deleteFormController,
+  getAllSales,
+  postSaleController,
+  putSaleController,
+  deleteSaleController,
 } from "./controllers/Controllers.mjs";
 
 import {
@@ -83,10 +87,10 @@ try {
   db.query(createCarsTableSQL);
   db.query(createRentsTableSQL);
   db.query(createSalesTableSQL);
-  // db.query(createCarNotAvailableTriggerSQL);
-  //db.query(createCarAvailableTriggerSQL);
-  //db.query(createNotAvailableRentsTriggerSQL);
-  //db.query(createAvailableRentsTriggerSQL);
+  db.query(createCarNotAvailableTriggerSQL);
+  db.query(createCarAvailableTriggerSQL);
+  db.query(createNotAvailableRentsTriggerSQL);
+  db.query(createAvailableRentsTriggerSQL);
 } catch (error) {
   console.error("Error trying to create tables");
   throw error;
@@ -125,13 +129,13 @@ try {
   app.post(PATH_PREFIX + "/form/", jsonParser, postFormController);
   app.get(PATH_PREFIX + "/allForms/", getAllForms);
   app.delete(PATH_PREFIX + "/form/", jsonParser, deleteFormController);
-  /*
+
   //Ventas
   app.get(PATH_PREFIX + "/allSales/", getAllSales);
   app.post(PATH_PREFIX + "/sale/", jsonParser, postSaleController);
   app.put(PATH_PREFIX + "/sale/", jsonParser, putSaleController);
   app.delete(PATH_PREFIX + "/sale/", jsonParser, deleteSaleController);
-
+  /*
   //Alquileres
   app.get(PATH_PREFIX + "/allRents/", getAllRents);
   app.post(PATH_PREFIX + "/rent/", jsonParser, postRentController);

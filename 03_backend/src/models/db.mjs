@@ -142,7 +142,7 @@ CREATE OR REPLACE FUNCTION auditlogfunc2() RETURNS TRIGGER AS $example_table$
         UPDATE coches
         SET disponible = 1
         WHERE id_coche = OLD.id_coche;
-      RETURN NEW;
+      RETURN OLD;
    END;
 $example_table$ LANGUAGE plpgsql;
 
@@ -196,7 +196,7 @@ CREATE OR REPLACE FUNCTION auditlogfunc3() RETURNS TRIGGER AS $example_table$
         UPDATE coches
         SET disponible = 1
         WHERE id_coche = OLD.id_coche;
-      RETURN NEW;
+      RETURN OLD;
    END;
 $example_table$ LANGUAGE plpgsql;
 

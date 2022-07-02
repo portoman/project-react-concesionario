@@ -38,7 +38,7 @@ export function takeMarca(id, coches) {
  */
 export function takeDNI(id, clientes) {
     let cliente = clientes.filter(element => element.id_cliente == id);
-    return cliente[0].DNI;
+    return cliente[0].dni;
 }
 
 /**

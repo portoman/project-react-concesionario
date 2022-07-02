@@ -38,7 +38,7 @@ function NavBar() {
               <Link to={"/searchFor"}>Buscar</Link>
             </Nav>
             <Nav className="me-auto">
-              <Logout/>
+              <Logout />
             </Nav>
           </Navbar.Collapse>
         </Container>

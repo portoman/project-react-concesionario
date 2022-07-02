@@ -36,7 +36,7 @@ function ClientTable() {
             {states.clients.map((element, index) => (
               <tr key={index}>
                 <td>{element.id_cliente}</td>
-                <td>{element.DNI}</td>
+                <td>{element.dni}</td>
                 <td>{element.nombre}</td>
                 <td>{element.apellidos}</td>
                 <td>{element.telefono}</td>
