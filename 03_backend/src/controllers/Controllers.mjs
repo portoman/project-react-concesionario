@@ -346,39 +346,37 @@ export async function deleteSaleController(request, response) {
   }
 }
 
-/*
 //Controlador para devolver todos los alquileres
-export function getAllRents(request, response) {
-    db.all(
-        `SELECT * FROM alquileres`,
-        (err, data) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.json(data)
-            }
-        }
-    )
+export async function getAllRents(request, response) {
+  try {
+    const data = await db.query(`SELECT * FROM alquileres`);
+    response.json(data.rows);
+  } catch (error) {
+    console.error(error);
+    response.sendStatus(500);
+  }
 }
 
 //Controlador para insertar un alquiler
-export function postRentController(request, response) {
+export async function postRentController(request, response) {
     const { fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio } = request.body;
-    db.run(
+    try {
+      const data = await db.query(
         `INSERT INTO alquileres(fecha_entrega,fecha_devolucion,id_coche, id_cliente, precio) VALUES 
-            ("${fecha_entrega}","${fecha_devolucion}","${id_coche}","${id_cliente}",${precio})`,
-        (err) => {
-            if (err) {
-                console.error(err);
-                response.sendStatus(500)
-            } else {
-                response.sendStatus(201)
-            }
-        }
-    )
-}
-
+        ($1,$2,$3,$4,$5) RETURNING *`,
+        [fecha_entrega,fecha_devolucion,id_coche, id_cliente, precio]
+      );
+      if (data.rowCount === 0) {
+        response.sendStatus(404);
+      } else {
+        response.json(data.rows);
+      }
+    } catch (error) {
+      console.error(error);
+      response.sendStatus(500);
+    }
+  }
+/*
 //Controlador para modificar un alquiler
 export function putRentController(request, response) {
     const { id, fecha_entrega, fecha_devolucion, id_coche, id_cliente, precio } = request.body;

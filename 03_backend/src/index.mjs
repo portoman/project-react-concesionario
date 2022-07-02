@@ -44,6 +44,8 @@ import {
   postSaleController,
   putSaleController,
   deleteSaleController,
+  getAllRents,
+  postRentController,
 } from "./controllers/Controllers.mjs";
 
 import {
@@ -65,7 +67,7 @@ const PATH_PREFIX = "/api";
 const UPLOADS_FOLDER = "./uploads/";
 
 // Usa .env si el servicio no está en producción
-if (process.env.NODE_ENV != "production") {
+if (process.env.NODE_ENV !== "production") {
   config();
 }
 
@@ -135,10 +137,12 @@ try {
   app.post(PATH_PREFIX + "/sale/", jsonParser, postSaleController);
   app.put(PATH_PREFIX + "/sale/", jsonParser, putSaleController);
   app.delete(PATH_PREFIX + "/sale/", jsonParser, deleteSaleController);
-  /*
+  
   //Alquileres
   app.get(PATH_PREFIX + "/allRents/", getAllRents);
   app.post(PATH_PREFIX + "/rent/", jsonParser, postRentController);
+  /*
+  
   app.put(PATH_PREFIX + "/rent/", jsonParser, putRentController);
   app.delete(PATH_PREFIX + "/rent/", jsonParser, deleteRentController);
 */
