@@ -42,6 +42,11 @@ function Login() {
         </Form.Group>
 
         <Stack>
+        <div className="ms-auto">
+            <Button onClick={loginHandler} variant="primary" type="submit">
+              Menu inicial
+            </Button>
+          </div>
           <div className="ms-auto">
             <Button onClick={loginHandler} variant="primary" type="submit">
               Registrar
