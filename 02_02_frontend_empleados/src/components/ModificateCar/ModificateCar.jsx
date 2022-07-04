@@ -9,7 +9,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
-import { URL } from "../../defines";
+import { host,api } from "../../defines";
 
 function ModificateCar() {
   const { states, actions } = useContext(Context);
@@ -80,7 +80,7 @@ function ModificateCar() {
       alquiler,
       oferta,
     });
-    await modify(URL + "/car", data);
+    await modify(host + api + "/car", data);
     actions.getAllCars();
   }
 

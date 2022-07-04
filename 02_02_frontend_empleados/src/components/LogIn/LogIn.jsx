@@ -1,11 +1,8 @@
-import { useEffect, useState, useRef, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useContext } from "react";
 import { Context } from "../../SharedState";
-import { PATH } from "../../defines";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
-import Authorization from "../Authorization/Authorization";
 
 function Login() {
   const { actions } = useContext(Context);
@@ -22,10 +19,7 @@ function Login() {
 
   function loginHandler(event) {
     event.preventDefault();
-    actions.getAPIToken(
-      username,
-      password
-    );
+    actions.getAPIToken(username, password);
   }
 
   return (
@@ -40,7 +34,10 @@ function Login() {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Stack direction="horizontal" gap={2}>
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" onChange={passwordInputChangeHandler} />
+            <Form.Control
+              type="password"
+              onChange={passwordInputChangeHandler}
+            />
           </Stack>
         </Form.Group>
 
@@ -53,7 +50,6 @@ function Login() {
         </Stack>
       </Form>
     </>
-
   );
 }
 

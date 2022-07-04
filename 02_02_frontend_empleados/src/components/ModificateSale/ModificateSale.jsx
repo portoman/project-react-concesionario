@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { modify } from "../../aux_api";
 import Stack from "react-bootstrap/Stack";
-import { URL } from "../../defines";
+import { host, api } from "../../defines";
 import { useParams } from "react-router-dom";
 import {
   takeMatricula,
@@ -54,7 +54,7 @@ function ModificateSale() {
     actions.getAllCars();
     actions.getAllClients();
     const data = JSON.stringify({ id, fecha, id_coche, id_cliente, precio });
-    await modify(URL + "/sale", data);
+    await modify(host + api + "/sale", data);
     actions.getAllSales();
     actions.getAllClients();
     actions.getAllCars();

@@ -3,23 +3,14 @@ import Table from "react-bootstrap/Table";
 import { Context } from "../../SharedState";
 import Button from "react-bootstrap/Button";
 import { apiDelete } from "../../aux_api";
-import { Link } from "react-router-dom";
-import {
-  takeMatricula,
-  takeModelo,
-  takeMarca,
-  takeDNI,
-  takeNombre,
-  takeApellidos,
-} from "../../local/functions";
-import { URL } from "../../defines";
+import { host, api } from "../../defines";
 
 function FormTable() {
   const { states, actions } = useContext(Context);
 
   async function clickHandlerDelete(id) {
     let data = JSON.stringify({ id });
-    await apiDelete(URL + "/form", data);
+    await apiDelete(host + api + "/form", data);
     actions.getAllForms();
   }
 

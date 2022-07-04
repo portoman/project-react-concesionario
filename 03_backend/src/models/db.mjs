@@ -1,14 +1,3 @@
-/*import express from "express";
-import pg from "pg";
-import { config } from "dotenv";
-
-const { Client } = require('pg');
-
-const connectionString = 'postgresql://postgres:s4yUFSs4HEyafreRTb9K@containers-us-west-44.railway.app:7403/railway'
-export const client = new Client({
-    connectionString,
-})
-*/
 
 /**
  * SQL quieries strings
@@ -20,7 +9,7 @@ export const createFormsTableSQL = `
             id SERIAL,
             nombre VARCHAR(20) NOT NULL,
             apellidos VARCHAR(20) NOT NULL,
-            telefono DECIMAL(8) NOT NULL,
+            telefono INTEGER NOT NULL,
             consulta VARCHAR(200),
             PRIMARY KEY(id)
         )
@@ -30,7 +19,7 @@ export const createEmployeesTableSQL = `
     CREATE TABLE
         IF NOT EXISTS
         usuariosConcesionarios(
-            usuario DECIMAL(5) PRIMARY KEY,
+            usuario INTEGER PRIMARY KEY,
             contraseña VARCHAR(20) NOT NULL
         )
 `;
@@ -43,8 +32,8 @@ export const createCustomersTableSQL = `
             DNI VARCHAR(8) NOT NULL UNIQUE,
             nombre VARCHAR(20) NOT NULL,
             apellidos VARCHAR(20) NOT NULL,
-            telefono DECIMAL(8) NOT NULL,
-            cpostal DECIMAL(5) NOT NULL,
+            telefono INTEGER NOT NULL,
+            cpostal INTEGER NOT NULL,
             ciudad VARCHAR(20) NOT NULL,
             PRIMARY KEY(id_cliente)
         )
@@ -119,6 +108,7 @@ BEGIN
     WHERE id_coche = NEW.id_coche;
 END;
 `;*/
+
 export const createCarNotAvailableTriggerSQL =`
 CREATE OR REPLACE FUNCTION auditlogfunc() RETURNS TRIGGER AS $example_table$
    BEGIN
@@ -145,13 +135,14 @@ BEGIN
 END;
 `)
 */
+
 export const createCarAvailableTriggerSQL =`
 CREATE OR REPLACE FUNCTION auditlogfunc2() RETURNS TRIGGER AS $example_table$
    BEGIN
         UPDATE coches
         SET disponible = 1
         WHERE id_coche = OLD.id_coche;
-      RETURN NEW;
+      RETURN OLD;
    END;
 $example_table$ LANGUAGE plpgsql;
 
@@ -171,6 +162,7 @@ BEGIN
 END;
 `)
 */
+
 export const createNotAvailableRentsTriggerSQL =`
 CREATE OR REPLACE FUNCTION auditlogfunc3() RETURNS TRIGGER AS $example_table$
    BEGIN
@@ -197,16 +189,17 @@ BEGIN
 END;
 `)
 */
+
 export const createAvailableRentsTriggerSQL =`
-CREATE OR REPLACE FUNCTION auditlogfunc3() RETURNS TRIGGER AS $example_table$
+CREATE OR REPLACE FUNCTION auditlogfunc4() RETURNS TRIGGER AS $example_table$
    BEGIN
         UPDATE coches
         SET disponible = 1
         WHERE id_coche = OLD.id_coche;
-      RETURN NEW;
+      RETURN OLD;
    END;
 $example_table$ LANGUAGE plpgsql;
 
 CREATE TRIGGER car_available_alquileres BEFORE DELETE ON alquileres
-FOR EACH ROW EXECUTE PROCEDURE auditlogfunc3();
+FOR EACH ROW EXECUTE PROCEDURE auditlogfunc4();
 `;

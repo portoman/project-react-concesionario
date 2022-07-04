@@ -12,11 +12,11 @@ import {
   takeNombre,
   takeApellidos,
   unoSiCeroNo,
-  alquilerVenta
+  alquilerVenta,
 } from "../../local/functions";
-import { URL } from "../../defines";
+import { host, api } from "../../defines";
 import Stack from "react-bootstrap/Stack";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 
 function SearchFor() {
   const { states, actions } = useContext(Context);
@@ -44,19 +44,23 @@ function SearchFor() {
   ////Handler borrado genérico
   async function clickHandlerDelete(id_cliente, prop) {
     let data = JSON.stringify({ id_cliente });
-    await apiDelete(URL + prop, data);
+    await apiDelete(host + api + prop, data);
     actions.getAllClients();
   }
 
   //Handler buscar clientes
   async function clickHandlerSearchForClient(value, datos, valor) {
     if (!isNaN(valor)) {
-      if (value === "id_cliente" || value === "telefono" || value === "cpostal") {
+      if (
+        value === "id_cliente" ||
+        value === "telefono" ||
+        value === "cpostal"
+      ) {
         let valorNumero = Number(valor);
-        setClient(datos.filter(element => element[value] === valorNumero));
+        setClient(datos.filter((element) => element[value] === valorNumero));
       }
     } else {
-      setClient(datos.filter(element => element[value] === valor));
+      setClient(datos.filter((element) => element[value] === valor));
     }
   }
 
@@ -77,37 +81,54 @@ function SearchFor() {
         break;
     }
     if (!isNaN(valor)) {
-      if (value === "id_coche" || value === "km" || value === "cpostal" || value === "precio"
-        || value === "disponible" || value === "alquiler" || value === "oferta") {
+      if (
+        value === "id_coche" ||
+        value === "km" ||
+        value === "cpostal" ||
+        value === "precio" ||
+        value === "disponible" ||
+        value === "alquiler" ||
+        value === "oferta"
+      ) {
         let valorNumero = Number(valor);
-        setCars(datos.filter(element => element[value] === valorNumero));
+        setCars(datos.filter((element) => element[value] === valorNumero));
       }
     } else {
-      setCars(datos.filter(element => element[value] === valor));
+      setCars(datos.filter((element) => element[value] === valor));
     }
   }
 
   //Handler buscar ventas
   async function clickHandlerSearchForSale(value, datos, valor) {
     if (!isNaN(valor)) {
-      if (value === "id" || value === "id_coche" || value === "id_cliente" || value === "precio") {
+      if (
+        value === "id" ||
+        value === "id_coche" ||
+        value === "id_cliente" ||
+        value === "precio"
+      ) {
         let valorNumero = Number(valor);
-        setSales(datos.filter(element => element[value] === valorNumero));
+        setSales(datos.filter((element) => element[value] === valorNumero));
       }
     } else {
-      setSales(datos.filter(element => element[value] === valor));
+      setSales(datos.filter((element) => element[value] === valor));
     }
   }
 
   //Handler buscar alquileres
   async function clickHandlerSearchForRent(value, datos, valor) {
     if (!isNaN(valor)) {
-      if (value === "id" || value === "id_coche" || value === "id_cliente" || value === "precio") {
+      if (
+        value === "id" ||
+        value === "id_coche" ||
+        value === "id_cliente" ||
+        value === "precio"
+      ) {
         let valorNumero = Number(valor);
-        setRents(datos.filter(element => element[value] === valorNumero));
+        setRents(datos.filter((element) => element[value] === valorNumero));
       }
     } else {
-      setRents(datos.filter(element => element[value] === valor));
+      setRents(datos.filter((element) => element[value] === valor));
     }
   }
 
@@ -167,7 +188,11 @@ function SearchFor() {
           </div>
           <Form>
             <Stack direction="horizontal" gap={2}>
-              <Form.Select aria-label="Default select example" value={atributeClient} onChange={(event) => setAtributeClient(event.target.value)} >
+              <Form.Select
+                aria-label="Default select example"
+                value={atributeClient}
+                onChange={(event) => setAtributeClient(event.target.value)}
+              >
                 <option value="id_cliente">ID</option>
                 <option value="DNI">DNI</option>
                 <option value="nombre">Nombre</option>
@@ -176,12 +201,22 @@ function SearchFor() {
                 <option value="cpostal">CP</option>
                 <option value="ciudad">Ciudad</option>
               </Form.Select>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control type="text" onChange={(event) => setValueClient(event.target.value)} />
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control
+                  type="text"
+                  onChange={(event) => setValueClient(event.target.value)}
+                />
               </Form.Group>
               <Button
                 onClick={() => {
-                  clickHandlerSearchForClient(atributeClient, states.clients, valueClient);
+                  clickHandlerSearchForClient(
+                    atributeClient,
+                    states.clients,
+                    valueClient
+                  );
                 }}
                 variant="primary"
                 type="button"
@@ -252,7 +287,11 @@ function SearchFor() {
           </div>
           <Form>
             <Stack direction="horizontal" gap={2}>
-              <Form.Select aria-label="Default select example" value={atributeCar} onChange={(event) => setAtributeCar(event.target.value)} >
+              <Form.Select
+                aria-label="Default select example"
+                value={atributeCar}
+                onChange={(event) => setAtributeCar(event.target.value)}
+              >
                 <option value="id_coche">ID</option>
                 <option value="matricula">Matricula</option>
                 <option value="modelo">Modelo</option>
@@ -264,8 +303,14 @@ function SearchFor() {
                 <option value="alquiler">Alquiler</option>
                 <option value="oferta">Oferta</option>
               </Form.Select>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control type="text" onChange={(event) => setValueCar(event.target.value)} />
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control
+                  type="text"
+                  onChange={(event) => setValueCar(event.target.value)}
+                />
               </Form.Group>
               <Button
                 onClick={() => {
@@ -330,19 +375,33 @@ function SearchFor() {
           </div>
           <Form>
             <Stack direction="horizontal" gap={2}>
-              <Form.Select aria-label="Default select example" value={atributeSale} onChange={(event) => setAtributeSale(event.target.value)} >
+              <Form.Select
+                aria-label="Default select example"
+                value={atributeSale}
+                onChange={(event) => setAtributeSale(event.target.value)}
+              >
                 <option value="id">ID</option>
                 <option value="fecha">Fecha</option>
                 <option value="id_coche">ID Coche</option>
                 <option value="id_cliente">ID Cliente</option>
                 <option value="precio">Precio</option>
               </Form.Select>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control type="text" onChange={(event) => setValueSale(event.target.value)} />
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control
+                  type="text"
+                  onChange={(event) => setValueSale(event.target.value)}
+                />
               </Form.Group>
               <Button
                 onClick={() => {
-                  clickHandlerSearchForSale(atributeSale, states.sales, valueSale);
+                  clickHandlerSearchForSale(
+                    atributeSale,
+                    states.sales,
+                    valueSale
+                  );
                 }}
                 variant="primary"
                 type="button"
@@ -405,7 +464,11 @@ function SearchFor() {
           </div>
           <Form>
             <Stack direction="horizontal" gap={2}>
-              <Form.Select aria-label="Default select example" value={atributeRent} onChange={(event) => setAtributeRent(event.target.value)} >
+              <Form.Select
+                aria-label="Default select example"
+                value={atributeRent}
+                onChange={(event) => setAtributeRent(event.target.value)}
+              >
                 <option value="id">ID</option>
                 <option value="fecha_entrega">Fecha Entrega</option>
                 <option value="fecha_devolucion">Fecha Devolución</option>
@@ -413,12 +476,22 @@ function SearchFor() {
                 <option value="id_cliente">ID Cliente</option>
                 <option value="precio">Precio</option>
               </Form.Select>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Control type="text" onChange={(event) => setValueRent(event.target.value)} />
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control
+                  type="text"
+                  onChange={(event) => setValueRent(event.target.value)}
+                />
               </Form.Group>
               <Button
                 onClick={() => {
-                  clickHandlerSearchForRent(atributeRent, states.rents, valueRent);
+                  clickHandlerSearchForRent(
+                    atributeRent,
+                    states.rents,
+                    valueRent
+                  );
                 }}
                 variant="primary"
                 type="button"

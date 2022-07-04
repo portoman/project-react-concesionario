@@ -12,14 +12,14 @@ import {
   takeNombre,
   takeApellidos,
 } from "../../local/functions";
-import { URL } from "../../defines";
+import { host, api } from "../../defines";
 
 function SaleTable() {
   const { states, actions } = useContext(Context);
 
   async function clickHandlerDelete(id) {
     let data = JSON.stringify({ id });
-    await apiDelete(URL + "/sale", data);
+    await apiDelete(host + api + "/sale", data);
     actions.getAllClients();
     actions.getAllSales();
     actions.getAllCars();

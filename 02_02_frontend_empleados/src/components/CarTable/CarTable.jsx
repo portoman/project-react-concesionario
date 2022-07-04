@@ -4,19 +4,15 @@ import { Context } from "../../SharedState";
 import Button from "react-bootstrap/Button";
 import { apiDelete } from "../../aux_api";
 import { Link } from "react-router-dom";
-import { URL } from "../../defines";
-import {
-  unoSiCeroNo,
-  alquilerVenta
-} from "../../local/functions";
+import { host, api } from "../../defines";
+import { unoSiCeroNo, alquilerVenta } from "../../local/functions";
 
 function CarTable() {
   const { states, actions } = useContext(Context);
 
-
   async function clickHandlerDelete(id_coche) {
     let data = JSON.stringify({ id_coche });
-    await apiDelete(URL + "/car", data);
+    await apiDelete(host + api + "/car", data);
     actions.getAllCars();
   }
 
