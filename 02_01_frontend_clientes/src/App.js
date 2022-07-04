@@ -3,7 +3,7 @@ import NavBar from './components/NavBar/NavBar';
 import IndividualPage from './components/IndividualPage/IndividualPage';
 import CarCarrousels from './components/CarCarrousels/CarCarrousels';
 import MainForm from './components/MainForm/MainForm';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useContext, useEffect } from "react"
 import { Context } from "./SharedState"
 import { Link } from 'react-router-dom';
@@ -26,6 +26,8 @@ function App() {
   async function clickHandler(event) {
     event.preventDefault()
     navigate("/backoffice/");
+    window.location.reload(false);
+    
   }
 
   return (
