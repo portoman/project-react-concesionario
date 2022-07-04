@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Context } from "../../SharedState"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { Link } from "react-router-dom";
 import { post } from "../../aux_api";
 import { host } from "../../defines"
 
@@ -51,9 +52,11 @@ function MainForm() {
         <Form.Label>Consulta</Form.Label>
         <Form.Control onChange={queryInputChangeHandler} type="text" />
       </Form.Group>
-      <Button onClick={clickHandler} variant="primary" type="submit">
-        Enviar
-      </Button>
+      <Link to="/">
+        <Button onClick={clickHandler} variant="primary" type="submit">
+          Enviar
+        </Button>
+      </Link>
     </Form>
 
     </>
