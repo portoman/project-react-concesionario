@@ -7,7 +7,6 @@ import MainForm from './components/MainForm/MainForm';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import LogIn from './components/LogIn/LogIn'
-import { Route, Routes } from 'react-router-dom';
 
 import { useContext, useEffect } from "react"
 import { Context } from "./SharedState"
@@ -19,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 
 
 function App() {
-//
 
   const { states, actions } = useContext(Context);
 
@@ -44,7 +42,6 @@ function App() {
 
         <Button className="ms-auto" onClick={clickHandler}>Empleados</Button>
 
-        <Link to={"/login"}><Button className="ms-auto">Usuarios</Button></Link>
       </Stack>
       <NavBar />
       <Routes>
