@@ -9,6 +9,7 @@ import { Context } from "./SharedState"
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
+import { useNavigate } from "react-router-dom";
 
 function App() {
 
@@ -21,13 +22,17 @@ function App() {
     },
     []
   )
-
+  const navigate = useNavigate();
+  async function clickHandler(event) {
+    event.preventDefault()
+    navigate("/backoffice/");
+  }
 
   return (
     <>
       <Stack direction="horizontal">
         <h1 className="mx-auto"><Link to={"/"}>Concesionario Vioño</Link></h1>
-        <Link to={"/backoffice/"}><Button className="ms-auto">Empleados</Button></Link>
+        <Button className="ms-auto" onClick={clickHandler}>Empleados</Button>
       </Stack>
       <NavBar />
       <Routes>
