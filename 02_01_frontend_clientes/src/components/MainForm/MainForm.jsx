@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Context } from "../../SharedState"
@@ -10,6 +11,7 @@ import { host } from "../../defines"
 function MainForm() {
 
   const { state } = useContext(Context);
+  const navigate = useNavigate();
 
   const [nombre, setName] = useState("");
   const [apellidos, setSurname] = useState("");
@@ -29,9 +31,11 @@ function MainForm() {
     setQuery(event.target.value)
   }
 
-  async function clickHandler() {
+  async function clickHandler(event) {
+    event.preventDefault()
     const data = JSON.stringify({ nombre, apellidos, telefono, consulta });
     await post(host + "/api" + "/form", data);
+    navigate("/");
   }
 
   return (
@@ -52,11 +56,9 @@ function MainForm() {
         <Form.Label>Consulta</Form.Label>
         <Form.Control onChange={queryInputChangeHandler} type="text" />
       </Form.Group>
-      <Link to="/">
-        <Button onClick={clickHandler} variant="primary" type="submit">
-          Enviar
-        </Button>
-      </Link>
+      <Button onClick={clickHandler} variant="primary" type="submit">
+        Enviar
+      </Button>
     </Form>
 
     </>
