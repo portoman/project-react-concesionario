@@ -3,16 +3,21 @@ import NavBar from './components/NavBar/NavBar';
 import IndividualPage from './components/IndividualPage/IndividualPage';
 import CarCarrousels from './components/CarCarrousels/CarCarrousels';
 import MainForm from './components/MainForm/MainForm';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import LogIn from './components/LogIn/LogIn'
+
 import { useContext, useEffect } from "react"
 import { Context } from "./SharedState"
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
+
 import { useNavigate } from "react-router-dom";
 
-function App() {
 
+function App() {
 
   const { states, actions } = useContext(Context);
 
@@ -27,7 +32,7 @@ function App() {
     event.preventDefault()
     navigate("/backoffice/");
     window.location.reload(false);
-    
+
   }
 
   return (
@@ -41,6 +46,7 @@ function App() {
         <Route path="/" element={<CarCarrousels />} />
         <Route path="/vehiculo/:id" element={<IndividualPage />} />
         <Route path="/mainform" element={<MainForm />} />
+        <Route path="/login" element={<LogIn />} />
       </Routes>
     </>
 
