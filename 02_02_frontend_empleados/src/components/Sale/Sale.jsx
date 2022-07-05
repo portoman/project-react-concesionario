@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import { post } from "../../aux_api";
 import Stack from "react-bootstrap/Stack";
 import { host, api } from "../../defines";
+import { useNavigate } from "react-router-dom";
 
 function Sale() {
   const { states, actions } = useContext(Context);
@@ -25,6 +26,8 @@ function Sale() {
   const [id_coche, setIdcoche] = useState(idInicialCoche);
   const [id_cliente, setIdCliente] = useState(idInicialCliente);
   const [precio, setPrecio] = useState("");
+  const [validated, setValidated] = useState(false);
+  const navigate = useNavigate();
 
   function fechaInputChangeHandler(event) {
     setFecha(event.target.value);
@@ -56,7 +59,7 @@ function Sale() {
   let listadoCoches = "";
   if (idInicialCoche > 0) {
     listadoCoches = cochesDisponibles.map((element, index) => (
-      <option value={element.id_coche}  key={index}>
+      <option value={element.id_coche} key={index}>
         Id: {element.id_coche} - Matricula: {element.matricula} - Modelo:{" "}
         {element.modelo} - Marca: {element.marca}
       </option>
@@ -65,11 +68,26 @@ function Sale() {
     listadoCoches = <option>Coches no disponibles</option>;
   }
 
+
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      event.preventDefault();
+      navigate("/saleTable/");
+    }
+    setValidated(true);
+  };
+
+
   return (
     <>
       <Stack gap={1}>
         <h2 className="mx-auto">Venta</h2>
-        <Form className="col-8 mx-auto">
+        <Form className="col-8 mx-auto" noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group className="col-3 mb-3" controlId="formBasicEmail">
             <Stack direction="horizontal" gap={2}>
               <Form.Label>Fecha</Form.Label>
@@ -95,7 +113,7 @@ function Sale() {
                 onChange={idClienteChangeHandler}
               >
                 {states.clients.map((element, index) => (
-                  <option value={element.id_cliente}  key={index}>
+                  <option value={element.id_cliente} key={index}>
                     Id: {element.id_cliente} - DNI: {element.DNI} - Nombre:{" "}
                     {element.nombre} - Apellidos: {element.apellidos}
                   </option>
@@ -106,16 +124,17 @@ function Sale() {
           <Form.Group className="col-3 mb-3" controlId="formBasicEmail">
             <Stack direction="horizontal" gap={2}>
               <Form.Label>Precio</Form.Label>
-              <Form.Control type="number" onChange={precioInputChangeHandler} />
+              <Form.Control type="number" required onChange={precioInputChangeHandler} />
+              <Form.Control.Feedback type="invalid">
+                Por favor, introduzca un precio.
+              </Form.Control.Feedback>
             </Stack>
           </Form.Group>
           <Stack>
             <div className="ms-auto">
-              <Link to="/saleTable">
-                <Button onClick={clickHandler} variant="primary" type="submit">
-                  Registrar
-                </Button>
-              </Link>
+              <Button onClick={clickHandler} variant="primary" type="submit">
+                Registrar
+              </Button>
             </div>
           </Stack>
         </Form>
