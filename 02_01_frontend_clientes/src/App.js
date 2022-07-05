@@ -34,7 +34,7 @@ function App() {
     <>
       <Stack direction="horizontal">
         <h1 className="mx-auto"><Link to={"/"}>Concesionario Vioño</Link></h1>
-        <Button className="ms-auto" onClick={clickHandler}>Empleados</Button>
+        <a href="/backoffice/"><Button className="ms-auto">Empleados</Button></a>
       </Stack>
       <NavBar />
       <Routes>
