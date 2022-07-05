@@ -3,19 +3,13 @@ import NavBar from './components/NavBar/NavBar';
 import IndividualPage from './components/IndividualPage/IndividualPage';
 import CarCarrousels from './components/CarCarrousels/CarCarrousels';
 import MainForm from './components/MainForm/MainForm';
-
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import { Route, Routes } from 'react-router-dom';
 import LogIn from './components/LogIn/LogIn'
-
 import { useContext, useEffect } from "react"
 import { Context } from "./SharedState"
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
-
-import { useNavigate } from "react-router-dom";
-
 
 function App() {
 
@@ -27,13 +21,6 @@ function App() {
     },
     []
   )
-  const navigate = useNavigate();
-  async function clickHandler(event) {
-    event.preventDefault()
-    navigate("/backoffice/");
-    window.location.reload(false);
-
-  }
 
   return (
     <>

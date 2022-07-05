@@ -42,16 +42,18 @@ function Login() {
         </Form.Group>
 
         <Stack>
-        <div className="ms-auto">
-            <Button onClick={loginHandler} variant="primary" type="submit">
-              Menu inicial
-            </Button>
-          </div>
-          <div className="ms-auto">
-            <Button onClick={loginHandler} variant="primary" type="submit">
-              Registrar
-            </Button>
-          </div>
+          <Stack direction="horizontal" gap={2}>
+            <div className="ms-auto">
+              <a href="/"> <Button variant="primary">
+                Menu inicial
+              </Button></a>
+            </div>
+            <div className="ms-auto">
+              <Button onClick={loginHandler} variant="primary" type="submit">
+                Registrar
+              </Button>
+            </div>
+          </Stack>
         </Stack>
       </Form>
     </>

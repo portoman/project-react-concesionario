@@ -2,30 +2,6 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import pg from "pg";
 import { config } from "dotenv";
-/*
-import {
-  getAllCars,
-  postCarController,
-  getOneCarController,
-  putCarController,
-  deleteCarController,
-  getAllClients,
-  postClientController,
-  getOneClientController,
-  putClientController,
-  deleteClientController,
-  postFormController,
-  getAllForms,
-  getAllSales,
-  postSaleController,
-  putSaleController,
-  deleteSaleController,
-  getAllRents,
-  postRentController,
-  putRentController,
-  deleteRentController,
-  deleteFormController,
-} from "./controllers/Controllers.mjs";*/
 import {
   getAllCars,
   getOneCarController,
