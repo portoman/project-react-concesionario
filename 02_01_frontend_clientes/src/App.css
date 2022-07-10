@@ -1,11 +1,4 @@
-body, html {
+body {
   height: 100%;
-}
-
-.bg{
-  background-image:url("https://www.canva.com/design/DAFGAgbklPY/NL4K-yU2b60v8VY6rRuYDQ/edit?utm_content=DAFGAgbklPY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton") ;
-  height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  
 }
