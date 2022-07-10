@@ -10,3 +10,11 @@ body {
   background-attachment: fixed;
   background-position: center;
 }
+
+.title{
+  text-decoration: none;
+  background-color: black;
+  color: white;
+  padding:10px;
+  border-radius: 20px;
+}

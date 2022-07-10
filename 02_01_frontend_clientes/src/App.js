@@ -22,7 +22,7 @@ function App() {
     <div className="bg">
       <Stack direction="horizontal">
         <h1 className="mx-auto">
-          <Link to={"/"}>Concesionario Vioño</Link>
+          <Link to={"/"} className="title">Concesionario Vioño</Link>
         </h1>
         <a href="/backoffice/">
           <Button className="ms-auto">Empleados</Button>
@@ -30,7 +30,7 @@ function App() {
       </Stack>
       <NavBar />
       <Routes>
-        <Route path="/" className="mx-auto" element={<CarCarrousels />} />
+        <Route path="/" element={<CarCarrousels />} />
         <Route path="/vehiculo/:id" element={<IndividualPage />} />
         <Route path="/mainform" element={<MainForm />} />
         <Route path="/login" element={<LogIn />} />
