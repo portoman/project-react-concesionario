@@ -20,6 +20,7 @@ function IndividualPage() {
             <h2>Marca: {coche.marca}</h2>
             <h2>Modelo: {coche.modelo}</h2>
             <h2>Precio: {coche.precio}</h2>
+            <h2>Km: {coche.km}</h2>
             <img src={host + PATH + coche.foto} />
         </>
 

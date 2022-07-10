@@ -39,20 +39,20 @@ function MainForm() {
   }
 
   return (
-    <><Form>
-      <Form.Group className="mb-3" controlId="formBasicName">
+    <><Form className="mx-auto">
+      <Form.Group className="mb-3 mx-auto col-4" controlId="formBasicName">
         <Form.Label>Nombre</Form.Label>
         <Form.Control onChange={nameInputChangeHandler} type="text" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicSurname">
+      <Form.Group className="mb-3 mx-auto col-4" controlId="formBasicSurname">
         <Form.Label>Apellidos</Form.Label>
         <Form.Control onChange={surnameInputChangeHandler} type="text" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicSurname">
+      <Form.Group className="mb-3 mx-auto col-4" controlId="formBasicSurname">
         <Form.Label>Telefono</Form.Label>
         <Form.Control onChange={phoneInputChangeHandler} type="number" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicSurname">
+      <Form.Group className="mb-3 mx-auto col-4 height-50" controlId="formBasicSurname">
         <Form.Label>Consulta</Form.Label>
         <Form.Control onChange={queryInputChangeHandler} type="text" />
       </Form.Group>
