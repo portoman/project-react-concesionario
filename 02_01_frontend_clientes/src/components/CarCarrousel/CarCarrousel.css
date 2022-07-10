@@ -5,3 +5,9 @@
 img{
     height:500px;
 }
+.carousel-control-prev-icon::after {
+    content: none;
+}
+.carousel-control-next-icon::after {
+    content: none;
+} 
