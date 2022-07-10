@@ -1,13 +1,4 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+  background-image:url("https://www.canva.com/design/DAFGAgbklPY/NL4K-yU2b60v8VY6rRuYDQ/edit?utm_content=DAFGAgbklPY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton") ;
 }
