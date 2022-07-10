@@ -15,7 +15,7 @@ function CarCarrousels({ vehiculos }) {
     //Mediante el método filter, segrego los coches que son de alquiler o venta
     let vehiculosArrayAlquiler = cochesOfertas.filter(coche => coche.alquiler === 1);
     let vehiculosArrayVenta = cochesOfertas.filter(coche => coche.alquiler === 0);
-
+    
     return (
         <>
             <h3>Ofertas alquiler</h3>

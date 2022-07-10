@@ -15,6 +15,7 @@ function IndividualPage() {
     //Buscamos el coche en el state que coincida con el parametro de la url, para poder mostrarlo
     const coche = states.cars.find(element => element.id_coche === numero);
 
+
     return (
         <>
             <h2>Marca: {coche.marca}</h2>
