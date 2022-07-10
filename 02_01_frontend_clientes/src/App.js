@@ -10,6 +10,7 @@ import { Context } from "./SharedState";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const { states, actions } = useContext(Context);
@@ -35,6 +36,7 @@ function App() {
         <Route path="/mainform" element={<MainForm />} />
         <Route path="/login" element={<LogIn />} />
       </Routes>
+      <Footer/>
     </div>
   );
 }
