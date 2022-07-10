@@ -32,7 +32,8 @@ function CarCarrousel({ vehiculos }) {
                         />
                     </Link>
                     <Carousel.Caption>
-                        <h3>{element.marca}</h3>
+                        <h2>{element.marca}</h2>
+                        <h3>{element.modelo}</h3>
                         <p>{element.precio}</p>
                     </Carousel.Caption>
                 </Carousel.Item>

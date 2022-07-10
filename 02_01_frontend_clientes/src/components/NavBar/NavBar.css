@@ -3,3 +3,14 @@
 .me-auto{
     margin-left: 14%;
 }
+body{
+    font-size: 40px;
+}
+.dropdown-toggle,.me-auto {
+    font-size: 3vh;
+    color:black;
+}
+.formulario{
+    text-decoration: none;
+    color:black;
+}

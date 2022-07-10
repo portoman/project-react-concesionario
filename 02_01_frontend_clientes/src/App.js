@@ -21,8 +21,8 @@ function App() {
   return (
     <div className="bg">
       <Stack direction="horizontal">
-        <h1 className="mx-auto">
-          <Link to={"/"} className="title">Concesionario Vioño</Link>
+        <h1 className="mx-auto mt-4 mb-4">
+          <Link to={"/"} className="title" >Concesionario Vioño</Link>
         </h1>
         <a href="/backoffice/">
           <Button className="ms-auto">Empleados</Button>

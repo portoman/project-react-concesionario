@@ -239,11 +239,11 @@ function NavBar() {
 
     return (
         <>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="light" >
                 <Container>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <NavDropdown title="Alquiler" id="basic-nav-dropdown">
+                            <NavDropdown title="Alquiler"  id="basic-nav-dropdown">
                                 {vehiculosMarcasIndividualesAlquiler}
                                 {vehiculosMarcasMultiplesAlquiler}
                             </NavDropdown>
@@ -255,7 +255,7 @@ function NavBar() {
                             </NavDropdown>
                         </Nav>
                         <Nav className="me-auto">
-                            <Link to={"/mainform"}>Formulario</Link>
+                            <Link className="formulario" to={"/mainform"}>Formulario</Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

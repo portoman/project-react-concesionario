@@ -6,9 +6,9 @@ body {
 .bg{
   background-image:url("https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_960_720.jpg") ;
   background-repeat: no-repeat;
-  background-size: cover;
   background-attachment: fixed;
-  background-position: center;
+  background-size: cover;
+  height: 150vh;
 }
 
 .title{
