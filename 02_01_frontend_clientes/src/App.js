@@ -30,7 +30,7 @@ function App() {
       </Stack>
       <NavBar />
       <Routes>
-        <Route path="/" element={<CarCarrousels />} />
+        <Route path="/" className="mx-auto" element={<CarCarrousels />} />
         <Route path="/vehiculo/:id" element={<IndividualPage />} />
         <Route path="/mainform" element={<MainForm />} />
         <Route path="/login" element={<LogIn />} />

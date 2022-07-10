@@ -1,6 +1,6 @@
 .carusel{
     width: 70%;
-    margin:0% 15%;
+    max-width: 1000px;
 }
 img{
     height:500px;
