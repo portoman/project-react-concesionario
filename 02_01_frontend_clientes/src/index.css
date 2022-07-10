@@ -1,4 +1,9 @@
 
 body{
-  background-image:url("https://www.canva.com/design/DAFGAgbklPY/NL4K-yU2b60v8VY6rRuYDQ/edit?utm_content=DAFGAgbklPY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton") ;
+  /*background-image:url("https://www.canva.com/design/DAFGAgbklPY/NL4K-yU2b60v8VY6rRuYDQ/edit?utm_content=DAFGAgbklPY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton") ;
+  */
+  background-image:url("../../04_documentation/Fondo/Fondo.png");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: unset;
 }
